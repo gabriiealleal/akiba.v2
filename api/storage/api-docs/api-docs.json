@@ -1,0 +1,179 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rede Akiba API REST",
+        "description": "Esta documentação descreve as todas as operações disponíveis para as aplicações da Rede Akiba.",
+        "contact": {
+            "email": "contato@redeakiba.com.br"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/usuarios": {
+            "get": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Retorna todos os usuários cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todos os usuários cadastrados no sistema da Rede Akiba.",
+                "operationId": "def965050e08426437080b9f93650872",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuários cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum usuário encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ExampleSchema": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": "boolean"
+                    },
+                    "login": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "access_levels": {
+                        "type": "json",
+                        "example": "['string', 'string']"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "social_networks": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "facebook": {
+                                    "type": "string",
+                                    "example": "http://facebook.com/username"
+                                },
+                                "instagram": {
+                                    "type": "string",
+                                    "example": "http://instagram.com/username"
+                                },
+                                "x": {
+                                    "type": "string",
+                                    "example": "http://x.com/username"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "reactions": {
+                        "properties": {
+                            "likes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": "['string', 'string']"
+                            },
+                            "dislikes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": "['string', 'string']"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Usuários",
+            "description": "Gerenciamento de Usuários: Esta seção oferece acesso a operações relacionadas à administração, criação, atualização e exclusão de usuários no sistema da Rede Akiba."
+        }
+    ]
+}
