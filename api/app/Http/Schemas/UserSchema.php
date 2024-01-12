@@ -37,5 +37,6 @@ namespace App\Http\Schemas;
  *      ),
  * ),
  */
+
 class UserSchema{
 }

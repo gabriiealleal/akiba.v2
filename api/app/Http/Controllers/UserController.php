@@ -56,13 +56,13 @@ class UserController extends Controller
         }
     }
 
-    //Retorna um usuário específico
+    //Cria um novo usuário
     public function store(Request $request)
     {
-        //
+
     }
 
-    //Cria um novo usuário
+    //Retorna um usuário específico
     public function show($id)
     {
         //
