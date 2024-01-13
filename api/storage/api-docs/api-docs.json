@@ -61,6 +61,290 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Cria um novo usuário",
+                "description": "Este endpoint cria um novo usuário no sistema da Rede Akiba.",
+                "operationId": "88700e31d86fba96458ff6d229350cfc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário criado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um problema de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de validação"
+                                        },
+                                        "messages": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "example": [
+                                                "O campo login é obrigatório",
+                                                "O campo senha é obrigatório",
+                                                "A senha deve ter no mínimo 6 caracteres",
+                                                "O e-mail informado já está em uso",
+                                                "O arquivo enviado não é uma imagem válida"
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/usuarios/{slug}": {
+            "get": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Retorna um usuário específico",
+                "description": "Este endpoint retorna um usuário específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "f9c01192add442426311958b442a9bd9",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Usuário: Retorna um usuário baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/usuarios/{id}": {
+            "delete": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Remove um usuário específico",
+                "description": "Este endpoint remove um usuário específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "7fa713aab598a149659eb2db9703636d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Usuário: Remove um usuário baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário removido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuário removido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Atualiza parcialmente um usuário específico",
+                "description": "Este endpoint atualiza parcialmente um usuário específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "fa249cd0cdeb52d3d722647ed588f06d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Usuário: Atualiza parcialmente um usuário baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -87,7 +371,7 @@
                     },
                     "is_active": {
                         "type": "boolean",
-                        "example": "boolean"
+                        "example": "true"
                     },
                     "login": {
                         "type": "string"
@@ -146,7 +430,88 @@
                             "type": "object"
                         }
                     },
-                    "reactions": {
+                    "likes": {
+                        "properties": {
+                            "likes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": "['string', 'string']"
+                            },
+                            "dislikes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": "['string', 'string']"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "UserRequest": {
+                "properties": {
+                    "login": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "access_levels": {
+                        "type": "json",
+                        "example": "['string', 'string']"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "nickname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "social_networks": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "facebook": {
+                                    "type": "string",
+                                    "example": "http://facebook.com/username"
+                                },
+                                "instagram": {
+                                    "type": "string",
+                                    "example": "http://instagram.com/username"
+                                },
+                                "x": {
+                                    "type": "string",
+                                    "example": "http://x.com/username"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "likes": {
                         "properties": {
                             "likes": {
                                 "type": "array",

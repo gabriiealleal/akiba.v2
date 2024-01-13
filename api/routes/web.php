@@ -24,4 +24,8 @@ Route::get('/', function () {
 //Rotas para endpoint de usuários
 Route::group(['prefix' => 'usuarios'], function () {
     Route::get('/', [UserController::class, 'index']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{slug}', [UserController::class, 'show']);
+    Route::patch('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
 });

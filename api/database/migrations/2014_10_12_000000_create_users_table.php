@@ -18,20 +18,20 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('slug');
             $table->boolean('is_active');
-            $table->string('login');
+            $table->string('login')->unique();
             $table->string('password');
             $table->json('access_levels');
             $table->string('avatar');
             $table->string('name');
             $table->string('nickname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('age');
             $table->string('city');
             $table->string('state');
             $table->string('country');
             $table->string('biography');
             $table->json('social_networks');
-            $table->json('reactions');
+            $table->json('likes');
         });
     }
 

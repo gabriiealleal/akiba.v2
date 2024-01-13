@@ -27,13 +27,13 @@ class User extends Model
         'country',
         'biography',
         'social_networks',
-        'reactions'
+        'likes'
     ];
 
     protected $casts = [
         'access_levels' => 'array',
         'social_networks' => 'array',
-        'reactions' => 'array'
+        'likes' => 'array'
     ];
     
 }

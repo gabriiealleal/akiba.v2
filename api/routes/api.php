@@ -25,5 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Rotas para endpoint de usuários
 Route::group(['prefix' => 'usuarios'], function () {
     Route::get('/', [UserController::class, 'index']);
-    Route::get('/{id}', [UserController::class, 'store']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{slug}', [UserController::class, 'show']);
+    Route::patch('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
 });
