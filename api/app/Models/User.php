@@ -35,5 +35,10 @@ class User extends Model
         'social_networks' => 'array',
         'likes' => 'array'
     ];
+
+    protected $hidden = [
+        'login',
+        'password'
+    ];
     
 }

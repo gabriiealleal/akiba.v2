@@ -9,6 +9,346 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/programas": {
+            "get": {
+                "tags": [
+                    "Programas"
+                ],
+                "summary": "Retorna todos os programas cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
+                "operationId": "8d657656ee1124cd6bfc0d0b91c02318",
+                "responses": {
+                    "200": {
+                        "description": "Lista de programas cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum programa encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum programa encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Programas"
+                ],
+                "summary": "Cadastra um novo programa",
+                "description": "Este endpoint realiza o cadastro de um novo programa no sistema da Rede Akiba.",
+                "operationId": "93c0a72bed701e083378625f50e9fef3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ShowRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Programa cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um problema de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de validação"
+                                        },
+                                        "message": {
+                                            "type": "object",
+                                            "example": {
+                                                "presenter": [
+                                                    "O campo apresentador é obrigatório.",
+                                                    "Este apresentador não existe."
+                                                ],
+                                                "name": [
+                                                    "O campo name é obrigatório."
+                                                ],
+                                                "logo": [
+                                                    "O campo logo é obrigatório."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/programas/{slug}": {
+            "get": {
+                "tags": [
+                    "Programas"
+                ],
+                "summary": "Retorna um programa específico",
+                "description": "Este endpoint retorna um programa específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "b03a5c647f94b9f7f9a1d0960d3cda14",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Programa: Retorna um programa baseado no slug fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Programa encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum programa encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum programa encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/programas/{id}": {
+            "delete": {
+                "tags": [
+                    "Programas"
+                ],
+                "summary": "Remove um programa específico",
+                "description": "Este endpoint remove um programa específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "b5cf081abb9d1cc51012bf614e272337",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Programa: Retorna um programa baseado no id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Programa removido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Programa removido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum programa encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum programa encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Programas"
+                ],
+                "summary": "Atualiza um programa específico",
+                "description": "Este endpoint realiza a atualização de um programa específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "317ac67eb5954a096cb26bfed7cf821b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Programa: Retorna um programa baseado no id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ShowRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Programa atualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum programa encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum programa encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um problema de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um problema de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/usuarios": {
             "get": {
                 "tags": [
@@ -150,7 +490,7 @@
                     {
                         "name": "slug",
                         "in": "path",
-                        "description": "Slug do Usuário: Retorna um usuário baseado no slug fornecido",
+                        "description": "Slug do Usuário: Retorna um usuário baseado no slug fornecido.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -215,7 +555,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do Usuário: Remove um usuário baseado no id fornecido",
+                        "description": "Id do Usuário: Remove um usuário baseado no id fornecido.",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -284,7 +624,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do Usuário: Atualiza parcialmente um usuário baseado no id fornecido",
+                        "description": "Id do Usuário: Atualiza parcialmente um usuário baseado no id fornecido.",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -350,6 +690,40 @@
     },
     "components": {
         "schemas": {
+            "ShowResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "presenter": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "logo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ShowRequest": {
+                "properties": {
+                    "presenter": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "logo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "ExampleSchema": {
                 "properties": {
                     "name": {
@@ -372,12 +746,6 @@
                     "is_active": {
                         "type": "boolean",
                         "example": "true"
-                    },
-                    "login": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
                     },
                     "access_levels": {
                         "type": "json",
@@ -537,8 +905,12 @@
     },
     "tags": [
         {
+            "name": "Programas",
+            "description": "Esta seção oferece acesso a operações relacionadas aos programas dos locutores no sistema da Rede Akiba."
+        },
+        {
             "name": "Usuários",
-            "description": "Gerenciamento de Usuários: Esta seção oferece acesso a operações relacionadas à administração, criação, atualização e exclusão de usuários no sistema da Rede Akiba."
+            "description": "Esta seção oferece acesso a operações relacionadas aos usuários cadastrados no sistema da Rede Akiba."
         }
     ]
 }

@@ -11,8 +11,6 @@ class UserSchema{}
  *      @OA\Property(property="id", type="integer"),
  *      @OA\Property(property="slug", type="string"),
  *      @OA\Property(property="is_active", type="boolean", example="true"),
- *      @OA\Property(property="login", type="string"),
- *      @OA\Property(property="password", type="string"),
  *      @OA\Property(property="access_levels", type="json", example="['string', 'string']"),
  *      @OA\Property(property="avatar", type="string"),
  *      @OA\Property(property="name", type="string"),

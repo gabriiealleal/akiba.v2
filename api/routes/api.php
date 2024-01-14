@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 //Importando os controllers
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,13 @@ Route::group(['prefix' => 'usuarios'], function () {
     Route::get('/{slug}', [UserController::class, 'show']);
     Route::patch('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
+});
+
+//Rotas para endpoint de programas
+Route::group(['prefix' => 'programas'], function() {
+    Route::get('/', [ShowController::class, 'index']);
+    Route::post('/', [ShowController::class, 'store']);
+    Route::get('/{slug}', [ShowController::class, 'show']);
+    Route::patch('/{id}', [ShowController::class, 'update']);
+    Route::delete('/{id}', [ShowController::class, 'destroy']);
 });

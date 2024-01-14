@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 /**
  * @OA\Tag(
  *      name="Usuários",
- *      description="Gerenciamento de Usuários: Esta seção oferece acesso a operações relacionadas à administração, criação, atualização e exclusão de usuários no sistema da Rede Akiba."
+ *      description="Esta seção oferece acesso a operações relacionadas aos usuários cadastrados no sistema da Rede Akiba."
  * )
  */
 
@@ -102,6 +102,7 @@ class UserController extends Controller
                 'password.required' => 'O campo senha é obrigatório',
                 'password.min' => 'A senha deve ter no mínimo 6 caracteres',
                 'email.unique' => 'O e-mail informado já está em uso',
+                'avatar.file' => 'O arquivo enviado não é válido',
                 'avatar.image' => 'O arquivo enviado não é uma imagem válida',
             ];
 
@@ -138,6 +139,7 @@ class UserController extends Controller
             $user -> social_networks = $request -> social_networks;
             $user -> likes = $request -> likes;
 
+            $user->save();
             return response()->json(['message' => 'Usuário criado', $user], 200);
         }catch (ValidationException $e) {
             return response()->json(['error' => 'Ocorreu um problema de validação', 'messages' => $e->validator->errors()], 400);
@@ -156,7 +158,7 @@ class UserController extends Controller
      *      summary="Retorna um usuário específico",
      *      @OA\Parameter(
      *          name="slug",
-     *          description="Slug do Usuário: Retorna um usuário baseado no slug fornecido",
+     *          description="Slug do Usuário: Retorna um usuário baseado no slug fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(type="string"),
@@ -208,7 +210,7 @@ class UserController extends Controller
      *      summary="Atualiza parcialmente um usuário específico",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Id do Usuário: Atualiza parcialmente um usuário baseado no id fornecido",
+     *          description="Id do Usuário: Atualiza parcialmente um usuário baseado no id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(type="integer"),
@@ -242,40 +244,76 @@ class UserController extends Controller
     {
         try{
             $user = User::find($id);
-
+    
             if(!$user){
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
             }
-
+    
             if($request->hasFile('avatar')){
+                //Deleta o avatar antigo
+                Storage::delete('public/images/'.$user->avatar);
+
+                //Salva o novo avatar
                 $avatar = $request->file('avatar');
                 $filename = time().'.'.$avatar -> getClientOriginalExtension();
                 $location = public_path('images/'.$filename);
                 Image::make($avatar) -> save($location);
-                $oldFilename = $user->avatar;
                 $user->avatar = $filename;
-                Storage::delete($oldFilename);
-            }else{
-                $filename = $user->avatar;
             }
-
-            $user -> slug = Str::slug($request->nickname);
-            $user -> is_active = true;
-            $user -> access_levels = $request -> access_levels;
-            $user -> login = $request -> login;
-            $user -> password = Hash::make($request -> password);
-            $user -> avatar = $filename;
-            $user -> name = $request -> name;
-            $user -> nickname = $request -> nickname;
-            $user -> email = $request -> email;
-            $user -> age = $request -> age;
-            $user -> city = $request -> city;
-            $user -> state = $request -> state;
-            $user -> country = $request -> country;
-            $user -> biography = $request -> biography;
-            $user -> social_networks = $request -> social_networks;
-            $user -> likes = $request -> likes;
-
+    
+            if($request->has('nickname')){
+                $user->slug = Str::slug($request->nickname);
+                $user->nickname = $request->nickname;
+            }
+    
+            if($request->has('access_levels')){
+                $user->access_levels = $request->access_levels;
+            }
+    
+            if($request->has('login')){
+                $user->login = $request->login;
+            }
+    
+            if($request->has('password')){
+                $user->password = Hash::make($request->password);
+            }
+    
+            if($request->has('name')){
+                $user->name = $request->name;
+            }
+    
+            if($request->has('email')){
+                $user->email = $request->email;
+            }
+    
+            if($request->has('age')){
+                $user->age = $request->age;
+            }
+    
+            if($request->has('city')){
+                $user->city = $request->city;
+            }
+    
+            if($request->has('state')){
+                $user->state = $request->state;
+            }
+    
+            if($request->has('country')){
+                $user->country = $request->country;
+            }
+    
+            if($request->has('biography')){
+                $user->biography = $request->biography;
+            }
+    
+            if($request->has('social_networks')){
+                $user->social_networks = $request->social_networks;
+            }
+    
+            if($request->has('likes')){
+                $user->likes = $request->likes;
+            }
+    
             $user->save();
             return response()->json(['message' => 'Usuário atualizado', $user], 200);
         }catch(\Exception $e){
@@ -293,7 +331,7 @@ class UserController extends Controller
      *      summary="Remove um usuário específico",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Id do Usuário: Remove um usuário baseado no id fornecido",
+     *          description="Id do Usuário: Remove um usuário baseado no id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(type="integer"),
@@ -330,6 +368,9 @@ class UserController extends Controller
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
             }
 
+            //Deleta o avatar
+            Storage::delete('public/images/'.$user->avatar);
+            
             $user->delete();
             return response()->json(['message' => 'Usuário removido'], 200);
         }catch(\Exception $e){
