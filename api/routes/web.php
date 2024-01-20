@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Importando os controllers
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\StreamingNowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,9 @@ Route::group(['prefix' => 'programas'], function() {
     Route::get('/{slug}', [ShowController::class, 'show']);
     Route::patch('/{id}', [ShowController::class, 'update']);
     Route::delete('/{id}', [ShowController::class, 'destroy']);
+});
+
+//Rotas para endpoint de histórico de transmissão
+Route::group(['prefix' => 'historico_de_transmissao'], function() {
+    Route::get('/', [StreamingNowController::class, 'index']);
 });

@@ -56,7 +56,7 @@ class ShowController extends Controller
             }
             return response()->json($shows, 200);
         }catch(\Exception $e){
-            return response()->json(['error' => 'Ocorreu um erro de processamento'], 500);
+            return response()->json(['error' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
         }
     }
 
@@ -189,7 +189,7 @@ class ShowController extends Controller
 
             return response()->json($show, 200);
         }catch(\Exception $e){
-            return response()->json(['error' => 'Ocorreu um erro de processamento'], 500);
+            return response()->json(['error' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
         }
     }
 
@@ -337,7 +337,7 @@ class ShowController extends Controller
 
             return response()->json(['message' => 'Programa removido'], 200);
         }catch(\Exception $e){
-            return response()->json(['error' => 'Ocorreu um problema de processamento'], 500);
+            return response()->json(['error' => 'Ocorreu um problema de processamento', 'message' => $e->getMessage()], 500);
         }
     }
 }

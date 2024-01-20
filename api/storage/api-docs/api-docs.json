@@ -349,6 +349,60 @@
                 }
             }
         },
+        "/api/historico_de_transmissao": {
+            "get": {
+                "tags": [
+                    "Histórico de Transmissão"
+                ],
+                "summary": "Retorna todos os programas do histórico de transmissão",
+                "description": "Este endpoint retorna uma lista completa de todos os programas cadastrados no histórico de transmissão da programação no sistema da Rede Akiba.",
+                "operationId": "966ed1e689eed6e149b69a463bb6c994",
+                "responses": {
+                    "200": {
+                        "description": "Lista de programas do histórico de transmissão",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StreamingNowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum programa encontrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum programa encontrado no histórico"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/usuarios": {
             "get": {
                 "tags": [
@@ -724,6 +778,32 @@
                 },
                 "type": "object"
             },
+            "StreamingNowResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "show": {
+                        "$ref": "#/components/schemas/ShowResponse"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "date_streaming": {
+                        "type": "string"
+                    },
+                    "start_streaming": {
+                        "type": "string"
+                    },
+                    "end_streaming": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "ExampleSchema": {
                 "properties": {
                     "name": {
@@ -907,6 +987,10 @@
         {
             "name": "Programas",
             "description": "Esta seção oferece acesso a operações relacionadas aos programas dos locutores no sistema da Rede Akiba."
+        },
+        {
+            "name": "Histórico de Transmissão",
+            "description": "Esta seção oferece acesso a operações relacionadas ao histórico de programação da rádio no sistema da Rede Akiba."
         },
         {
             "name": "Usuários",
