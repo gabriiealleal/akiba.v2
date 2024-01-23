@@ -43,6 +43,10 @@ Route::group(['prefix' => 'programas'], function() {
 });
 
 //Rotas para endpoint de histórico de transmissão
-Route::group(['prefix' => 'historico_de_transmissao'], function() {
-    Route::get('/', [StreamingNowController::class, 'index']);
+Route::group(['prefix' => 'historico-de-transmissao'], function() {
+    Route::get('/{now?}', [StreamingNowController::class, 'index']);
+    Route::post('/', [StreamingNowController::class, 'store']);
+    Route::get('/{slug}', [StreamingNowController::class, 'show']);
+    Route::patch('/{id}', [StreamingNowController::class, 'update']);
+    Route::delete('/{id}', [StreamingNowController::class, 'destroy']);
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator; 
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 
@@ -54,7 +55,7 @@ class ShowController extends Controller
             if($shows->isEmpty()){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
             }
-            return response()->json($shows, 200);
+            return response()->json(['message' => 'Lista de programas cadastrados', 'programas' => $shows], 200);
         }catch(\Exception $e){
             return response()->json(['error' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
         }
@@ -92,6 +93,13 @@ class ShowController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento")
      *          ),
      *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Nenhum apresentador encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Nenhum apresentador encontrado")
+     *          ),
+     *      ),
      * )
      */
     public function store(Request $request)
@@ -113,6 +121,11 @@ class ShowController extends Controller
                 'logo' => 'required|file|image',
             ], $messages);
 
+            $presenter = User::find($request->presenter);
+            if(!$presenter){
+                return response()->json(['error' => 'Nenhum apresentador encontrado'], 404);
+            }
+            
             if($request->hasFile('logo')){
                 $logo = $request->file('logo');
                 $filename = time().'.'.$logo -> getClientOriginalExtension();
@@ -126,13 +139,12 @@ class ShowController extends Controller
             $show->logo = $filename;
 
             //Associa o programa ao usuário apresentador
-            $presenter = User::find($request->presenter);
             $presenter->show()->save($show);
 
             //Retorna o programa com os dados do usuário apresentador
             $show->load('presenter');
 
-            return response()->json(['message' => 'Programa criado', $show], 200);
+            return response()->json(['message' => 'Programa criado', 'programa' => $show], 200);
         }catch(ValidationException $e){
             return response()->json(['error' => 'Ocorreu um problema de validacao', 'message' => $e->errors()], 400);
         }catch(\Exception $e){
@@ -181,14 +193,14 @@ class ShowController extends Controller
     public function show($slug)
     {
         try{
-            $show = Show::with('presenter')->where('slug', $slug)->first();
+            $show = Show::with('slug')->where('slug', $slug)->first();
 
             if(!$show){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
             }
 
-            return response()->json($show, 200);
-        }catch(\Exception $e){
+                return response()->json(['message' => 'Programa encontrado', 'programa' => $show], 200);
+            } catch (\Exception $e) {
             return response()->json(['error' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
         }
     }
@@ -204,7 +216,7 @@ class ShowController extends Controller
      *      summary="Atualiza um programa específico",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Id do Programa: Retorna um programa baseado no id fornecido.",
+     *          description="Id do Programa: Atualiza um programa baseado no id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -212,7 +224,6 @@ class ShowController extends Controller
      *          ),
      *      ),
      *      @OA\RequestBody(
-     *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ShowRequest"),
      *      ),
      *      @OA\Response(
@@ -275,7 +286,7 @@ class ShowController extends Controller
             //Retorna o programa com os dados do usuário apresentador
             $show->load('presenter');
 
-            return response()->json(['message' => 'Programa atualizado', $show], 200);
+            return response()->json(['message' => 'Programa atualizado', 'programa' => $show], 200);
         }catch(\Exception $e){
             return response()->json(['error' => 'Ocorreu um problema de processamento', 'message' => $e->getMessage()], 500);
         }

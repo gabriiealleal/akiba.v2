@@ -136,6 +136,22 @@
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "description": "Nenhum apresentador encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum apresentador encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -286,7 +302,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id do Programa: Retorna um programa baseado no id fornecido.",
+                        "description": "Id do Programa: Atualiza um programa baseado no id fornecido.",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -294,7 +310,6 @@
                     }
                 ],
                 "requestBody": {
-                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -349,14 +364,25 @@
                 }
             }
         },
-        "/api/historico_de_transmissao": {
+        "/api/historico-de-transmissao/{now}": {
             "get": {
                 "tags": [
                     "Histórico de Transmissão"
                 ],
                 "summary": "Retorna todos os programas do histórico de transmissão",
                 "description": "Este endpoint retorna uma lista completa de todos os programas cadastrados no histórico de transmissão da programação no sistema da Rede Akiba.",
-                "operationId": "966ed1e689eed6e149b69a463bb6c994",
+                "operationId": "6b70be1c0216126ba4f0e87733ddd350",
+                "parameters": [
+                    {
+                        "name": "now",
+                        "in": "path",
+                        "description": "Opcional: Retorna apenas o registro no histórico do programa que está em andamento no momento",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Lista de programas do histórico de transmissão",
@@ -369,14 +395,309 @@
                         }
                     },
                     "404": {
-                        "description": "Nenhum programa encontrado no histórico",
+                        "description": "Nenhum registro encontrado no histórico",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "error": {
                                             "type": "string",
-                                            "example": "Nenhum programa encontrado no histórico"
+                                            "example": "Nenhum registro encontrado no histórico"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/historico-de-transmissao": {
+            "post": {
+                "tags": [
+                    "Histórico de Transmissão"
+                ],
+                "summary": "Cadastra um programa no histórico de transmissão",
+                "description": "Este endpoint cadastra um programa no histórico de transmissão da programação no sistema da Rede Akiba.",
+                "operationId": "2cb4713530f43d8da987ed4ea6e34078",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StreamingNowRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Programa cadastrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StreamingNowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        },
+                                        "message": {
+                                            "type": "object",
+                                            "example": {
+                                                "show": [
+                                                    "O campo show é obrigatório"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Programa não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Programa não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/historico-de-transmissao/{slug}": {
+            "get": {
+                "tags": [
+                    "Histórico de Transmissão"
+                ],
+                "summary": "Retorna um programa especifico do histórico de transmissão",
+                "description": "Este endpoint retorna um programa específico no histórico de transmissão da programação no sistema da Rede Akiba.",
+                "operationId": "c794b9e8b078207aa490553b425e37cb",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Registro no Histórico de Transmissão: Retorna um registro específico do histórico de transmissão baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro encontrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StreamingNowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Regisro não encontrado no histórico"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/historico-de-transmissao/{id}": {
+            "delete": {
+                "tags": [
+                    "Histórico de Transmissão"
+                ],
+                "summary": "Remove um registro especifico do histórico de transmissão",
+                "description": "Este endpoint remove um registro específico do histórico de transmissão no sistema da Rede Akiba.",
+                "operationId": "65827805336cadc25b5a5c1ef7a5b431",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Registro no Histórico de Transmissão: Remove um registro específico do histórico de transmissão baseado no Id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro removido do histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Registro removido do histórico"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Registro não encontrado no histórico"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Histórico de Transmissão"
+                ],
+                "summary": "Atualiza um registro especifico do histórico de transmissão",
+                "description": "Este endpoint realiza a atualização de um registro específico no histórico de transmissão cadastrado no sistema da Rede Akiba.",
+                "operationId": "6821a0e5e10f291eb367a39e1ff7c948",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Registro no Histórico de Transmissão: Atualiza um registro específico do histórico de transmissão baseado no Id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StreamingNowRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro atualizado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StreamingNowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Registro não encontrado no histórico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Registro não encontrado no histórico"
                                         }
                                     },
                                     "type": "object"
@@ -788,6 +1109,26 @@
                     },
                     "show": {
                         "$ref": "#/components/schemas/ShowResponse"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "date_streaming": {
+                        "type": "string"
+                    },
+                    "start_streaming": {
+                        "type": "string"
+                    },
+                    "end_streaming": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "StreamingNowRequest": {
+                "properties": {
+                    "show": {
+                        "type": "integer"
                     },
                     "type": {
                         "type": "string"

@@ -53,7 +53,7 @@ class UserController extends Controller
             if ($users->isEmpty()) {
                 return response()->json(['error' => 'Nenhum usuário encontrado'], 404);
             }
-            return response()->json($users, 200);
+            return response()->json(['message' => 'Lista de usuários cadastrados', 'usuários' => $users], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Ocorreu um problema de processamento', 'message' => $e->getMessage()], 500);
         }
@@ -140,7 +140,7 @@ class UserController extends Controller
             $user -> likes = $request -> likes;
 
             $user->save();
-            return response()->json(['message' => 'Usuário criado', $user], 200);
+            return response()->json(['message' => 'Usuário criado', 'usuário' => $user], 200);
         }catch (ValidationException $e) {
             return response()->json(['error' => 'Ocorreu um problema de validação', 'messages' => $e->validator->errors()], 400);
         } catch (\Exception $e) {
@@ -194,7 +194,7 @@ class UserController extends Controller
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
             }
 
-            return response()->json($user, 200);
+            return response()->json(['message' => 'Usuário encontrado', 'usuário' => $user], 200);
         }catch(\Exception $e){
             return response()->json(['error' => 'Ocorreu um problema de processamento', 'message' => $e->getMessage()], 500);
         }
@@ -315,7 +315,7 @@ class UserController extends Controller
             }
     
             $user->save();
-            return response()->json(['message' => 'Usuário atualizado', $user], 200);
+            return response()->json(['message' => 'Usuário atualizado', 'usuário' => $user], 200);
         }catch(\Exception $e){
             return response()->json(['error' => 'Ocorreu um problema de processamento', 'message' => $e->getMessage()], 500);
         }
