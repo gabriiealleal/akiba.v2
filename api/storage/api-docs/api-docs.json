@@ -9,6 +9,679 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/pedidos-musicais/{streaming_now}": {
+            "get": {
+                "tags": [
+                    "Pedidos musicais"
+                ],
+                "summary": "Lista todos os pedidos musicais",
+                "description": "Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
+                "operationId": "920d265d336cbc0f6338d0878e3e5e2e",
+                "parameters": [
+                    {
+                        "name": "streaming_now",
+                        "in": "path",
+                        "description": "(Opcional) Id do Registro no Histórico de Transmissão: Retorna todos os pedidos musicais referentes a um registro no histórico de transmissão específico",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de pedidos musicais cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerRequestResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum pedido musical encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum pedido musical encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pedidos-musicais": {
+            "post": {
+                "tags": [
+                    "Pedidos musicais"
+                ],
+                "summary": "Cadastra um novo pedido musical",
+                "description": "Este endpoint realiza o cadastro de um novo pedido musical no sistema da Rede Akiba.",
+                "operationId": "0223c56eb616f0390c890b376687cb65",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ListenerRequestRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pedido musical cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerRequestResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        },
+                                        "message": {
+                                            "type": "object",
+                                            "example": {
+                                                "streaming_now": "O campo streaming_now é obrigatório",
+                                                "streaming_now_id": "O id do programa informado no campo streaming_now não existe"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Programa ou música não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Programa ou música não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pedidos-musicais/{id}": {
+            "get": {
+                "tags": [
+                    "Pedidos musicais"
+                ],
+                "summary": "Retorna um pedido musical especifico",
+                "description": "Este endpoint retorna um pedido musical especifico do sistema da Rede Akiba.",
+                "operationId": "dbd6db82aedeaedede21d0997e307643",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Pedido Musical: Retorna um pedido musical específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido musical encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerRequestResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pedido musical não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Pedido musical não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pedidos musicais"
+                ],
+                "summary": "Remove um pedido musical especifico",
+                "description": "Este endpoint realiza a remoção de um pedido musical especifico no sistema da Rede Akiba.",
+                "operationId": "23facbd9a4c4725e08f565b7b0be75ef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Pedido Musical: Remove um pedido musical específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido musical removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido musical removido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pedido musical não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Pedido musical não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Pedidos musicais"
+                ],
+                "summary": "Atualiza um pedido musical especifico",
+                "description": "Este endpoint realiza a atualização de um pedido musical especifico no sistema da Rede Akiba.",
+                "operationId": "72f045675f7ca48007188fab476d1fa8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Pedido Musical: Atualiza um pedido musical específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ListenerRequestRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pedido musical atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerRequestResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Pedido musical ou registro no histórico de transmissão ou música não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Pedido musical não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/musicas": {
+            "get": {
+                "tags": [
+                    "Músicas"
+                ],
+                "summary": "Lista todas as músicas",
+                "description": "Este endpoint retorna todas as músicas registradas no sistema da Rede Akiba.",
+                "operationId": "c2a2c92a796d01f181d33e924d54f9a4",
+                "responses": {
+                    "200": {
+                        "description": "Lista de músicas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MusicsListResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhuma música encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhuma música encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Músicas"
+                ],
+                "summary": "Cadastra uma nova música",
+                "description": "Este endpoint cadastra uma nova música no sistema da Rede Akiba.",
+                "operationId": "515bd3640e8178a397ef05b78ef3751e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MusicsListRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Música cadastrada com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MusicsListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/musicas/{slug}": {
+            "get": {
+                "tags": [
+                    "Músicas"
+                ],
+                "summary": "Retorna uma música especifica",
+                "description": "Este endpoint retorna uma música especifica registrada no sistema da Rede Akiba.",
+                "operationId": "a8855629d7a1b2cf642bd42c51ba9916",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug da Música: Retorna uma música especifica baseada no slug fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Música encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MusicsListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Música não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Música não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/musicas/{id}": {
+            "delete": {
+                "tags": [
+                    "Músicas"
+                ],
+                "summary": "Remove uma música especifica",
+                "description": "Este endpoint remove uma música especifica registrada no sistema da Rede Akiba.",
+                "operationId": "ac66055da46dfe21febe9ee5c92b5232",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Música: Remove uma música especifica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Música removida com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Música removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Música não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Música não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Músicas"
+                ],
+                "summary": "Atualiza uma música especifica",
+                "description": "Este endpoint atualiza uma música especifica registrada no sistema da Rede Akiba.",
+                "operationId": "ffb29c4babbaae9d1759fd0fdb506e33",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Música: Retorna uma música especifica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MusicsListRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Música atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MusicsListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Música não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Música não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/programas": {
             "get": {
                 "tags": [
@@ -1065,6 +1738,86 @@
     },
     "components": {
         "schemas": {
+            "ListenerRequestResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "listener": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "streaming": {
+                        "$ref": "#/components/schemas/StreamingNowResponse"
+                    },
+                    "music": {
+                        "$ref": "#/components/schemas/MusicsListResponse"
+                    }
+                },
+                "type": "object"
+            },
+            "ListenerRequestRequest": {
+                "properties": {
+                    "listener": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "streaming_now": {
+                        "type": "integer"
+                    },
+                    "music": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "MusicsListResponse": {
+                "properties": {
+                    "slug": {
+                        "type": "string"
+                    },
+                    "count": {
+                        "type": "integer"
+                    },
+                    "music": {
+                        "type": "string"
+                    },
+                    "artist": {
+                        "type": "string"
+                    },
+                    "album": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "MusicsListRequest": {
+                "properties": {
+                    "count": {
+                        "type": "integer"
+                    },
+                    "music": {
+                        "type": "string"
+                    },
+                    "artist": {
+                        "type": "string"
+                    },
+                    "album": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "ShowResponse": {
                 "properties": {
                     "id": {
@@ -1325,6 +2078,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Pedidos musicais",
+            "description": "Esta seção oferece acesso a operações relacionadas aos pedidos musicais dos ouvintes no sistema da Rede Akiba."
+        },
+        {
+            "name": "Músicas",
+            "description": "Esta seção oferece acesso a operações relacionadas a musicas registradas no sistema da Rede Akiba."
+        },
         {
             "name": "Programas",
             "description": "Esta seção oferece acesso a operações relacionadas aos programas dos locutores no sistema da Rede Akiba."

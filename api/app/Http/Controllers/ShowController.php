@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Show;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Validation\ValidationException;
@@ -199,8 +200,8 @@ class ShowController extends Controller
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
             }
 
-                return response()->json(['message' => 'Programa encontrado', 'programa' => $show], 200);
-            } catch (\Exception $e) {
+            return response()->json(['message' => 'Programa encontrado', 'programa' => $show], 200);
+        }catch (\Exception $e) {
             return response()->json(['error' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
         }
     }
