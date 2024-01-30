@@ -77,7 +77,7 @@ class MusicsListController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Música cadastrada com sucesso!",
+     *          description="Música cadastrada com sucesso",
      *          @OA\JsonContent(ref="#/components/schemas/MusicsListResponse"),
      *      ),
      *      @OA\Response(
@@ -100,7 +100,7 @@ class MusicsListController extends Controller
             $music->artist = $request->artist;
             $music->album = $request->album;
             $music->save();
-            return response()->json(['message' => 'Música cadastrada com sucesso!', 'música'=>$music], 200);
+            return response()->json(['message' => 'Música cadastrada com sucesso', 'música'=>$music], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e], 500);
         }
@@ -148,8 +148,8 @@ class MusicsListController extends Controller
         try{
             $music = MusicsList::with('slug')->where('slug', $slug)->first();
 
-            if(!$music) {
-                return response()->json(['message' => 'Música não encontrada!'], 404);
+            if($music) {
+                return response()->json(['message' => 'Música não encontrada'], 404);
             }
 
             return response()->json($music, 200);
@@ -204,8 +204,8 @@ class MusicsListController extends Controller
         try{
             $music = MusicsList::find($id);
 
-            if(!$music) {
-                return response()->json(['message' => 'Música não encontrada!'], 404);
+            if($music) {
+                return response()->json(['message' => 'Música não encontrada'], 404);
             }
 
             if($request->has('count')) {
@@ -276,12 +276,12 @@ class MusicsListController extends Controller
         try{
             $music = MusicsList::find($id);
 
-            if(!$music) {
-                return response()->json(['message' => 'Música não encontrada!'], 404);
+            if($music) {
+                return response()->json(['message' => 'Música não encontrada'], 404);
             }
 
             $music->delete();
-            return response()->json(['message' => 'Música removida com sucesso!'], 200);
+            return response()->json(['message' => 'Música removida com sucesso'], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e], 400);
         }
