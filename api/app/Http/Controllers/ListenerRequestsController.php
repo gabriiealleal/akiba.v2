@@ -27,7 +27,7 @@ class ListenerRequestsController extends Controller
      *      summary="Lista todos os pedidos musicais",
      *      description="Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
      *      @OA\Parameter(
-     *          name="streaming_now",
+     *          name="streamingnow",
      *          description="(Opcional) Id do Registro no Histórico de Transmissão: Retorna todos os pedidos musicais referentes a um registro no histórico de transmissão específico",
      *          required=false,
      *          in="path",
@@ -57,7 +57,7 @@ class ListenerRequestsController extends Controller
     public function index(Request $request)
     {
         try {
-            if($request->has('streaming_now')){
+            if($request->has('streamingnow')){
                 $listenerRequests = ListenerRequest::with('streaming', 'music')
                     ->where('streaming_now', $request->streaming_now)->get();
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Show;
+use App\Models\Shows;
 use App\Models\StreamingNow;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -130,7 +130,7 @@ class StreamingNowController extends Controller
             ], $messages);
     
             // Busca o show antes de tentar usar $show->name
-            $show = Show::find($request->show);
+            $show = Shows::find($request->show);
             if(!$show){
                 return response()->json(['message' => 'Programa não encontrado'], 404);
             }
@@ -258,7 +258,7 @@ class StreamingNowController extends Controller
             }
 
             if($request->has('show')){
-                $show = Show::find($request->show);
+                $show = Shows::find($request->show);
                 if(!$show){
                     return response()->json(['message' => 'Programa não encontrado'], 404);
                 }

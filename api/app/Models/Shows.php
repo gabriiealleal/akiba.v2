@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Show extends Model
+class Shows extends Model
 {
     use HasFactory;
 
@@ -21,6 +21,6 @@ class Show extends Model
 
     public function presenter()
     {
-        return $this->hasOne(User::class, 'id', 'presenter');
+        return $this->hasOne(Users::class, 'id', 'presenter');
     }
 }

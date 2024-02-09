@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request; 
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
  * )
  */
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /*******Retorna todos os usuários*******/
 
@@ -49,7 +49,7 @@ class UserController extends Controller
     public function index()
     {
         try {
-            $users = User::all();
+            $users = Users::all();
             if ($users->isEmpty()) {
                 return response()->json(['error' => 'Nenhum usuário encontrado'], 404);
             }
@@ -121,7 +121,7 @@ class UserController extends Controller
                 Image::make($avatar) -> save($location);
             }
 
-            $user = new User;
+            $user = new Users;
             $user -> slug = Str::slug($request->nickname);
             $user -> is_active = true;
             $user -> access_levels = $request -> access_levels;
@@ -188,7 +188,7 @@ class UserController extends Controller
     public function show($slug)
     {
         try{
-            $user = User::where('slug', $slug)->first();
+            $user = Users::where('slug', $slug)->first();
 
             if(!$user){
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
@@ -243,7 +243,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $user = User::find($id);
+            $user = Users::find($id);
     
             if(!$user){
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
@@ -362,7 +362,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-            $user = User::find($id);
+            $user = Users::find($id);
 
             if(!$user){
                 return response()->json(['error' => 'Usuário não encontrado'], 404);

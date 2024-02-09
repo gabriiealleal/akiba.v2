@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Show;
 namespace App\Models;
 
+use App\Models\Show;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +21,6 @@ class StreamingNow extends Model
 
     public function show()
     {
-        return $this->hasOne(Show::class, 'id', 'show');
+        return $this->hasOne(Shows::class, 'id', 'show');
     }
 }

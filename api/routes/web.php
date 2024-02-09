@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 //Importando os controllers
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ShowController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ShowsController;
 use App\Http\Controllers\StreamingNowController;
 use App\Http\Controllers\MusicsListController;
 use App\Http\Controllers\ListenerRequestsController;
@@ -26,20 +26,20 @@ Route::get('/', function () {
 
 //Rotas para endpoint de usuários
 Route::group(['prefix' => 'usuarios'], function () {
-    Route::get('/', [UserController::class, 'index']);
-    Route::post('/', [UserController::class, 'store']);
-    Route::get('/{slug}', [UserController::class, 'show']);
-    Route::patch('/{id}', [UserController::class, 'update']);
-    Route::delete('/{id}', [UserController::class, 'destroy']);
+    Route::get('/', [UsersController::class, 'index']);
+    Route::post('/', [UsersController::class, 'store']);
+    Route::get('/{slug}', [UsersController::class, 'show']);
+    Route::patch('/{id}', [UsersController::class, 'update']);
+    Route::delete('/{id}', [UsersController::class, 'destroy']);
 });
 
 //Rotas para endpoint de programas
 Route::group(['prefix' => 'programas'], function() {
-    Route::get('/', [ShowController::class, 'index']);
-    Route::post('/', [ShowController::class, 'store']);
-    Route::get('/{slug}', [ShowController::class, 'show']);
-    Route::patch('/{id}', [ShowController::class, 'update']);
-    Route::delete('/{id}', [ShowController::class, 'destroy']);
+    Route::get('/', [ShowsController::class, 'index']);
+    Route::post('/', [ShowsController::class, 'store']);
+    Route::get('/{slug}', [ShowsController::class, 'show']);
+    Route::patch('/{id}', [ShowsController::class, 'update']);
+    Route::delete('/{id}', [ShowsController::class, 'destroy']);
 });
 
 //Rotas para endpoint de histórico de transmissão

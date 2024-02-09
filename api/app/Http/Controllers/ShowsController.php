@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Show;
-use App\Models\User;
+use App\Models\Shows;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Validation\ValidationException;
@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  */
 
 
-class ShowController extends Controller
+class ShowsController extends Controller
 {
     /*******Retorna todos os programas*******/
 
@@ -52,7 +52,7 @@ class ShowController extends Controller
     public function index()
     {
         try{
-            $shows = Show::with('presenter')->get();
+            $shows = Shows::with('presenter')->get();
             if($shows->isEmpty()){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
             }
@@ -122,7 +122,7 @@ class ShowController extends Controller
                 'logo' => 'required|file|image',
             ], $messages);
 
-            $presenter = User::find($request->presenter);
+            $presenter = Users::find($request->presenter);
             if(!$presenter){
                 return response()->json(['error' => 'Nenhum apresentador encontrado'], 404);
             }
@@ -194,7 +194,7 @@ class ShowController extends Controller
     public function show($slug)
     {
         try{
-            $show = Show::with('slug')->where('slug', $slug)->first();
+            $show = Shows::with('slug')->where('slug', $slug)->first();
 
             if(!$show){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
@@ -251,7 +251,7 @@ class ShowController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $show = Show::find($id);
+            $show = Shows::find($id);
 
             if(!$show){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);
@@ -274,7 +274,7 @@ class ShowController extends Controller
             }
     
             if($request->has('presenter')){
-                $presenter = User::find($request->presenter);
+                $presenter = Users::find($request->presenter);
                 if($presenter){
                     $presenter->show()->save($show);
                 }else{
@@ -336,7 +336,7 @@ class ShowController extends Controller
     public function destroy($id)
     {
         try{
-            $show = Show::find($id);
+            $show = Shows::find($id);
 
             if(!$show){
                 return response()->json(['error' => 'Nenhum programa encontrado'], 404);

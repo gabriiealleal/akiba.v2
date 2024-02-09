@@ -19,7 +19,7 @@
                 "operationId": "920d265d336cbc0f6338d0878e3e5e2e",
                 "parameters": [
                     {
-                        "name": "streaming_now",
+                        "name": "streamingnow",
                         "in": "path",
                         "description": "(Opcional) Id do Registro no Histórico de Transmissão: Retorna todos os pedidos musicais referentes a um registro no histórico de transmissão específico",
                         "required": false,
@@ -445,7 +445,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Música cadastrada com sucesso!",
+                        "description": "Música cadastrada com sucesso",
                         "content": {
                             "application/json": {
                                 "schema": {
