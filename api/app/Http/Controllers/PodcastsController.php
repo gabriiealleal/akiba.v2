@@ -6,6 +6,13 @@ use App\Models\Users;
 use App\Models\Podcasts;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(
+ *      name="Podcasts",
+ *      description="Está seção oferece aceso a operações relacionadas aos podcasts cadastrados no sistema da Rede Akiba.",
+ * )
+ */
+
 class PodcastsController extends Controller
 {
     /*******Retorna todos os podcasts*******/
