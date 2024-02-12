@@ -2,7 +2,7 @@
 namespace App\Http\Schemas;
 
 
-class StreamingNowSchema{}
+class StreamingNowSchemas{}
 
 /**
  * @OA\Schema(

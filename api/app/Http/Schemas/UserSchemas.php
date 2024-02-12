@@ -2,7 +2,7 @@
 
 namespace App\Http\Schemas;
 
-class UserSchema{}
+class UserSchemas{}
 
 /**
  * @OA\Schema(

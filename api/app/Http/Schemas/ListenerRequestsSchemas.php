@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Schemas; 
 
-class ListenerRequestsSchema{}
+class ListenerRequestsSchemas{}
 
 /**
  * @OA\Schema(

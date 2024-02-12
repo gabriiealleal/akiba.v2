@@ -682,6 +682,347 @@
                 }
             }
         },
+        "/podcasts": {
+            "get": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Retorna uma lista de todos os podcasts cadastrados",
+                "description": "Retorna uma lista de todos os podcasts cadastrados no sistema da Rede Akiba.",
+                "operationId": "d5212a7244ded3a2774904c0dd18a715",
+                "responses": {
+                    "200": {
+                        "description": "Lista de todos os podcasts cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PodcastResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum podcast encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum podcast encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Cadastra um novo podcast",
+                "description": "Cadastra um novo podcast no sistema da Rede Akiba",
+                "operationId": "305313a82310209b76f4aeb5a0a5ca1b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PodcastRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Podcast cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PodcastResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Autor não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Autor não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/podcasts/{slug}": {
+            "get": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Retorna um podcast específico",
+                "description": "Retorna um podcast específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "18f5ef0fb089c5d2fd24c0833172d813",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Podcast: Retorna um podcast baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Podcast encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PodcastResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Podcast não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Podcast não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/podcasts/{id}": {
+            "delete": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Remove um podcast específico",
+                "description": "Remove um podcast específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "1408d1fd3c7cef2c7b6318dfb312e11b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Podcast: Remove um podcast baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Podcast removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Podcast removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Podcast não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Podcast não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Podcasts"
+                ],
+                "summary": "Atualiza um podcast específico",
+                "description": "Atualiza um podcast específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "260a08f682d5ff817f9e4381865bdc5d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Podcast: Atualiza um podcast baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PodcastRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Podcast atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PodcastResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Podcast ou autor não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Podcast ou autor não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/programas": {
             "get": {
                 "tags": [
@@ -689,7 +1030,7 @@
                 ],
                 "summary": "Retorna todos os programas cadastrados",
                 "description": "Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
-                "operationId": "8d657656ee1124cd6bfc0d0b91c02318",
+                "operationId": "e4c65b41259220c8d65e6b5104183342",
                 "responses": {
                     "200": {
                         "description": "Lista de programas cadastrados",
@@ -741,7 +1082,7 @@
                 ],
                 "summary": "Cadastra um novo programa",
                 "description": "Este endpoint realiza o cadastro de um novo programa no sistema da Rede Akiba.",
-                "operationId": "93c0a72bed701e083378625f50e9fef3",
+                "operationId": "26ff70327e6018da17f667eb57370a1d",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -836,7 +1177,7 @@
                 ],
                 "summary": "Retorna um programa específico",
                 "description": "Este endpoint retorna um programa específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "b03a5c647f94b9f7f9a1d0960d3cda14",
+                "operationId": "a8e28dcf8273a257a1b6a2b6a17fd409",
                 "parameters": [
                     {
                         "name": "slug",
@@ -901,7 +1242,7 @@
                 ],
                 "summary": "Remove um programa específico",
                 "description": "Este endpoint remove um programa específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "b5cf081abb9d1cc51012bf614e272337",
+                "operationId": "a70f1fc17ed364b9b051f5fc52407376",
                 "parameters": [
                     {
                         "name": "id",
@@ -970,7 +1311,7 @@
                 ],
                 "summary": "Atualiza um programa específico",
                 "description": "Este endpoint realiza a atualização de um programa específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "317ac67eb5954a096cb26bfed7cf821b",
+                "operationId": "7fffb268a06d54636def012610f16a29",
                 "parameters": [
                     {
                         "name": "id",
@@ -1404,7 +1745,7 @@
                 ],
                 "summary": "Retorna todos os usuários cadastrados",
                 "description": "Este endpoint retorna uma lista completa de todos os usuários cadastrados no sistema da Rede Akiba.",
-                "operationId": "def965050e08426437080b9f93650872",
+                "operationId": "43500ccca827d45c1ed099bfe4d26991",
                 "responses": {
                     "200": {
                         "description": "Lista de usuários cadastrados",
@@ -1456,7 +1797,7 @@
                 ],
                 "summary": "Cria um novo usuário",
                 "description": "Este endpoint cria um novo usuário no sistema da Rede Akiba.",
-                "operationId": "88700e31d86fba96458ff6d229350cfc",
+                "operationId": "203f3b61caefd30328e6c6ddc20ec383",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1533,7 +1874,7 @@
                 ],
                 "summary": "Retorna um usuário específico",
                 "description": "Este endpoint retorna um usuário específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "f9c01192add442426311958b442a9bd9",
+                "operationId": "eb8841a7db460453046e1264c1f5c7ac",
                 "parameters": [
                     {
                         "name": "slug",
@@ -1598,7 +1939,7 @@
                 ],
                 "summary": "Remove um usuário específico",
                 "description": "Este endpoint remove um usuário específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "7fa713aab598a149659eb2db9703636d",
+                "operationId": "a8822cdb0a3e7376b980a46d1498c728",
                 "parameters": [
                     {
                         "name": "id",
@@ -1667,7 +2008,7 @@
                 ],
                 "summary": "Atualiza parcialmente um usuário específico",
                 "description": "Este endpoint atualiza parcialmente um usuário específico cadastrado no sistema da Rede Akiba.",
-                "operationId": "fa249cd0cdeb52d3d722647ed588f06d",
+                "operationId": "59fc9b6b3cd319fa332385b1666409f5",
                 "parameters": [
                     {
                         "name": "id",
@@ -1814,6 +2155,104 @@
                     },
                     "album": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PodcastResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "season": {
+                        "type": "integer"
+                    },
+                    "episode": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "resume": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "player": {
+                        "type": "string"
+                    },
+                    "aggregators": {
+                        "properties": {
+                            "spotify": {
+                                "type": "string"
+                            },
+                            "apple_podcasts": {
+                                "type": "string"
+                            },
+                            "google_podcasts": {
+                                "type": "string"
+                            },
+                            "anchor": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PodcastRequest": {
+                "properties": {
+                    "author": {
+                        "type": "integer"
+                    },
+                    "season": {
+                        "type": "integer"
+                    },
+                    "episode": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "resume": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "player": {
+                        "type": "string"
+                    },
+                    "aggregators": {
+                        "properties": {
+                            "spotify": {
+                                "type": "string"
+                            },
+                            "apple_podcasts": {
+                                "type": "string"
+                            },
+                            "google_podcasts": {
+                                "type": "string"
+                            },
+                            "anchor": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -2085,6 +2524,10 @@
         {
             "name": "Músicas",
             "description": "Esta seção oferece acesso a operações relacionadas a musicas registradas no sistema da Rede Akiba."
+        },
+        {
+            "name": "Podcasts",
+            "description": "Esta seção oferece acesso a operações relacionadas aos podcasts no sistema da Rede Akiba."
         },
         {
             "name": "Programas",

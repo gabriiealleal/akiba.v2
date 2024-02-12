@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Shows;
 use App\Models\Users;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator; 
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 /**
  * @OA\Tag(
@@ -15,7 +16,6 @@ use Illuminate\Support\Str;
  *      description="Esta seção oferece acesso a operações relacionadas aos programas dos locutores no sistema da Rede Akiba."
  * )
  */
-
 
 class ShowsController extends Controller
 {
@@ -134,7 +134,7 @@ class ShowsController extends Controller
                 Image::make($logo)->save($location);
             }
 
-            $show = new Show();
+            $show = new Shows();
             $show->slug = Str::slug($request->name);
             $show->name = $request->name;
             $show->logo = $filename;

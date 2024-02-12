@@ -6,9 +6,7 @@ use App\Models\ListenerRequests;
 use App\Models\StreamingNow;
 use App\Models\MusicsList;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator; 
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Str;
 
 /**
  * @OA\Tag(
@@ -58,7 +56,7 @@ class ListenerRequestsController extends Controller
     {
         try {
             if($request->has('streamingnow')){
-                $listenerRequests = ListenerRequest::with('streaming', 'music')
+                $listenerRequests = ListenerRequests::with('streaming', 'music')
                     ->where('streaming_now', $request->streaming_now)->get();
 
                 if($listenerRequests->isEmpty()){
@@ -123,46 +121,48 @@ class ListenerRequestsController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $messages = [
                 'streaming_now.required' => 'O campo streaming_now é obrigatório',
                 'streaming_now.exists' => 'O streaming_now informado não existe',
             ];
-
+    
             $validator = $request->validate([
                 'streaming_now' => 'required|exists:streaming_now,id',
             ], $messages);
-
-            $streamingNow = StreamingNow::find($request->streaming);
-            if(!$streamingNow){
+    
+            $streamingNow = StreamingNow::find($request->streaming_now);
+            if (!$streamingNow) {
                 return response()->json(['message' => 'Programa não encontrado'], 404);
             }
-
+    
             $musicsList = MusicsList::find($request->music);
-            if(!$musicsList){
+            if (!$musicsList) {
                 return response()->json(['message' => 'Música não encontrada'], 404);
             }
-
-            $ListenerRequests = new ListenerRequests();
-            $ListenerRequests->listener = $request->listener;
-            $ListenerRequests->address = $request->address;
-            $ListenerRequests->message = $request->message;
-            
-            // Associa o programa ao pedido musical do ouvinte
-            $streamingNow->ListenerRequests()->save($ListenerRequests);
-            $musicsList->ListenerRequests()->save($ListenerRequests);
-
+    
+            $listenerRequest = new ListenerRequests();
+            $listenerRequest->listener = $request->listener;
+            $listenerRequest->address = $request->address;
+            $listenerRequest->message = $request->message;
+    
+            // Associa o programa e a música ao pedido musical do ouvinte
+            $listenerRequest->streamingNow()->associate($streamingNow);
+            $listenerRequest->music()->associate($musicsList);
+            $listenerRequest->save();
+    
             // Retorna o pedido musical do ouvinte cadastrado com o programa no histórico associado
-            $ListenerRequests->load('streaming_now');
-            $ListenerRequests->load('music');
-
-            return response()->json(['message' => 'Pedido musical do ouvinte cadastrado com sucesso', 'pedido' => $listenerRequests], 200);
-        }catch(\ValidationException $e){
+            $listenerRequest->load('streamingNow');
+            $listenerRequest->load('music');
+    
+            return response()->json(['message' => 'Pedido musical do ouvinte cadastrado com sucesso', 'pedido' => $listenerRequest], 200);
+        } catch (ValidationException $e) {
             return response()->json(['message' => 'Ocorreu um erro de validação', 'error' => $e->errors()], 400);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
+    
 
     /*******Retorna um pedido musical especifico*******/
     /**
@@ -255,7 +255,7 @@ class ListenerRequestsController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $listenerRequests = ListenerRequest::find($id);
+            $listenerRequests = ListenerRequests::find($id);
 
             if(!$listenerRequests){
                 return response()->json(['message' => 'Pedido musical não encontrado'], 404);
@@ -296,7 +296,7 @@ class ListenerRequestsController extends Controller
 
             return response()->json(['message' => 'Pedido musical do ouvinte atualizado com sucesso', 'pedido' => $listenerRequests], 200);
         }catch(\Exception $e){
-            return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->errors()], 400);
+            return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 400);
         }
     }
 
@@ -340,7 +340,7 @@ class ListenerRequestsController extends Controller
     public function destroy($id)
     {
         try{
-            $listenerRequests = ListenerRequest::find($id);
+            $listenerRequests = ListenerRequests::find($id);
 
             if(!$listenerRequests){
                 return response()->json(['message' => 'Pedido não encontrado'], 404);

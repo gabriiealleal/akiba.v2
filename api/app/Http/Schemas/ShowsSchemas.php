@@ -1,7 +1,7 @@
 <?php 
 namespace App\Http\Schemas; 
 
-class ShowSchema{}
+class ShowsSchemas{}
 
 /**
  * @OA\Schema(

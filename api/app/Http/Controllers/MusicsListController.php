@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MusicsList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @OA\Tag(
@@ -225,7 +226,7 @@ class MusicsListController extends Controller
             }
 
             $music->save();
-            return response()->json(['message' => 'Música atualizada', 'música' => $show], 200);
+            return response()->json(['message' => 'Música atualizada', 'música' => $music], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e], 400);
         }

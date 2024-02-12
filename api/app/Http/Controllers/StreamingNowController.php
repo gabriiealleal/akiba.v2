@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Shows;
 use App\Models\StreamingNow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Str;                             
 
 /**
  * @OA\Tag(
@@ -149,7 +150,7 @@ class StreamingNowController extends Controller
             $streamingNow->load('show');
     
             return response()->json(['message' => 'Registro criado no histórico', 'registro' => $streamingNow], 200);
-        }catch(\ValidationException $e){
+            }catch(ValidationException $e){
             return response()->json(['message' => 'Ocorreu um erro de validação', 'message' => $e->errors()], 400);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'message' => $e->getMessage()], 500);
