@@ -8,6 +8,7 @@ use App\Http\Controllers\ShowsController;
 use App\Http\Controllers\StreamingNowController;
 use App\Http\Controllers\MusicsListController;
 use App\Http\Controllers\ListenerRequestsController;
+use App\Http\Controllers\PodcastsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +68,13 @@ Route::group(['prefix' => 'pedidos-musicais'], function() {
     Route::get('/{id}', [ListenerRequestsController::class, 'show']);
     Route::patch('/{id}', [ListenerRequestsController::class, 'update']);
     Route::delete('/{id}', [ListenerRequestsController::class, 'destroy']);
+});
+
+//Rotas para endpoint de podcasts
+Route::group(['prefix' => 'podcasts'], function() {
+    Route::get('/', [PodcastsController::class, 'index']);
+    Route::post('/', [PodcastsController::class, 'store']);
+    Route::get('/{slug}', [PodcastsController::class, 'show']);
+    Route::patch('/{id}', [PodcastsController::class, 'update']);
+    Route::delete('/{id}', [PodcastsController::class, 'destroy']);
 });
