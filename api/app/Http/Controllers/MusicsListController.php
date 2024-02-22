@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 class MusicsListController extends Controller
 {
-    /*******Lista todos as músicas*******/
+    //---------Lista todos as músicas------------
     /**
      * @OA\Get(
      *      path="/api/musicas",
@@ -65,7 +65,7 @@ class MusicsListController extends Controller
         }
     }
 
-    /*******Cadastra uma nova música*******/
+    //---------Cadastra uma nova música------------
     /**
      * @OA\Post(
      *      path="/api/musicas",
@@ -107,7 +107,7 @@ class MusicsListController extends Controller
         }
     }
 
-    /*******Retorna uma música especifica*******/
+    //---------Retorna uma música especifica------------
     /**
      * @OA\Get(
      *      path="/api/musicas/{slug}",
@@ -159,7 +159,7 @@ class MusicsListController extends Controller
         }
     }
 
-    /*******Atualiza uma música especifica*******/
+    //---------Atualiza uma música especifica------------
     /**
      * @OA\Patch(
      *      path="/api/musicas/{id}",
@@ -232,7 +232,7 @@ class MusicsListController extends Controller
         }
     }
 
-    /*******Remove uma música especifica*******/
+    //---------Remove uma música especifica------------
     /**
      * @OA\Delete(
      *      path="/api/musicas/{id}",

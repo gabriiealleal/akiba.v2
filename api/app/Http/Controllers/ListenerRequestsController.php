@@ -17,7 +17,7 @@ use Illuminate\Validation\ValidationException;
 
 class ListenerRequestsController extends Controller
 {
-    /*******Lista todos os pedidos musicais*******/
+    //--------------Lista todos os pedidos musicais--------------
     /**
      * @OA\Get(
      *      path="/api/pedidos-musicais/{streaming_now}",
@@ -76,7 +76,7 @@ class ListenerRequestsController extends Controller
         }
     }
 
-    /*******Cadastra um novo pedido musical*******/
+    //--------------Cadastra um novo pedido musical--------------
     /**
      * @OA\Post(
      *      path="/api/pedidos-musicais",
@@ -164,7 +164,7 @@ class ListenerRequestsController extends Controller
     }
     
 
-    /*******Retorna um pedido musical especifico*******/
+    //--------------Retorna um pedido musical especifico--------------
     /**
      * @OA\Get(
      *      path="/api/pedidos-musicais/{id}",
@@ -212,7 +212,7 @@ class ListenerRequestsController extends Controller
         }
     }
 
-    /*******Atualiza um pedido musical especifico*******/
+    //--------------Atualiza um pedido musical especifico--------------
     /**
      * @OA\Patch(
      *      path="/api/pedidos-musicais/{id}",
@@ -300,7 +300,7 @@ class ListenerRequestsController extends Controller
         }
     }
 
-    /*******Remove um pedido musical especifico*******/
+    //--------------Remove um pedido musical especifico--------------
     /**
      * @OA\Delete(
      *      path="/api/pedidos-musicais/{id}",

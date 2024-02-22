@@ -19,7 +19,7 @@ use Intervention\Image\Facades\Image;
 
 class ShowsController extends Controller
 {
-    /*******Retorna todos os programas*******/
+    //--------------Retorna todos os programas------------
 
     /**
      * @OA\Get(
@@ -62,7 +62,7 @@ class ShowsController extends Controller
         }
     }
 
-    /*******Cadastra um programa*******/
+    //--------------Cadastra um programa------------
 
     /**
      * @OA\Post(
@@ -116,7 +116,7 @@ class ShowsController extends Controller
                 'logo.file' => 'O logo deve ser um arquivo.',
             ];
 
-            $validator = $request->validate([
+            $request->validate([
                 'presenter' => 'required|exists:users,id',
                 'name' => 'required|unique:shows',
                 'logo' => 'required|file|image',
@@ -153,7 +153,7 @@ class ShowsController extends Controller
         }
     }
 
-    /*******Retorna um programa específico*******/
+    //--------------Retorna um programa específico------------
     /**
      * @OA\Get(
      *      path="/api/programas/{slug}",
@@ -176,9 +176,9 @@ class ShowsController extends Controller
      *      ),
      *      @OA\Response(
      *          response=404,
-     *          description="Nenhum programa encontrado",
+     *          description="Programa não encontrado",
      *          @OA\JsonContent(
-     *              @OA\Property(property="error", type="string", example="Nenhum programa encontrado")
+     *              @OA\Property(property="error", type="string", example="Programa não encontrado")
      *          ),
      *      ),
      *      @OA\Response(
@@ -197,7 +197,7 @@ class ShowsController extends Controller
             $show = Shows::with('slug')->where('slug', $slug)->first();
 
             if(!$show){
-                return response()->json(['error' => 'Nenhum programa encontrado'], 404);
+                return response()->json(['error' => 'Programa não encontrado'], 404);
             }
 
             return response()->json(['message' => 'Programa encontrado', 'programa' => $show], 200);
@@ -207,7 +207,7 @@ class ShowsController extends Controller
     }
 
 
-    /*******Atualiza um programa especifico*******/
+    //--------------Atualiza um programa especifico------------
 
     /**
      * @OA\Patch(
@@ -293,7 +293,7 @@ class ShowsController extends Controller
         }
     }
 
-    /*******Remove um programa*******/
+    //--------------Remove um programa------------
     /**
      * @OA\Delete(
      *      path="/api/programas/{id}",

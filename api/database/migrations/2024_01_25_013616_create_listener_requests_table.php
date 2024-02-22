@@ -20,7 +20,7 @@ class CreateListenerRequestsTable extends Migration
             $table->string('address');
             $table->string('message');
             $table->unsignedBigInteger('streaming_now');
-            $table->foreign('streaming_now')->references('id')->on('streaming_now');
+            $table->foreign('streaming_now')->references('id')->on('streaming_now')->onDelete('cascade');
             $table->unsignedBigInteger('music');
             $table->foreign('music')->references('id')->on('musics_list');
         });

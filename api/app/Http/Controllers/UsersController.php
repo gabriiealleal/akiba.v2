@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 /**
  * @OA\Tag(
  *      name="Usuários",
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    /*******Retorna todos os usuários*******/
+    //---------------Retorna todos os usuários--------------
 
     /**
      * @OA\Get(
@@ -59,7 +60,7 @@ class UsersController extends Controller
         }
     }
 
-    /*******Cria um novo usuário*******/
+    //---------------Cria um novo usuário--------------
 
     /**
      * @OA\Post(
@@ -148,7 +149,7 @@ class UsersController extends Controller
         }
     }
 
-    /*******Retorna um usuário especifico*******/
+    //---------------Retorna um usuário especifico--------------
 
     /**
      * @OA\Get(
@@ -200,7 +201,7 @@ class UsersController extends Controller
         }
     }
 
-    /*******Atualiza um usuário especifico*******/
+    //---------------Atualiza um usuário especifico--------------
 
     /**
      * @OA\Patch(
@@ -321,7 +322,7 @@ class UsersController extends Controller
         }
     }
 
-    /*******Remove um usuário*******/
+    //---------------Remove um usuário--------------
 
     /**
      * @OA\Delete(

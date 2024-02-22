@@ -1023,6 +1023,363 @@
                 }
             }
         },
+        "/api/postagens": {
+            "get": {
+                "tags": [
+                    "Postagens"
+                ],
+                "summary": "Retorna uma lista de todas as postagens cadastradas",
+                "description": "Este endpoint retorna todas as postagens cadastradas no sistema da Rede Akiba.",
+                "operationId": "60ac37cdb34d3849d79835c22e0a0a50",
+                "responses": {
+                    "200": {
+                        "description": "Lista de postagens cadastradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhuma postagem encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhuma postagem encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processmento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Postagens"
+                ],
+                "summary": "Cria uma nova postagem",
+                "description": "Este endpoint cria uma nova postagem no sistema da Rede Akiba.",
+                "operationId": "b20b0bb094e15996f27c9cd519cd69c5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Postagem criada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/postagens/{slug}": {
+            "get": {
+                "tags": [
+                    "Postagens"
+                ],
+                "summary": "Retorna uma postagem específica",
+                "description": "Este endpoint retorna uma postagem específica cadastrada no sistema da Rede Akiba.",
+                "operationId": "8a6d8c0bcfd0b6202a1abeb2497169c2",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug da Postagem: Retorna uma publicação específica baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Postagem encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Publicação não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Publicação não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/postagens/{id}": {
+            "delete": {
+                "tags": [
+                    "Postagens"
+                ],
+                "summary": "Deleta uma postagem específica",
+                "description": "Este endpoint deleta uma postagem específica cadastrada no sistema da Rede Akiba.",
+                "operationId": "b7d348446de465c29fde536d128e74aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da Postagem: Deleta uma publicação específica baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Postagem deletada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Publicação deletada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Publicação não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Publicação não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Postagens"
+                ],
+                "summary": "Atualiza uma postagem específica",
+                "description": "Este endpoint atualiza uma postagem específica cadastrada no sistema da Rede Akiba.",
+                "operationId": "89999e1141cd94679dadab5a258c0197",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da Postagem: Atualiza uma publicação específica baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Postagem atualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Publicação não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Publicação não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/programas": {
             "get": {
                 "tags": [
@@ -1201,14 +1558,14 @@
                         }
                     },
                     "404": {
-                        "description": "Nenhum programa encontrado",
+                        "description": "Programa não encontrado",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "error": {
                                             "type": "string",
-                                            "example": "Nenhum programa encontrado"
+                                            "example": "Programa não encontrado"
                                         }
                                     },
                                     "type": "object"
@@ -2257,6 +2614,110 @@
                 },
                 "type": "object"
             },
+            "PostResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "featured_image": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "search_fonts": {
+                        "properties": {
+                            "site1": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            },
+                            "site2": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            },
+                            "site3": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "reactions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PostRequest": {
+                "properties": {
+                    "author": {
+                        "type": "integer"
+                    },
+                    "featured_image": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "categories": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "search_fonts": {
+                        "properties": {
+                            "site1": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            },
+                            "site2": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            },
+                            "site3": {
+                                "type": "string",
+                                "example": "https://www.site.com"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "reactions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ShowResponse": {
                 "properties": {
                     "id": {
@@ -2528,6 +2989,10 @@
         {
             "name": "Podcasts",
             "description": "Esta seção oferece acesso a operações relacionadas aos podcasts no sistema da Rede Akiba."
+        },
+        {
+            "name": "Postagens",
+            "description": "Esta seção oferece acesso a operações relacionadas as publicações dos redatores no sistema da Rede Akiba."
         },
         {
             "name": "Programas",

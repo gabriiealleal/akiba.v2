@@ -18,7 +18,7 @@ use Illuminate\Validation\ValidationException;
 
 class StreamingNowController extends Controller
 {
-    /***********Lista todos os programas do histórico***********/
+    //--------------Lista todos os programas do histórico--------------
     /**
      * @OA\Get(
      *      path="/api/historico-de-transmissao/{now}",
@@ -80,7 +80,7 @@ class StreamingNowController extends Controller
     }
 
 
-    /***********Cadastra um programa novo no histórico***********/
+    //--------------Cadastra um programa novo no histórico--------------
     /**
      * @OA\Post(
      *      path="/api/historico-de-transmissao",
@@ -157,7 +157,7 @@ class StreamingNowController extends Controller
         }
     }
 
-    /***********Recupera um programa especifico do histórico***********/
+    //--------------Recupera um programa especifico do histórico--------------
     /**
      * @OA\Get(
      *      path="/api/historico-de-transmissao/{slug}",
@@ -209,7 +209,7 @@ class StreamingNowController extends Controller
         }
     }
 
-    /***********Atualiza um programa especifico do histórico***********/
+    //--------------Atualiza um programa especifico do histórico--------------
     /**
      * @OA\Patch(
      *      path="/api/historico-de-transmissao/{id}",
@@ -293,7 +293,7 @@ class StreamingNowController extends Controller
         }
     }
 
-    /***********Remove um programa especifico do histórico***********/
+    //--------------Remove um programa especifico do histórico--------------
     /**
      * @OA\Delete(
      *      path="/api/historico-de-transmissao/{id}",

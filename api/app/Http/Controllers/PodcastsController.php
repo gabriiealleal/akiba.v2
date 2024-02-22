@@ -18,7 +18,7 @@ use Intervention\Image\Facades\Image;
 
 class PodcastsController extends Controller
 {
-    /*******Retorna todos os podcasts*******/
+    //--------------Retorna todos os podcasts--------------
     /**
      * @OA\Get(
      *      path="/podcasts",
@@ -61,7 +61,7 @@ class PodcastsController extends Controller
         }
     }
 
-    /*******Cadastra um novo podcast*******/
+    //--------------Cadastra um novo podcast--------------
     /**
      * @OA\Post(
      *      path="/podcasts",
@@ -148,7 +148,7 @@ class PodcastsController extends Controller
         }
     }
 
-    /*******Retorna um podcast especifico*******/
+    //--------------Retorna um podcast especifico--------------
     /**
      * @OA\Get(
      *      path="/podcasts/{slug}",
@@ -200,7 +200,7 @@ class PodcastsController extends Controller
         }     
     }
 
-    /*******Atualiza um podcast especifico*******/
+    //--------------Atualiza um podcast especifico--------------
     /**
      * @OA\Patch(
      *      path="/podcasts/{id}",
@@ -308,7 +308,7 @@ class PodcastsController extends Controller
         }
     }
 
-    /*******Remove um podcast especifico*******/
+    //--------------Remove um podcast especifico--------------
     /**
      * @OA\Delete(
      *      path="/podcasts/{id}",

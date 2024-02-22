@@ -10,6 +10,7 @@ use App\Http\Controllers\StreamingNowController;
 use App\Http\Controllers\MusicsListController;
 use App\Http\Controllers\ListenerRequestsController;
 use App\Http\Controllers\PodcastsController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +80,13 @@ Route::group(['prefix' => 'podcasts'], function() {
     Route::get('/{slug}', [PodcastsController::class, 'show']);
     Route::patch('/{id}', [PodcastsController::class, 'update']);
     Route::delete('/{id}', [PodcastsController::class, 'destroy']);
+});
+
+//Rotas para endpoint de postagens
+Route::group(['prefix' => 'postagens'], function() {
+    Route::get('/', [PostsController::class, 'index']);
+    Route::post('/', [PostsController::class, 'store']);
+    Route::get('/{id}', [PostsController::class, 'show']);
+    Route::patch('/{id}', [PostsController::class, 'update']);
+    Route::delete('/{id}', [PostsController::class, 'destroy']);
 });

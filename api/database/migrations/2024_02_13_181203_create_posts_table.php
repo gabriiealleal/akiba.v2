@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePodcastsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,19 @@ class CreatePodcastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('podcasts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('slug');
             $table->unsignedBigInteger('author');
             $table->foreign('author')->references('id')->on('users')->onDelete('cascade');
-            $table->string('season');
-            $table->string('episode');
-            $table->string('title');
+            $table->string('featured_image');
             $table->string('image');
-            $table->string('resume');
+            $table->string('title');
             $table->string('content');
-            $table->string('player');
-            $table->json('aggregators');
+            $table->json('categories');
+            $table->json('search_fonts');
+            $table->json('reactions');
         });
     }
 
@@ -37,6 +36,6 @@ class CreatePodcastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('podcasts');
+        Schema::dropIfExists('posts');
     }
 }
