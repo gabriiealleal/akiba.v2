@@ -2,35 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model
+class Reviews extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
+    protected $table = 'reviews';
 
     protected $fillable = [
         'slug',
         'author',
-        'featured_image',
-        'image',
         'title',
+        'image',
         'content',
     ];
 
     protected $casts = [
-        'categories' => 'array',
-        'search_fonts' => 'array',
-        'reactions' => 'array'
+        'reviews' => 'array'
     ];
 
     public function user()
     {
         return $this->belongsTo(Users::class, 'author');
     }
-
-
 }
