@@ -11,6 +11,7 @@ use App\Http\Controllers\MusicsListController;
 use App\Http\Controllers\ListenerRequestsController;
 use App\Http\Controllers\PodcastsController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,17 @@ Route::group(['prefix' => 'podcasts'], function() {
 Route::group(['prefix' => 'postagens'], function() {
     Route::get('/', [PostsController::class, 'index']);
     Route::post('/', [PostsController::class, 'store']);
-    Route::get('/{id}', [PostsController::class, 'show']);
+    Route::get('/{slug}', [PostsController::class, 'show']);
     Route::patch('/{id}', [PostsController::class, 'update']);
     Route::delete('/{id}', [PostsController::class, 'destroy']);
 });
+
+//Rotas para endpoint de reviews
+Route::group(['prefix' => 'reviews'], function() {
+    Route::get('/', [ReviewsController::class, 'index']);
+    Route::post('/', [ReviewsController::class, 'store']);
+    Route::get('/{slug}', [ReviewsController::class, 'show']);
+    Route::patch('/{id}', [ReviewsController::class, 'update']);
+    Route::delete('/{id}', [ReviewsController::class, 'destroy']);
+});
+

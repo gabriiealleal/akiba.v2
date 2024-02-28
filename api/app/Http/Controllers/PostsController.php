@@ -108,11 +108,14 @@ class PostsController extends Controller
         try {
             $messages = [
                 'author.required' => 'O campo author é obrigatório',
-
+                'featured_image.required' => 'O campo featured_image é obrigatório',
+                'image.required' => 'O campo image é obrigatório',
             ];
 
             $request->validate([
                 'author' => 'required',
+                'featured_image' => 'required|image',
+                'image' => 'required|image'
             ], $messages);
 
             $author = Users::find($request->author);
@@ -143,6 +146,7 @@ class PostsController extends Controller
             $posts->categories = $request->categories;
             $posts->search_fonts = $request->search_fonts;
             $posts->reactions = $request->reactions;
+            $posts->save();
 
             //Associa a publicação ao usuário autor
             $author->posts()->save($posts);

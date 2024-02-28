@@ -105,21 +105,23 @@ class PodcastsController extends Controller
         try{
             $messages = [
                 'author.required' => 'O campo author é obrigatório',
+                'image.required' => 'O campo image é obrigatório',
             ];
 
             $validator = $request->validate([
                 'author' => 'required',
+                'image' => 'required|image'
             ], $messages);
 
             $author = Users::find($request->author);
             if(!$author){
-                return response()->json(['message' => 'Autor não encontrado'], 404);
+                return response()->json(['message' => 'Usuário não encontrado'], 404);
             }
 
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $filename = time().'.'.$image->getClientOriginalExtension();
-                $location = public_path('/images/'.$filename); // Corrija a barra aqui
+                $location = public_path('images/'.$filename); // Corrija a barra aqui
                 Image::make($image)->save($location);
             }
 
@@ -133,6 +135,7 @@ class PodcastsController extends Controller
             $podcasts->content = $request->content;
             $podcasts->player = $request->player;
             $podcasts->aggregators = $request->aggregators;
+            $podcasts->save();
 
             //Associa o usuário ao podcast
             $author->podcasts()->save($podcasts);
@@ -301,6 +304,9 @@ class PodcastsController extends Controller
 
             //Retorna o podcast com os dados do usuário autor associado
             $podcasts->load('author');
+
+            //Salva as alterações 
+            $podcasts->save();
 
             return response()->json(['message' => 'Podcast atualizado com sucesso', 'podcast' => $podcasts], 200);
         }catch(\Exception $e){

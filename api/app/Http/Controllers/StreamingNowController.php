@@ -142,6 +142,7 @@ class StreamingNowController extends Controller
             $streamingNow->date_streaming = $request->date_streaming;
             $streamingNow->start_streaming = $request->start_streaming;
             $streamingNow->end_streaming = $request->end_streaming;
+            $streamingNow->save();
     
             // Associa o programa ao registro no histórico
             $show->streamingNow()->save($streamingNow);

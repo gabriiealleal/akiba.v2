@@ -138,6 +138,7 @@ class ShowsController extends Controller
             $show->slug = Str::slug($request->name);
             $show->name = $request->name;
             $show->logo = $filename;
+            $show->save();
 
             //Associa o programa ao usuário apresentador
             $presenter->show()->save($show);

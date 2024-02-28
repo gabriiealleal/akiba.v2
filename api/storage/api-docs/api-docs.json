@@ -1380,6 +1380,347 @@
                 }
             }
         },
+        "/api/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Lista todos os reviews cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todos os reviews cadastrados no sistema da Rede Akiba.",
+                "operationId": "e619f524e41a7fbbaf2f8f9f19e9f7e1",
+                "responses": {
+                    "200": {
+                        "description": "Lista de todos os reviews cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum review encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum review encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Cria um novo review",
+                "description": "Este endpoint realiza a criação de um novo review no sistema da Rede Akiba.",
+                "operationId": "746a787e37443f5a7a0561794b898de7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review criado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews/{slug}": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Retorna um review especifico",
+                "description": "Este endpoint retorna um review especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "c47a9a46b43791e0a1d72cd41f0dd8f3",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Review: Retorna um review especifico baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Review não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews/{id}": {
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Remove um review",
+                "description": "Este endpoint realiza a remoção de um review especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "58fc0ef649f2eb03d8245a835ea008a2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do Review: Remove um review especifico baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review removido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Review removido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Review não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Atualiza um review especifico",
+                "description": "Este endpoint realiza a atualização de um review especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "5051bd4b97da4229a92537cf821e9f96",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do Review: Atualiza um review especifico baseado no ID fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review atualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Review não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/programas": {
             "get": {
                 "tags": [
@@ -2718,6 +3059,78 @@
                 },
                 "type": "object"
             },
+            "ReviewResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "reviews": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "usuario1": {
+                                    "type": "string",
+                                    "example": "texto"
+                                },
+                                "usuario2": {
+                                    "type": "string",
+                                    "example": "texto"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReviewRequest": {
+                "properties": {
+                    "author": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "reviews": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "usuario01": {
+                                    "type": "string",
+                                    "example": "texto"
+                                },
+                                "usuario02": {
+                                    "type": "string",
+                                    "example": "texto"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ShowResponse": {
                 "properties": {
                     "id": {
@@ -2993,6 +3406,10 @@
         {
             "name": "Postagens",
             "description": "Esta seção oferece acesso a operações relacionadas as publicações dos redatores no sistema da Rede Akiba."
+        },
+        {
+            "name": "Reviews",
+            "description": "Esta seção oferece acesso a operações relacionadas aos reviews no sistema da Rede Akiba"
         },
         {
             "name": "Programas",
