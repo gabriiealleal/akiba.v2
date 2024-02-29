@@ -10,9 +10,44 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
+/**
+ * @OA\Tag(
+ *      name="Eventos",
+ *      description="Esta seção oferece acesso a operações relacionadas aos eventos no sistema da Rede Akiba.",
+ * )
+ */
+
+
 class EventsController extends Controller
 {
     //--------------Lista todos os eventos--------------
+    /**
+     * @OA\Get(
+     *      path="/api/eventos",
+     *      tags={"Eventos"},
+     *      summary="Lista todos os eventos cadastrados",
+     *      description="Este endpoint retorna todas os cadastrados no sistema da Rede Akiba.",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Lista de todos os eventos cadastrados",
+     *          @OA\JsonContent(ref="#/components/schemas/EventsResponse"),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Nenhum evento encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Nenhum evento encontrado"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Ocorreu um erro de processamento",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
+     *          ),
+     *      ),
+     * )
+     */
     public function index()
     {
         try{
@@ -22,13 +57,51 @@ class EventsController extends Controller
                 return response()->json(['message' => 'Nenhum evento encontrado'], 404);
             }
 
-            return response()->json(['message', 'Lista todos os eventos cadastrados', 'eventos' => $events], 200);
+            return response()->json(['message', 'Lista de todos os eventos cadastrados', 'eventos' => $events], 200);
         }catch(\Exception $e){
-            return response()->json(['message' => 'Erro ao listar eventos', 'error' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
 
     //--------------Cadastra um novo evento--------------
+    /**
+     * @OA\Post(
+     *      path="/api/eventos",
+     *      tags={"Eventos"},
+     *      summary="Cadastra um novo evento",
+     *      description="Este endpoint realiza o cadastro de um novo evento no sistema da Rede Akiba.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/EventsRequest"),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Evento cadastrado com sucesso",
+     *          @OA\JsonContent(ref="#/components/schemas/EventsResponse"),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Usuário não encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Usuário não encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Ocorreu um erro de validação",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de validação"),  
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Ocorreu um erro de processamento",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
+     *          ),
+     *      ),
+     * )
+     */
     public function store(Request $request)
     {
         try{
@@ -75,13 +148,49 @@ class EventsController extends Controller
 
             return response()->json(['message' => 'Evento cadastrado com sucesso', 'evento' => $events], 200);
         }catch(ValidationException $e){
-            return response()->json(['message' => 'Ocorreu um erro de validação', 'error' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Ocorreu um erro de validação', 'error' => $e->getMessage()], 400);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
 
     //--------------Retorna uma evento específico------------
+    /**
+     * @OA\Get(
+     *      path="/api/eventos/{slug}",
+     *      tags={"Eventos"},
+     *      summary="Retorna um evento específico",
+     *      description="Este endpoint retorna um evento específico cadastrado no sistema da Rede Akiba.",
+     *      @OA\Parameter(
+     *          name="slug",
+     *          description="Slug do Evento: Retorna um evento específico baseado no slug fornecido.",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *          ),
+     *      ),  
+     *      @OA\Response(
+     *          response=200,
+     *          description="Evento encontrado",
+     *          @OA\JsonContent(ref="#/components/schemas/EventsResponse"),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Evento não encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Evento não encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Ocorreu um erro de processamento",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
+     *          ),
+     *      ),
+     * )       
+     */
     public function show($slug)
     {
         try{
@@ -98,6 +207,46 @@ class EventsController extends Controller
     }
 
     //--------------Atualiza um evento especifico------------
+    /**
+     * @OA\Patch(
+     *      path="/api/eventos/{id}",
+     *      tags={"Eventos"},
+     *      summary="Atualiza um evento específico",
+     *      description="Este endpoint atualiza um evento específico cadastrado no sistema da Rede Akiba.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id do Evento: Atualiza um evento específico baseado no id fornecido.",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/EventsRequest"),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Evento atualizado com sucesso",
+     *          @OA\JsonContent(ref="#/components/schemas/EventsResponse"),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Evento não encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Evento não encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Ocorreu um erro de processamento",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
+     *          ),
+     *      ),
+     * )    
+     */
     public function update(Request $request, $id)
     {
         try{
@@ -157,6 +306,44 @@ class EventsController extends Controller
     }
 
     //--------------Deleta uma evento especifico------------
+    /**
+     * @OA\Delete(
+     *      path="/api/eventos/{id}",
+     *      tags={"Eventos"},
+     *      summary="Remove um evento específico",
+     *      description="Este endpoint remove um evento específico cadastrado no sistema da Rede Akiba.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Id do Evento: Remove um evento específico baseado no id fornecido.",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Evento deletado com sucesso",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Evento deletado com sucesso"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Evento não encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Evento não encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Ocorreu um erro de processamento",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
+     *          ),
+     *      ),
+     * )
+     */
     public function destroy($id)
     {
         try{

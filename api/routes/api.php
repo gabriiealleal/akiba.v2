@@ -12,6 +12,7 @@ use App\Http\Controllers\ListenerRequestsController;
 use App\Http\Controllers\PodcastsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Controllers\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,5 +100,14 @@ Route::group(['prefix' => 'reviews'], function() {
     Route::get('/{slug}', [ReviewsController::class, 'show']);
     Route::patch('/{id}', [ReviewsController::class, 'update']);
     Route::delete('/{id}', [ReviewsController::class, 'destroy']);
+});
+
+//Rotas para endpoint de eventos
+Route::group(['prefix' => 'eventos'], function () {
+    Route::get('/', [EventsController::class, 'index']);
+    Route::post('/', [EventsController::class, 'store']);
+    Route::get('/{slug}', [EventsController::class, 'show']);
+    Route::patch('/{id}', [EventsController::class, 'update']);
+    Route::delete('/{id}', [EventsController::class, 'destroy']);
 });
 

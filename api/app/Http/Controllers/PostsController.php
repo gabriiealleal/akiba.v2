@@ -24,7 +24,7 @@ class PostsController extends Controller
      * @OA\Get(
      *      path="/api/postagens",
      *      tags={"Postagens"},
-     *      summary="Retorna uma lista de todas as postagens cadastradas",
+     *      summary="Lista todas as postagens cadastradas",
      *      description="Este endpoint retorna todas as postagens cadastradas no sistema da Rede Akiba.",
      *      @OA\Response(
      *          response=200,
