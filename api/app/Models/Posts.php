@@ -29,7 +29,7 @@ class Posts extends Model
 
     public function user()
     {
-        return $this->belongsTo(Users::class, 'author');
+        return $this->hasOne(Users::class, 'id', 'author');
     }
 
 

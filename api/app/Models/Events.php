@@ -24,7 +24,7 @@ class Events extends Model
 
     public function author()
     {
-        return $this->belongsTo(Users::class, 'author');
+        return $this->hasOne(Users::class, 'id', 'author');
     }
 
 }
