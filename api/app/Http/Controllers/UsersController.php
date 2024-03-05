@@ -9,13 +9,13 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
 /**
  * @OA\Tag(
  *      name="Usuários",
  *      description="Esta seção oferece acesso a operações relacionadas aos usuários cadastrados no sistema da Rede Akiba."
  * )
  */
-
 class UsersController extends Controller
 {
     //---------------Retorna todos os usuários--------------

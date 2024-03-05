@@ -12,6 +12,7 @@ use App\Http\Controllers\PodcastsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,4 +110,13 @@ Route::group(['prefix' => 'eventos'], function () {
     Route::get('/{slug}', [EventsController::class, 'show']);
     Route::patch('/{id}', [EventsController::class, 'update']);
     Route::delete('/{id}', [EventsController::class, 'destroy']);
+});
+
+//Rotas para endpoint de tarefas
+Route::group(['prefix' => 'tarefas'], function () {
+    Route::get('/', [TasksController::class, 'index']);
+    Route::post('/', [TasksController::class, 'store']);
+    Route::get('/{slug}', [TasksController::class, 'show']);
+    Route::patch('/{id}', [TasksController::class, 'update']);
+    Route::delete('/{id}', [TasksController::class, 'destroy']);
 });

@@ -2777,6 +2777,347 @@
                 }
             }
         },
+        "/api/tarefas": {
+            "get": {
+                "tags": [
+                    "Tarefas"
+                ],
+                "summary": "Retorna todas as tarefas cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todas as tarefas da equipe cadastradas no sistema da Rede Akiba.",
+                "operationId": "089b45a1077fda9c821c4de6a48126d1",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tarefas cadastradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhuma tarefa cadastrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhuma tarefa cadastrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tarefas"
+                ],
+                "summary": "Cadastra uma nova tarefa",
+                "description": "Este endpoint realiza o cadastro de uma nova tarefa da equipe no sistema da Rede Akiba.",
+                "operationId": "5c437d363841f03de1aeca96f9f50a2c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TasksRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tarefa cadastrada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tarefas/{slug}": {
+            "get": {
+                "tags": [
+                    "Tarefas"
+                ],
+                "summary": "Retorna uma tarefa específica",
+                "description": "Este endpoint retorna uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "7138bde2982f08da05fb406dc762df34",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug da Tarefa: Retorna uma tarefa específica baseada no slug fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tarefa encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Tarefa não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tarefas/{id}": {
+            "delete": {
+                "tags": [
+                    "Tarefas"
+                ],
+                "summary": "Remove uma tarefa específica",
+                "description": "Este endpoint remove uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "e2d414ecc41f053678071b048d34c80e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Tarefa: Remove uma tarefa específica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tarefa removida com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Tarefa removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tarefa não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Tarefa não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Tarefas"
+                ],
+                "summary": "Atualiza uma tarefa específica",
+                "description": "Este endpoint atualiza uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "4e8ece5c357c954059690d7f55580a5b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Tarefa: Atualiza uma tarefa específica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TasksRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tarefa atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tarefa ou usuário não encontrado(a)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Tarefa ou usuário não encontrado(a"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/usuarios": {
             "get": {
                 "tags": [
@@ -3615,6 +3956,37 @@
                 },
                 "type": "object"
             },
+            "TasksResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "responsible": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksRequest": {
+                "properties": {
+                    "responsible": {
+                        "type": "integer"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "UserResponse": {
                 "properties": {
                     "id": {
@@ -3815,6 +4187,10 @@
         {
             "name": "Histórico de Transmissão",
             "description": "Esta seção oferece acesso a operações relacionadas ao histórico de programação da rádio no sistema da Rede Akiba."
+        },
+        {
+            "name": "Tarefas",
+            "description": "Esta seção oferece acesso a operações relacionadas as tarefas da equipe cadastradas no sistema da Rede Akiba."
         },
         {
             "name": "Usuários",
