@@ -83,8 +83,6 @@ Route::group(['prefix' => 'podcasts'], function() {
     Route::delete('/{id}', [PodcastsController::class, 'destroy']);
 });
 
-
-
 //Rotas para endpoint de postagens
 Route::group(['prefix' => 'postagens'], function() {
     Route::get('/', [PostsController::class, 'index']);
