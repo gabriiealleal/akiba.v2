@@ -118,7 +118,7 @@ class TasksController extends Controller
             $tasks->save();
 
             //Associa o programa ao usuário responsável
-            $responsible->tasks()->sabe($tasks);
+            $responsible->tasks()->save($tasks);
 
             //Retorna a tarefa com os dados do usuário responsável
             $tasks->load('responsible');
