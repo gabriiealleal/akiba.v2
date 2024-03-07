@@ -16,7 +16,7 @@ class CreateTeamCalendarTable extends Migration
         Schema::create('team_calendar', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('date');
+            $table->string('day');
             $table->string('hour');
             $table->string('category');
             $table->unsignedBigInteger('responsible');
