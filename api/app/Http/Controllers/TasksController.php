@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tasks;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+
 
 /**
  * @OA\Tag(
@@ -123,7 +126,7 @@ class TasksController extends Controller
             //Retorna a tarefa com os dados do usuário responsável
             $tasks->load('responsible');
 
-            return response()->json(['message' => 'Tarefa cadastrada com sucesso', 'tarefa' => $task], 200);
+            return response()->json(['message' => 'Tarefa cadastrada com sucesso', 'tarefa' => $tasks], 200);
         }catch(ValidationException $e){
             return response()->json(['message' => 'Ocorreu um erro de validação', 'error' => $e->errors()], 400);
         }catch(\Exception $e){

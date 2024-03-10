@@ -12,7 +12,7 @@ class TeamCalendar extends Model
 
     protected $table = 'team_calendar';
 
-    protected $filltable = [
+    protected $fillable  = [
         'category',
         'responsible',
         'content',

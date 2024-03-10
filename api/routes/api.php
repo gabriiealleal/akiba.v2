@@ -14,6 +14,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\TeamCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +120,13 @@ Route::group(['prefix' => 'tarefas'], function () {
     Route::get('/{slug}', [TasksController::class, 'show']);
     Route::patch('/{id}', [TasksController::class, 'update']);
     Route::delete('/{id}', [TasksController::class, 'destroy']);
+});
+
+//Rotas para calendário da equipe
+Route::group(['prefix' => 'calendario-da-equipe'], function () {
+    Route::get('/', [TeamCalendarController::class, 'index']);
+    Route::post('/', [TeamCalendarController::class, 'store']);
+    Route::get('/{slug}', [TeamCalendarController::class, 'show']);
+    Route::patch('/{id}', [TeamCalendarController::class, 'update']);
+    Route::delete('/{id}', [TeamCalendarController::class, 'destroy']);
 });

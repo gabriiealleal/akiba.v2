@@ -3118,6 +3118,347 @@
                 }
             }
         },
+        "/api/calendario-da-equipe": {
+            "get": {
+                "tags": [
+                    "Calendário da Equipe"
+                ],
+                "summary": "Lista de todos os eventos do calendário da equipe",
+                "description": "Este endpoint retorna uma lista completa de todos os eventos no calendário da equipe cadastradas no sistema da Rede Akiba.",
+                "operationId": "1be6dd1bcb99e0555afad17cbf4f9aa3",
+                "responses": {
+                    "200": {
+                        "description": "Lista de todos os eventos do calendário",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamCalendarResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum evento encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum evento encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Calendário da Equipe"
+                ],
+                "summary": "Cadastra um novo evento no calendário da equipe",
+                "description": "Este endpoint realiza o cadastro de um novo evento no calendário da equipe no sistema da Rede Akiba.",
+                "operationId": "a55ff8318a987a3967eb29de5102f796",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TeamCalendarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "evento cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamCalendarResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/calendario-da-equipe/{slug}": {
+            "get": {
+                "tags": [
+                    "Calendário da Equipe"
+                ],
+                "summary": "Detalhes de um evento específico do calendário da equipe",
+                "description": "Este endpoint retorna os detalhes de um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",
+                "operationId": "d8dd916a8dfa91fc5be638000277b065",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug do Evento: Retorna um evento específico do calendário da equipe baseado no slug fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Evento encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamCalendarResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Evento não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Evento não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/calendario-da-equipe/{id}": {
+            "delete": {
+                "tags": [
+                    "Calendário da Equipe"
+                ],
+                "summary": "Remove um evento específico do calendário da equipe",
+                "description": "Este endpoint remove um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",
+                "operationId": "aeb65375c82be6d05a6067bd0d56531c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Evento: Remove um evento específico do calendário da equipe baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Evento removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Evento removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Evento não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Evento não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Calendário da Equipe"
+                ],
+                "summary": "Atualiza um evento específico do calendário da equipe",
+                "description": "Este endpoint atualiza um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",
+                "operationId": "dffd535570ab20f2b45d4983f4954938",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Evento: Atualiza um evento específico do calendário da equipe baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TeamCalendarRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Evento atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TeamCalendarResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Evento ou usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Evento ou usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/usuarios": {
             "get": {
                 "tags": [
@@ -3987,6 +4328,49 @@
                 },
                 "type": "object"
             },
+            "TeamCalendarResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "day": {
+                        "type": "string"
+                    },
+                    "hour": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "responsible": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TeamCalendarRequest": {
+                "properties": {
+                    "day": {
+                        "type": "string"
+                    },
+                    "hour": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "responsible": {
+                        "type": "integer"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "UserResponse": {
                 "properties": {
                     "id": {
@@ -4191,6 +4575,10 @@
         {
             "name": "Tarefas",
             "description": "Esta seção oferece acesso a operações relacionadas as tarefas da equipe cadastradas no sistema da Rede Akiba."
+        },
+        {
+            "name": "Calendário da Equipe",
+            "description": "Esta seção oferece acesso a operações relacionadas ao calendário da equipe no sistema da Rede Akiba."
         },
         {
             "name": "Usuários",
