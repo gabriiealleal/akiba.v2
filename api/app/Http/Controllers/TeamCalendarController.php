@@ -107,7 +107,7 @@ class TeamCalendarController extends Controller
 
             $request->validate([
                 'responsible' => 'required',
-            ]);
+            ], $messages);
 
             $responsible = Users::find($request->responsible);
             if (!$responsible) {

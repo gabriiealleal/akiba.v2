@@ -12,7 +12,7 @@ class Podcasts extends Model
 
     protected $table = 'podcasts';
 
-    protected $filltable = [
+    protected $fillable = [
         'slug',
         'author',
         'season',

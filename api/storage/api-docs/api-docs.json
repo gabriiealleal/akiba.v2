@@ -3796,6 +3796,347 @@
                     }
                 }
             }
+        },
+        "/api/youtube": {
+            "get": {
+                "tags": [
+                    "Vídeos do Youtube"
+                ],
+                "summary": "Retorna uma lista de vídeos do Youtube",
+                "description": "Retorna todos os vídeos do Youtube cadastrados no banco de dados.",
+                "operationId": "7631d5763185430f3752a4827b0c1fe9",
+                "responses": {
+                    "200": {
+                        "description": "Lista de vídeos do Youtube encontrados com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/YoutubeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum vídeo do Youtube cadastrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum vídeo do Youtube cadastrado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vídeos do Youtube"
+                ],
+                "summary": "Cadastra um novo vídeo do Youtube",
+                "description": "Cadastra um novo vídeo do Youtube.",
+                "operationId": "e2b35c533c00bbb1fba963d906585396",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/YoutubeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vídeo do Youtube cadastrado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/YoutubeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/youtube/{slug}": {
+            "get": {
+                "tags": [
+                    "Vídeos do Youtube"
+                ],
+                "summary": "Retorna um vídeo do Youtube específico",
+                "description": "Retorna um vídeo do Youtube específico de acordo com o slug informado.",
+                "operationId": "beb2d3c923f07646d36fbd7f7770546f",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Id do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o id informado.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vídeo do Youtube encontrado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/YoutubeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vídeo do Youtube não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Vídeo do Youtube não encontrado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/youtube/{id}": {
+            "delete": {
+                "tags": [
+                    "Vídeos do Youtube"
+                ],
+                "summary": "Remove um vídeo do Youtube específico",
+                "description": "Remove um vídeo do Youtube específico de acordo com o id informado.",
+                "operationId": "3a010ef7d12ae829f0aa8467dcd0907b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o id informado.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vídeo do Youtube removido com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vídeo do Youtube removido com sucesso."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vídeo do Youtube não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Vídeo do Youtube não encontrado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Vídeos do Youtube"
+                ],
+                "summary": "Atualiza um vídeo do Youtube específico",
+                "description": "Atualiza um vídeo do Youtube específico de acordo com o id informado.",
+                "operationId": "ccd6c8c26b95de1d7ff43ea14763aba7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do vídeo do Youtube: Atualiza um vídeo do Youtube específico de acordo com o id informado.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/YoutubeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vídeo do Youtube atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/YoutubeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vídeo do Youtube não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Vídeo do Youtube não encontrado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -4536,6 +4877,31 @@
                     }
                 },
                 "type": "object"
+            },
+            "YoutubeResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "video": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "YoutubeRequest": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "video": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             }
         }
     },
@@ -4583,6 +4949,10 @@
         {
             "name": "Usuários",
             "description": "Esta seção oferece acesso a operações relacionadas aos usuários cadastrados no sistema da Rede Akiba."
+        },
+        {
+            "name": "Vídeos do Youtube",
+            "description": "Esta seção oferece acesso a operações relacionadas aos vídeos do Youtube no sistema da Rede Akiba."
         }
     ]
 }

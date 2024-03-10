@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MusicsList extends Model
+class Youtube extends Model
 {
     use HasFactory;
 
-    protected $table = 'musics_list';
+    protected $table = 'youtube';
 
     protected $fillable = [
-        'count',
-        'music',
-        'artist',
-        'album',
+        'title',
+        'video'
     ];
 }

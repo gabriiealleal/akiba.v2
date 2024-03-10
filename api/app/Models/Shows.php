@@ -12,7 +12,7 @@ class Shows extends Model
 
     protected $table = 'shows';
 
-    protected $filltable = [
+    protected $fillable = [
         'slug',
         'presenter',
         'name',

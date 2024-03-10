@@ -11,7 +11,7 @@ class Users extends Model
 
     protected $table = 'users';
 
-    protected $filltable = [
+    protected $fillable = [
         'slug',
         'is_active',
         'login',
