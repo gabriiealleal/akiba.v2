@@ -14,6 +14,8 @@ use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TeamCalendarController;
+use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\RepositoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,4 +129,22 @@ Route::group(['prefix' => 'calendario-da-equipe'], function () {
     Route::get('/{slug}', [TeamCalendarController::class, 'show']);
     Route::patch('/{id}', [TeamCalendarController::class, 'update']);
     Route::delete('/{id}', [TeamCalendarController::class, 'destroy']);
+});
+
+//Rotas para endpoint de Youtube
+Route::group(['prefix' => 'youtube'], function () {
+    Route::get('/', [YoutubeController::class, 'index']);
+    Route::post('/', [YoutubeController::class, 'store']);
+    Route::get('/{id}', [YoutubeController::class, 'show']);
+    Route::patch('/{id}', [YoutubeController::class, 'update']);
+    Route::delete('/{id}', [YoutubeController::class, 'destroy']);
+});
+
+//Rotas para endpoint repositório de arquivos
+Route::group(['prefix' => 'repositorio-de-arquivos'], function () {
+    Route::get('/', [RepositoryController::class, 'index']);
+    Route::post('/', [RepositoryController::class, 'store']);
+    Route::get('/{id}', [RepositoryController::class, 'show']);
+    Route::patch('/{id}', [RepositoryController::class, 'update']);
+    Route::delete('/{id}', [RepositoryController::class, 'destroy']);
 });
