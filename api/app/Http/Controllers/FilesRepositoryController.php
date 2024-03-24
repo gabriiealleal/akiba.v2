@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Repository;
+use App\Models\FilesRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +14,7 @@ use Intervention\Image\Facades\Image;
  *      description="Esta seção oferece acesso a operações relacionadas ao repostório de arquivos no sistema da Rede Akiba"
  * )
  */
-class RepositoryController extends Controller
+class FilesRepositoryController extends Controller
 {
     //--------------Retorna todos os arquivos cadastrados------------
     /**
@@ -26,7 +26,7 @@ class RepositoryController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Arquivos encontrados",
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryResponse")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryResponse")
      *      ),
      *      @OA\Response(
      *          response=404,   
@@ -47,7 +47,7 @@ class RepositoryController extends Controller
     public function index()
     {
         try{
-            $repository = Repository::all();
+            $repository = FilesRepository::all();
 
             if($repository -> isEmpty()){
                 return response()->json([
@@ -70,12 +70,12 @@ class RepositoryController extends Controller
      *      description="Este endpoint realiza o cadastro de um novo arquivo no sistema",
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryRequest")
      *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Arquivo cadastrado com sucesso",
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryResponse")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryResponse")
      *      ),
      *      @OA\Response(
      *          response=400,
@@ -115,7 +115,7 @@ class RepositoryController extends Controller
                 Image::make($icon_image)->save($location);
             }
 
-            $repository = new Repository();
+            $repository = new FilesRepository();
             $repository->category = $request->category;
             $repository->file = $request->file;
             $repository->icon = $icon_image_filename;
@@ -148,7 +148,7 @@ class RepositoryController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Arquivo encontrado",
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryResponse")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryResponse")
      *      ),
      *      @OA\Response(
      *          response=404,
@@ -169,7 +169,7 @@ class RepositoryController extends Controller
     public function show($id)
     {
         try{
-            $repository = Repository::find($id);
+            $repository = FilesRepository::find($id);
 
             if($repository == null){
                 return response()->json(['message' => 'Arquivo não encontrado'], 404);
@@ -199,12 +199,12 @@ class RepositoryController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryRequest")
      *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Arquivo atualizado com sucesso",
-     *          @OA\JsonContent(ref="#/components/schemas/RepositoryResponse")
+     *          @OA\JsonContent(ref="#/components/schemas/FilesRepositoryResponse")
      *      ),
      *      @OA\Response(
      *          response=404,
@@ -225,7 +225,7 @@ class RepositoryController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $repository = Repository::find($id);
+            $repository = FilesRepository::find($id);
 
             if($repository == null){
                 return response()->json(['message' => 'Arquivo não encontrado'], 404);
@@ -297,7 +297,7 @@ class RepositoryController extends Controller
     public function destroy($id)
     {
         try{
-            $repository = Repository::find($id);
+            $repository = FilesRepository::find($id);
 
             if($repository == null){
                 return response()->json(['message' => 'Arquivo não encontrado'], 404);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Youtube;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 /**
  * @OA\Tag(
@@ -103,6 +104,7 @@ class YoutubeController extends Controller
             ], $messages);
 
             $youtube = new Youtube();
+            $youtube->slug = Str::slug($request->title);
             $youtube->title = $request->title;
             $youtube->video = $request->video;
             $youtube->save();
@@ -124,7 +126,7 @@ class YoutubeController extends Controller
      *      description="Retorna um vídeo do Youtube específico de acordo com o slug informado.",
      *      @OA\Parameter(
      *          name="slug",
-     *          description="Id do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o id informado.",
+     *          description="Slug do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o slug informado.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(

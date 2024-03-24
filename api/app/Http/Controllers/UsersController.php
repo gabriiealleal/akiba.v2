@@ -107,7 +107,7 @@ class UsersController extends Controller
                 'avatar.image' => 'O arquivo enviado não é uma imagem válida',
             ];
 
-            $validator = $request->validate([
+            $request->validate([
                 'login' => 'required|unique:users',
                 'password' => 'required|min:6',
                 'email' => 'nullable|unique:users',

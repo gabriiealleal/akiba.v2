@@ -12,10 +12,11 @@ use App\Http\Controllers\PodcastsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FilesRepositoryController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TeamCalendarController;
 use App\Http\Controllers\YoutubeController;
-use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\ListenerOfTheMounthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,9 +143,18 @@ Route::group(['prefix' => 'youtube'], function () {
 
 //Rotas para endpoint repositório de arquivos
 Route::group(['prefix' => 'repositorio-de-arquivos'], function () {
-    Route::get('/', [RepositoryController::class, 'index']);
-    Route::post('/', [RepositoryController::class, 'store']);
-    Route::get('/{id}', [RepositoryController::class, 'show']);
-    Route::patch('/{id}', [RepositoryController::class, 'update']);
-    Route::delete('/{id}', [RepositoryController::class, 'destroy']);
+    Route::get('/', [FilesRepositoryController::class, 'index']);
+    Route::post('/', [FilesRepositoryController::class, 'store']);
+    Route::get('/{id}', [FilesRepositoryController::class, 'show']);
+    Route::patch('/{id}', [FilesRepositoryController::class, 'update']);
+    Route::delete('/{id}', [FilesRepositoryController::class, 'destroy']);
+});
+
+//Rotas para endpoint de ouvinte do mês
+Route::group(['prefix' => 'ouvinte-do-mes'], function () {
+    Route::get('/', [ListenerOfTheMounthController::class, 'index']);
+    Route::post('/', [ListenerOfTheMounthController::class, 'store']);
+    Route::get('/{id}', [ListenerOfTheMounthController::class, 'show']);
+    Route::patch('/{id}', [ListenerOfTheMounthController::class, 'update']);
+    Route::delete('/{id}', [ListenerOfTheMounthController::class, 'destroy']);
 });

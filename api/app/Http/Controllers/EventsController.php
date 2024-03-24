@@ -110,7 +110,7 @@ class EventsController extends Controller
                 'image.required' => 'O campo imagem é obrigatório',
             ];
 
-            $validator = $request->validate([
+            $request->validate([
                 'author' => 'required',
                 'image' => 'required',
                 'dates' => 'required',

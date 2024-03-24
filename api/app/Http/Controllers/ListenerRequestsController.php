@@ -127,7 +127,7 @@ class ListenerRequestsController extends Controller
                 'streaming_now.exists' => 'O streaming_now informado não existe',
             ];
     
-            $validator = $request->validate([
+            $request->validate([
                 'streaming_now' => 'required|exists:streaming_now,id',
             ], $messages);
     

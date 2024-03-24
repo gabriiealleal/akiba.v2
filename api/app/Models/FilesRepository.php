@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Repository extends Model
+class FilesRepository extends Model
 {
     use HasFactory;
 
-    protected $table = 'repository';
+    protected $table = 'files_repository';
 
     protected $fillable = [
         'category',

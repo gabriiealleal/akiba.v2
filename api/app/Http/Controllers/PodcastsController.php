@@ -108,7 +108,7 @@ class PodcastsController extends Controller
                 'image.required' => 'O campo image é obrigatório',
             ];
 
-            $validator = $request->validate([
+            $request->validate([
                 'author' => 'required',
                 'image' => 'required|image'
             ], $messages);

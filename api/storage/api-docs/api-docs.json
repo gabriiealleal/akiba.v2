@@ -350,6 +350,684 @@
                 }
             }
         },
+        "/api/repositorio-de-arquivos": {
+            "get": {
+                "tags": [
+                    "Repositório de Arquivos"
+                ],
+                "summary": "Lista todos os arquivos cadastrados",
+                "description": "Este endpoint retorna todos os arquivos cadastrados no sistema",
+                "operationId": "cac14121464622393812d8895204f15f",
+                "responses": {
+                    "200": {
+                        "description": "Arquivos encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FilesRepositoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum arquivo encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhuma arquivo encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Repositório de Arquivos"
+                ],
+                "summary": "Cadastra um novo arquivo",
+                "description": "Este endpoint realiza o cadastro de um novo arquivo no sistema",
+                "operationId": "8d94630512f6e44be4033f72047786f5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FilesRepositoryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Arquivo cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FilesRepositoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/repositorio-de-arquivos/{id}": {
+            "get": {
+                "tags": [
+                    "Repositório de Arquivos"
+                ],
+                "summary": "Retorna um arquivo específico",
+                "description": "Este endpoint retorna um arquivo específico cadastrado no sistema",
+                "operationId": "a3c57b2188425ce6b9fc075497e42913",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Arquivo: Retorna um arquivo específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Arquivo encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FilesRepositoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Arquivo não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Arquivo não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Repositório de Arquivos"
+                ],
+                "summary": "Remove um arquivo específico",
+                "description": "Este endpoint remove um arquivo específico cadastrado no sistema",
+                "operationId": "495f653238e3bd97d8da1627dc885ea3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Arquivo: Remove um arquivo específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Arquivo removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Arquivo removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Arquivo não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Arquivo não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Repositório de Arquivos"
+                ],
+                "summary": "Atualiza um arquivo específico",
+                "description": "Este endpoint atualiza um arquivo específico cadastrado no sistema",
+                "operationId": "cb17c80533602e36934cd73cd5c0cfda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Arquivo: Atualiza um arquivo específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FilesRepositoryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Arquivo atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FilesRepositoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Arquivo não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Arquivo não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ouvinte-do-mes": {
+            "get": {
+                "tags": [
+                    "Ouvinte do Mês"
+                ],
+                "summary": "Lista todos os ouvintes do mês",
+                "description": "Este endpoint retorna uma lista completa de todos os ouvintes do mês cadastrados no sistema da Rede Akiba.",
+                "operationId": "f1b84e2c1199517a956a4a688f2e7cca",
+                "responses": {
+                    "200": {
+                        "description": "Lista de ouvintes do mês",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerOfTheMonthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum ouvinte do mês encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum ouvinte do mês encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Ouvinte do Mês"
+                ],
+                "summary": "Cadastra um novo ouvinte do mês",
+                "description": "Este endpoint realiza o cadastro de um novo ouvinte do mês no sistema da Rede Akiba.",
+                "operationId": "a2c88b3ebbfb3a44faff802e18a5df25",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ListenerOfTheMonthRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ouvinte do mês cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerOfTheMonthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ouvinte-do-mes/{id}": {
+            "get": {
+                "tags": [
+                    "Ouvinte do Mês"
+                ],
+                "summary": "Retorna um ouvinte do mês especifico",
+                "description": "Este endpoint retorna um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "86841918a259a9f79f367cdfd1716413",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do ouvinte do Mês: Retorna um ouvinte do mês especifico baseado no id informado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ouvinte do mês encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerOfTheMonthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ouvinte do mês não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ouvinte do mês não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ouvinte do Mês"
+                ],
+                "summary": "Remove um ouvinte do mês especifico",
+                "description": "Este endpoint remove um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "b5516a0ffbc494b81a8c59d01dff4b33",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Ouvinte do Mês: Remove um ouvinte do mês especifico baseado no id informado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ouvinte do mês removido com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ouvinte do mês removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ouvinte do mês não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ouvinte do mês não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Ouvinte do Mês"
+                ],
+                "summary": "Atualiza um ouvinte do mês especifico",
+                "description": "Este endpoint atualiza um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
+                "operationId": "a19697ea65d75786ac064f4c4ea71371",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do ouvinte do Mês: Atualiza um ouvinte do mês especifico baseado no id informado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ListenerOfTheMonthRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ouvinte do mês atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListenerOfTheMonthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ouvinte do mês não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ouvinte do mês não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/pedidos-musicais/{streaming_now}": {
             "get": {
                 "tags": [
@@ -1695,329 +2373,6 @@
                                         "error": {
                                             "type": "string",
                                             "example": "Publicação não encontrada"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Ocorreu um erro de processamento",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de processamento"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/repositorio-de-arquivos": {
-            "get": {
-                "tags": [
-                    "Repositório de Arquivos"
-                ],
-                "summary": "Lista todos os arquivos cadastrados",
-                "description": "Este endpoint retorna todos os arquivos cadastrados no sistema",
-                "operationId": "a7a982507c84e9c6eddb4566d0cbe873",
-                "responses": {
-                    "200": {
-                        "description": "Arquivos encontrados",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RepositoryResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Nenhum arquivo encontrado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Nenhuma arquivo encontrado"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Ocorreu um erro de processamento",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de processamento"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Repositório de Arquivos"
-                ],
-                "summary": "Cadastra um novo arquivo",
-                "description": "Este endpoint realiza o cadastro de um novo arquivo no sistema",
-                "operationId": "5023b375dfaffe6b1d9814c882af2b11",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/RepositoryRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Arquivo cadastrado com sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RepositoryResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Ocorreu um erro de validação",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de validação"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Ocorreu um erro de processamento",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de processamento"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/repositorio-de-arquivos/{id}": {
-            "get": {
-                "tags": [
-                    "Repositório de Arquivos"
-                ],
-                "summary": "Retorna um arquivo específico",
-                "description": "Este endpoint retorna um arquivo específico cadastrado no sistema",
-                "operationId": "90b5912b659b1d761b33a22ceae3b988",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do Arquivo: Retorna um arquivo específico baseado no id fornecido",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Arquivo encontrado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RepositoryResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Arquivo não encontrado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Arquivo não encontrado"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Ocorreu um erro de processamento",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de processamento"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Repositório de Arquivos"
-                ],
-                "summary": "Remove um arquivo específico",
-                "description": "Este endpoint remove um arquivo específico cadastrado no sistema",
-                "operationId": "07bde9b2baf2cdd60b325502d70f101e",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do Arquivo: Remove um arquivo específico baseado no id fornecido",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Arquivo removido com sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Arquivo removido com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Arquivo não encontrado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Arquivo não encontrado"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Ocorreu um erro de processamento",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Ocorreu um erro de processamento"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "Repositório de Arquivos"
-                ],
-                "summary": "Atualiza um arquivo específico",
-                "description": "Este endpoint atualiza um arquivo específico cadastrado no sistema",
-                "operationId": "88d8042f106cc878682ea1c145012932",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id do Arquivo: Atualiza um arquivo específico baseado no id fornecido",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/RepositoryRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Arquivo atualizado com sucesso",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RepositoryResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Arquivo não encontrado",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Arquivo não encontrado"
                                         }
                                     },
                                     "type": "object"
@@ -4248,7 +4603,7 @@
                     {
                         "name": "slug",
                         "in": "path",
-                        "description": "Id do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o id informado.",
+                        "description": "Slug do vídeo do Youtube: Retorna um vídeo do Youtube específico de acordo com o slug informado.",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -4511,6 +4866,80 @@
                         "type": "string"
                     },
                     "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "FilesRepositoryResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "FilesRepositoryRequest": {
+                "properties": {
+                    "category": {
+                        "type": "string"
+                    },
+                    "icon": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ListenerOfTheMonthResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "requests": {
+                        "type": "string"
+                    },
+                    "favorite_show": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ListenerOfTheMonthRequest": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "requests": {
+                        "type": "string"
+                    },
+                    "favorite_show": {
                         "type": "string"
                     }
                 },
@@ -4794,37 +5223,6 @@
                         "items": {
                             "type": "string"
                         }
-                    }
-                },
-                "type": "object"
-            },
-            "RepositoryResponse": {
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "category": {
-                        "type": "string"
-                    },
-                    "icon": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
-            "RepositoryRequest": {
-                "properties": {
-                    "category": {
-                        "type": "string"
-                    },
-                    "icon": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -5265,6 +5663,14 @@
             "description": "Esta seção oferece acesso a operações relacionadas aos eventos no sistema da Rede Akiba."
         },
         {
+            "name": "Repositório de Arquivos",
+            "description": "Esta seção oferece acesso a operações relacionadas ao repostório de arquivos no sistema da Rede Akiba"
+        },
+        {
+            "name": "Ouvinte do Mês",
+            "description": "Esta seção oferece acesso a operações relacionadas aos ouvintes do mês no sistema da Rede Akiba."
+        },
+        {
             "name": "Pedidos musicais",
             "description": "Esta seção oferece acesso a operações relacionadas aos pedidos musicais dos ouvintes no sistema da Rede Akiba."
         },
@@ -5279,10 +5685,6 @@
         {
             "name": "Postagens",
             "description": "Esta seção oferece acesso a operações relacionadas as publicações dos redatores no sistema da Rede Akiba."
-        },
-        {
-            "name": "Repositório de Arquivos",
-            "description": "Esta seção oferece acesso a operações relacionadas ao repostório de arquivos no sistema da Rede Akiba"
         },
         {
             "name": "Reviews",

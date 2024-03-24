@@ -126,7 +126,7 @@ class StreamingNowController extends Controller
                 'show.required' => 'O campo show é obrigatório',
             ];
     
-            $validator = $request->validate([
+            $request->validate([
                 'show' => 'required',
             ], $messages);
     
