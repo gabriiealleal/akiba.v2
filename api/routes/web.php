@@ -16,7 +16,9 @@ use App\Http\Controllers\FilesRepositoryController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TeamCalendarController;
 use App\Http\Controllers\YoutubeController;
-use App\Http\Controllers\ListenerOfTheMounthController;
+use App\Http\Controllers\ListenerOfTheMonthController;
+use App\Http\Controllers\PlaylistBattleController;
+use App\Http\Controllers\FormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,9 +154,24 @@ Route::group(['prefix' => 'repositorio-de-arquivos'], function () {
 
 //Rotas para endpoint de ouvinte do mês
 Route::group(['prefix' => 'ouvinte-do-mes'], function () {
-    Route::get('/', [ListenerOfTheMounthController::class, 'index']);
-    Route::post('/', [ListenerOfTheMounthController::class, 'store']);
-    Route::get('/{id}', [ListenerOfTheMounthController::class, 'show']);
-    Route::patch('/{id}', [ListenerOfTheMounthController::class, 'update']);
-    Route::delete('/{id}', [ListenerOfTheMounthController::class, 'destroy']);
+    Route::get('/', [ListenerOfTheMonthController::class, 'index']);
+    Route::post('/', [ListenerOfTheMonthController::class, 'store']);
+    Route::get('/{id}', [ListenerOfTheMonthController::class, 'show']);
+    Route::patch('/{id}', [ListenerOfTheMonthController::class, 'update']);
+    Route::delete('/{id}', [ListenerOfTheMonthController::class, 'destroy']);
+});
+
+//Rotas para endpoint de batalha de playlist
+Route::group(['prefix' => 'batalha-de-playlist'], function () {
+    Route::get('/', [PlaylistBattleController::class, 'index']);
+    Route::patch('/{id}', [PlaylistBattleController::class, 'update']);
+});
+
+//Rotas para endpoint de formulários
+Route::group(['prefix' => 'formularios'], function () {
+    Route::get('/', [FormsController::class, 'index']);
+    Route::post('/', [FormsController::class, 'store']);
+    Route::get('/{id}', [FormsController::class, 'show']);
+    Route::patch('/{id}', [FormsController::class, 'update']);
+    Route::delete('/{id}', [FormsController::class, 'destroy']);
 });

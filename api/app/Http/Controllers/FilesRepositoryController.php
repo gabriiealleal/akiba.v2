@@ -232,6 +232,7 @@ class FilesRepositoryController extends Controller
             }
 
             if($request->hasFile('icon')){
+                Storage::delete('images/' . $repository->icon);
                 $icon_image = $request->file('icon');
                 $icon_image_filename = time() . '.' . $icon_image->getClientOriginalExtension();
                 $location = public_path('images/' . $icon_image_filename);

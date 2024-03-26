@@ -280,6 +280,7 @@ class PodcastsController extends Controller
             }
             
             if($request->hasFile('image')){
+                Storage::delete('public/images/'.$podcasts->image);
                 $image = $request->file('image');
                 $filename = time().'.'.$image->getClientOriginalExtension();
                 $location = public_path('/images/'.$filename); // Corrija a barra aqui

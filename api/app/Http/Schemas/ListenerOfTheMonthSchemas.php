@@ -2,7 +2,7 @@
 
 namespace App\Http\Schemas;
 
-class ListenerOfTheMounthSchemas{}
+class ListenerOfTheMonthSchemas{}
 
 /**
  * @OA\Schema(

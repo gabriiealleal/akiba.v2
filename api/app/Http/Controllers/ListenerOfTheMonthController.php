@@ -14,7 +14,7 @@ use Intervention\Image\Facades\Image;
  * )
 */
 
-class ListenerOfTheMounthController extends Controller
+class ListenerOfTheMonthController extends Controller
 {
     //--------------Lista todos os ouvintes do mes--------------
     /**
@@ -248,6 +248,7 @@ class ListenerOfTheMounthController extends Controller
             }
 
             if($request->hasFile('avatar')){
+                Storage::delete('images/'.$listenerOfTheMonth->avatar);
                 $image = $request->file('avatar');
                 $filename = time().'.'.$image->getClientOriginalExtension();
                 $location = public_path('images/'.$filename);

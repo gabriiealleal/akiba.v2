@@ -202,7 +202,6 @@ class UsersController extends Controller
     }
 
     //---------------Atualiza um usuário especifico--------------
-
     /**
      * @OA\Patch(
      *      path="/api/usuarios/{id}",

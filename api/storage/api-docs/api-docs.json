@@ -673,6 +673,313 @@
                 }
             }
         },
+        "/api/formularios": {
+            "get": {
+                "tags": [
+                    "Formulários"
+                ],
+                "summary": "Retorna uma lista de todos os formulários cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todos os formulários cadastrados no sistema da Rede Akiba.",
+                "operationId": "0e184ece4bd1783277ad6386943a0412",
+                "responses": {
+                    "200": {
+                        "description": "Lista de todos os formulários cadastrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhum formulário cadastrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhum formulário cadastrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Formulários"
+                ],
+                "summary": "Cadastra um novo formulário",
+                "description": "Este endpoint cadastra um novo formulário no sistema da Rede Akiba.",
+                "operationId": "9c13295f4c8e43f4d12ee15ae86c9ea2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FormsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Formulário cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/formularios/{id}": {
+            "get": {
+                "tags": [
+                    "Formulários"
+                ],
+                "summary": "Retorna um formulário específico",
+                "description": "Este endpoint retorna um formulário especifico cadastrado sistema da Rede Akiba.",
+                "operationId": "60895b360a43c4e52aba5f7881a719da",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Formulário: Retorna um formulário específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formulário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Formulário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Formulário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Formulários"
+                ],
+                "summary": "Deleta um formulário específico",
+                "description": "Este endpoint deleta um formulário específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "6995fe243aecd09e5af1733ce8b2e45d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Formulário: Deleta um formulário específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formulário deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Formulário deletado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Formulário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Formulário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Formulários"
+                ],
+                "summary": "Atualiza um formulário específico",
+                "description": "Este endpoint atualiza um formulário específico cadastrado no sistema da Rede Akiba.",
+                "operationId": "f72e0bfba1f98c8e999b03c4f23a2f86",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do Formulário: Atualiza um formulário específico baseado no id fornecido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FormsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Formulário atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FormsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Formulário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Formulário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/ouvinte-do-mes": {
             "get": {
                 "tags": [
@@ -680,7 +987,7 @@
                 ],
                 "summary": "Lista todos os ouvintes do mês",
                 "description": "Este endpoint retorna uma lista completa de todos os ouvintes do mês cadastrados no sistema da Rede Akiba.",
-                "operationId": "f1b84e2c1199517a956a4a688f2e7cca",
+                "operationId": "796656d9ef7ed45f44bfcc93ea693675",
                 "responses": {
                     "200": {
                         "description": "Lista de ouvintes do mês",
@@ -732,7 +1039,7 @@
                 ],
                 "summary": "Cadastra um novo ouvinte do mês",
                 "description": "Este endpoint realiza o cadastro de um novo ouvinte do mês no sistema da Rede Akiba.",
-                "operationId": "a2c88b3ebbfb3a44faff802e18a5df25",
+                "operationId": "22338fa49b8cad1f8d7a5e02ed12a598",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -796,7 +1103,7 @@
                 ],
                 "summary": "Retorna um ouvinte do mês especifico",
                 "description": "Este endpoint retorna um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
-                "operationId": "86841918a259a9f79f367cdfd1716413",
+                "operationId": "6f840903ac3bca034af7eb60fbba4c33",
                 "parameters": [
                     {
                         "name": "id",
@@ -875,7 +1182,7 @@
                 ],
                 "summary": "Remove um ouvinte do mês especifico",
                 "description": "Este endpoint remove um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
-                "operationId": "b5516a0ffbc494b81a8c59d01dff4b33",
+                "operationId": "452f0df7e5881e91408fc9ebbe630ba4",
                 "parameters": [
                     {
                         "name": "id",
@@ -944,7 +1251,7 @@
                 ],
                 "summary": "Atualiza um ouvinte do mês especifico",
                 "description": "Este endpoint atualiza um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
-                "operationId": "a19697ea65d75786ac064f4c4ea71371",
+                "operationId": "48ec131de45b333c0bdb6fa335167a00",
                 "parameters": [
                     {
                         "name": "id",
@@ -1691,6 +1998,144 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/batalhas-de-playlist/{id}": {
+            "get": {
+                "tags": [
+                    "Batalhas de Playlist"
+                ],
+                "summary": "Retorna um banner da batalha de playlist especifica",
+                "description": "Endpoint para retornar um banner da batalha de playlist especifica baseado no id fornecido.",
+                "operationId": "66489464e8b87cab3a234729f0a1e048",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da Batalha de Playlist: Retorna um banner da batalha de playlist baseado no id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Banner da batalha de playlist encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlaylistBattleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Batalha de playlist não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Batalha de playlist não encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Batalhas de Playlist"
+                ],
+                "summary": "Atualiza um banner de batalha de playlist",
+                "description": "Endpoint para atualizar um banner da batalha de playlist no sistema da Rede Akiba.",
+                "operationId": "3a2af9ba46baa716eb98d04126a125a3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da batalha de Playlist: Atualiza um banner da batalha de playlist baseado no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PlaylistBattleRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "banner da batalha de playlist atualizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlaylistBattleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Batalha de playlist não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Banner da batalha de playlist não encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento."
                                         }
                                     },
                                     "type": "object"
@@ -4902,6 +5347,31 @@
                 },
                 "type": "object"
             },
+            "FormsResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "FormsRequest": {
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "ListenerOfTheMonthResponse": {
                 "properties": {
                     "id": {
@@ -5020,6 +5490,25 @@
                         "type": "string"
                     },
                     "album": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PlaylistBattleRequest": {
+                "properties": {
+                    "image": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PlaylistBattleResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "image": {
                         "type": "string"
                     }
                 },
@@ -5667,6 +6156,10 @@
             "description": "Esta seção oferece acesso a operações relacionadas ao repostório de arquivos no sistema da Rede Akiba"
         },
         {
+            "name": "Formulários",
+            "description": "Esta seção oferece acesso a operações relacionadas aos formulários no sistema da Rede Akiba"
+        },
+        {
             "name": "Ouvinte do Mês",
             "description": "Esta seção oferece acesso a operações relacionadas aos ouvintes do mês no sistema da Rede Akiba."
         },
@@ -5677,6 +6170,10 @@
         {
             "name": "Músicas",
             "description": "Esta seção oferece acesso a operações relacionadas a musicas registradas no sistema da Rede Akiba."
+        },
+        {
+            "name": "Batalhas de Playlist",
+            "description": "Esta seção oferece acesso a operações relacionadas aos banners das batalhas de playlists registradas no sistema da Rede Akiba."
         },
         {
             "name": "Podcasts",
