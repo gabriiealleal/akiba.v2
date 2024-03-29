@@ -96,6 +96,7 @@ class TeamCalendarController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )     
      */
     public function store(Request $request)
@@ -227,6 +228,7 @@ class TeamCalendarController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -311,6 +313,7 @@ class TeamCalendarController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function destroy($id)

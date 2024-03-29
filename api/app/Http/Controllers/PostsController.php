@@ -100,6 +100,7 @@ class PostsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          )
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ) 
      *          
      */
@@ -260,6 +261,7 @@ class PostsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          )
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -373,6 +375,7 @@ class PostsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          )
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )   
      */
     public function destroy($id)

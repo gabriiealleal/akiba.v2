@@ -19,7 +19,6 @@ use Intervention\Image\Facades\Image;
 class UsersController extends Controller
 {
     //---------------Retorna todos os usuários--------------
-
     /**
      * @OA\Get(
      *      path="/api/usuarios",
@@ -61,7 +60,6 @@ class UsersController extends Controller
     }
 
     //---------------Cria um novo usuário--------------
-
     /**
      * @OA\Post(
      *      path="/api/usuarios",
@@ -92,6 +90,7 @@ class UsersController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function store(Request $request)
@@ -150,7 +149,6 @@ class UsersController extends Controller
     }
 
     //---------------Retorna um usuário especifico--------------
-
     /**
      * @OA\Get(
      *      path="/api/usuarios/{slug}",
@@ -238,6 +236,7 @@ class UsersController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -322,7 +321,6 @@ class UsersController extends Controller
     }
 
     //---------------Remove um usuário--------------
-
     /**
      * @OA\Delete(
      *      path="/api/usuarios/{id}",
@@ -357,6 +355,7 @@ class UsersController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function destroy($id)

@@ -100,6 +100,7 @@ class ReviewsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      *     
      */
@@ -241,6 +242,7 @@ class ReviewsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )      
      */
     public function update(Request $request, $id)
@@ -332,6 +334,7 @@ class ReviewsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function destroy($id)

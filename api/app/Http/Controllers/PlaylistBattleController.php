@@ -107,7 +107,8 @@ class PlaylistBattleController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento.")
      *          )
-     *      )
+     *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)

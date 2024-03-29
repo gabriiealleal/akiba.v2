@@ -117,6 +117,7 @@ class StreamingNowController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      */
     public function store(Request $request)
@@ -138,6 +139,7 @@ class StreamingNowController extends Controller
     
             $streamingNow = new StreamingNow();
             $streamingNow->slug = Str::slug($show->name);
+            $streamingNow->phrase = $request->phrase;
             $streamingNow->type = $request->type;
             $streamingNow->date_streaming = $request->date_streaming;
             $streamingNow->start_streaming = $request->start_streaming;
@@ -248,6 +250,7 @@ class StreamingNowController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -269,6 +272,10 @@ class StreamingNowController extends Controller
 
             if($request->has('type')){
                 $streamingNow->type = $request->type;
+            }
+
+            if($request->has('phrase')){
+                $streamingNow->phrase = $request->phrase;
             }
 
             if($request->has('date_streaming')){
@@ -331,6 +338,7 @@ class StreamingNowController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      * 
      */

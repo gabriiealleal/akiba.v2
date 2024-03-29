@@ -80,6 +80,7 @@ class FormsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          )
      *      )
+     *      
      * )
      */
     public function store(Request $request)
@@ -186,7 +187,8 @@ class FormsController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          )
-     *      )
+     *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -250,7 +252,8 @@ class FormsController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento")
      *          )
-     *      )
+     *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function destroy($id)

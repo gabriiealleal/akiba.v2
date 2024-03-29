@@ -198,6 +198,7 @@ class MusicsListController extends Controller
      *              @OA\Property(property="message", type="string", example="Ocorreu um erro de processamento"),
      *          ),      
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      */
     public function update(Request $request, $id)
@@ -270,6 +271,7 @@ class MusicsListController extends Controller
      *              @OA\Property(property="message", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      */
     public function destroy($id)

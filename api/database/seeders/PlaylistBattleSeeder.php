@@ -14,14 +14,10 @@ class PlaylistBattleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('playlist_battle')->insert([
-            ['image' => '#'],
-            ['image' => '#'],
-            ['image' => '#'],
-            ['image' => '#'],
-            ['image' => '#'],
-            ['image' => '#'],
-            ['image' => '#'],
-        ]);
+        for ($i = 0; $i < 7; $i++) {
+            DB::table('playlist_battle')->insert([
+                'image' => '#',
+            ]);
+        }
     }
 }

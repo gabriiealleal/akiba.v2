@@ -17,7 +17,6 @@ use Intervention\Image\Facades\Image;
  * )
  */
 
-
 class EventsController extends Controller
 {
     //--------------Lista todos os eventos--------------
@@ -100,6 +99,7 @@ class EventsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function store(Request $request)
@@ -245,6 +245,7 @@ class EventsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )    
      */
     public function update(Request $request, $id)
@@ -342,6 +343,7 @@ class EventsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function destroy($id)

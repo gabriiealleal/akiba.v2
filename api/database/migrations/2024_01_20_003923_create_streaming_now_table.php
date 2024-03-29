@@ -17,6 +17,7 @@ class CreateStreamingNowTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('slug');
+            $table->string('phrase');
             $table->unsignedBigInteger('show');
             $table->foreign('show')->references('id')->on('shows')->onCascade('delete');
             $table->string('type');

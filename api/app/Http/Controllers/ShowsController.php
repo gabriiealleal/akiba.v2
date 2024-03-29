@@ -20,7 +20,6 @@ use Intervention\Image\Facades\Image;
 class ShowsController extends Controller
 {
     //--------------Retorna todos os programas------------
-
     /**
      * @OA\Get(
      *      path="/api/programas",
@@ -63,7 +62,6 @@ class ShowsController extends Controller
     }
 
     //--------------Cadastra um programa------------
-
     /**
      * @OA\Post(
      *      path="/api/programas",
@@ -101,6 +99,7 @@ class ShowsController extends Controller
      *              @OA\Property(property="error", type="string", example="Nenhum apresentador encontrado")
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},  
      * )
      */
     public function store(Request $request)
@@ -209,7 +208,6 @@ class ShowsController extends Controller
 
 
     //--------------Atualiza um programa especifico------------
-
     /**
      * @OA\Patch(
      *      path="/api/programas/{id}",
@@ -247,6 +245,7 @@ class ShowsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento")
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * )
      */
     public function update(Request $request, $id)
@@ -330,7 +329,8 @@ class ShowsController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="error", type="string", example="Ocorreu um problema de processamento")
      *          ),
-     *      ),     
+     *      ),    
+     *      security={{"BearerAuth": {}}}, 
      * ),
      */
 

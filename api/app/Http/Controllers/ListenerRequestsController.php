@@ -117,6 +117,7 @@ class ListenerRequestsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      */
     public function store(Request $request)
@@ -249,6 +250,7 @@ class ListenerRequestsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),
      *          
      */
@@ -335,6 +337,7 @@ class ListenerRequestsController extends Controller
      *              @OA\Property(property="error", type="string", example="Ocorreu um erro de processamento"),
      *          ),
      *      ),
+     *      security={{"BearerAuth": {}}},
      * ),    
      */
     public function destroy($id)

@@ -15,6 +15,7 @@ class StreamingNow extends Model
     protected $fillable = [
         'show',
         'type',
+        'phrase',
         'start_streaming',
         'end_streaming'
     ];
