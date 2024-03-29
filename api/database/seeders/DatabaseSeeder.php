@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            PlaylistBattleSeeder::class,
+            Top10MusicsSeeder::class,
+            // Adicione suas outras classes de seeders aqui...
+        ]);
     }
 }

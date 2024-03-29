@@ -16,7 +16,7 @@ class CreateTop10MusicsTable extends Migration
         Schema::create('top_10_musics', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('number_of_requests');
+            $table->integer('number_of_requests');
             $table->string('avatar');
             $table->string('name');
             $table->string('anime');

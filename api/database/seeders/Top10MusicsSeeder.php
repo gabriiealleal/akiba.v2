@@ -16,7 +16,7 @@ class Top10MusicsSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             DB::table('top_10_musics')->insert([
-                'number_of_requests' => 'request' . $i,
+                'number_of_requests' => 0 . $i,
                 'avatar' => 'avatar' . $i,
                 'name' => 'name' . $i,
                 'anime' => 'anime' . $i,
