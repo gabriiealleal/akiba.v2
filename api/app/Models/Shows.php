@@ -14,6 +14,7 @@ class Shows extends Model
 
     protected $fillable = [
         'slug',
+        'type',
         'presenter',
         'name',
         'logo'

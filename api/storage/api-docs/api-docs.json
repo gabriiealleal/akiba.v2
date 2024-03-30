@@ -6218,6 +6218,9 @@
                     "slug": {
                         "type": "string"
                     },
+                    "type": {
+                        "type": "string"
+                    },
                     "presenter": {
                         "$ref": "#/components/schemas/UserResponse"
                     },
@@ -6232,6 +6235,9 @@
             },
             "ShowRequest": {
                 "properties": {
+                    "type": {
+                        "type": "string"
+                    },
                     "presenter": {
                         "type": "integer"
                     },

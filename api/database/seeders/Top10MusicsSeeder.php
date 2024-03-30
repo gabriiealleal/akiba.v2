@@ -16,10 +16,12 @@ class Top10MusicsSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i++) {
             DB::table('top_10_musics')->insert([
-                'number_of_requests' => 0 . $i,
-                'avatar' => 'avatar' . $i,
-                'name' => 'name' . $i,
-                'anime' => 'anime' . $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'number_of_requests' => null,
+                'avatar' => null,
+                'name' => null,
+                'anime' => null,
             ]);
         }
     }

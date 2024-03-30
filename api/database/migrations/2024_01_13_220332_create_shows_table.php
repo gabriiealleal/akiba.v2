@@ -17,6 +17,7 @@ class CreateShowsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('slug');
+            $table->string('type');
             $table->unsignedBigInteger('presenter');
             $table->foreign('presenter')->references('id')->on('users')->onCascade('delete');
             $table->string('name')->unique();

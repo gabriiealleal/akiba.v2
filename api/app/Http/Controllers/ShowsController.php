@@ -106,6 +106,7 @@ class ShowsController extends Controller
     {
         try{
             $messages = [
+                'type.required' => 'O campo type é obrigatório.',
                 'presenter.required' => 'O campo apresentador é obrigatório.',
                 'presenter.exists' => 'O apresentador não existe.',
                 'name.required' => 'O campo name é obrigatório.',
@@ -116,6 +117,7 @@ class ShowsController extends Controller
             ];
 
             $request->validate([
+                'type' => 'required',
                 'presenter' => 'required|exists:users,id',
                 'name' => 'required|unique:shows',
                 'logo' => 'required|file|image',
@@ -134,6 +136,7 @@ class ShowsController extends Controller
             }
 
             $show = new Shows();
+            $show->type = $request->type;
             $show->slug = Str::slug($request->name);
             $show->name = $request->name;
             $show->logo = $filename;
@@ -266,6 +269,10 @@ class ShowsController extends Controller
                 $location = public_path('images/'.$filename);
                 Image::make($logo)->save($location);
                 $show->logo = $filename;
+            }
+
+            if($request->has('type')){
+                $show->type = $request->type;
             }
 
             if($request->has('name')){

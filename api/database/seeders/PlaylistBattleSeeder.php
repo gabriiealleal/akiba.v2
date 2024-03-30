@@ -16,7 +16,9 @@ class PlaylistBattleSeeder extends Seeder
     {
         for ($i = 0; $i < 7; $i++) {
             DB::table('playlist_battle')->insert([
-                'image' => '#',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'image' => null,
             ]);
         }
     }

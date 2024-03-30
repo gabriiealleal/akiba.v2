@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Users;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PlaylistBattleSeeder::class,
             Top10MusicsSeeder::class,
+            UsersSeeder::class,
             // Adicione suas outras classes de seeders aqui...
         ]);
     }

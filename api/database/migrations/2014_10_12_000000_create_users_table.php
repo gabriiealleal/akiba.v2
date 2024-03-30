@@ -21,17 +21,17 @@ class CreateUsersTable extends Migration
             $table->string('login')->unique();
             $table->string('password');
             $table->json('access_levels');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('name');
             $table->string('nickname');
-            $table->string('email')->unique();
-            $table->string('age');
+            $table->string('email')->unique()->nullable();
+            $table->string('age')->nullable();
             $table->string('city');
             $table->string('state');
             $table->string('country');
-            $table->string('biography');
-            $table->json('social_networks');
-            $table->json('likes');
+            $table->text('biography');
+            $table->json('social_networks')->nullable();
+            $table->json('likes')->nullable();
         });
     }
 

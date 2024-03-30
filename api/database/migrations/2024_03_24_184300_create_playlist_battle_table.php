@@ -16,7 +16,7 @@ class CreatePlaylistBattleTable extends Migration
         Schema::create('playlist_battle', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('image');
+            $table->string('image')->nullable();
         });
     }
 
