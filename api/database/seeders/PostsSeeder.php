@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PostsSeeder extends Seeder
 {
@@ -14,8 +15,7 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->insert([
-
-        ]);
+        $sql = File::get(database_path('seeders/sql/posts.sql'));
+        DB::unprepared($sql);
     }
 }

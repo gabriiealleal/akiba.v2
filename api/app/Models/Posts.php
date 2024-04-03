@@ -27,7 +27,7 @@ class Posts extends Model
         'reactions' => 'array'
     ];
 
-    public function user()
+    public function author()
     {
         return $this->hasOne(Users::class, 'id', 'author');
     }

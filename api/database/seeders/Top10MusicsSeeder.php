@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class Top10MusicsSeeder extends Seeder
 {
@@ -14,15 +15,9 @@ class Top10MusicsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('top_10_musics')->insert([
-                'created_at' => now(),
-                'updated_at' => now(),
-                'number_of_requests' => null,
-                'avatar' => null,
-                'name' => null,
-                'anime' => null,
-            ]);
+        {
+            $sql = File::get(database_path('seeders/sql/top_10_musics.sql'));
+            DB::unprepared($sql);
         }
     }
 }

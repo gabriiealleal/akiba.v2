@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Users;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +17,7 @@ class DatabaseSeeder extends Seeder
             PlaylistBattleSeeder::class,
             Top10MusicsSeeder::class,
             UsersSeeder::class,
+            PostsSeeder::class
             // Adicione suas outras classes de seeders aqui...
         ]);
     }

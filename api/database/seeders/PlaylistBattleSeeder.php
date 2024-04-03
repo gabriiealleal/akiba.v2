@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PlaylistBattleSeeder extends Seeder
 {
@@ -14,12 +15,9 @@ class PlaylistBattleSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 7; $i++) {
-            DB::table('playlist_battle')->insert([
-                'created_at' => now(),
-                'updated_at' => now(),
-                'image' => null,
-            ]);
+        {
+            $sql = File::get(database_path('seeders/sql/playlist_battle.sql'));
+            DB::unprepared($sql);
         }
     }
 }

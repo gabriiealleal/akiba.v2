@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('featured_image');
             $table->string('image');
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->json('categories');
             $table->json('search_fonts');
             $table->json('reactions');
