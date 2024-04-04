@@ -6,7 +6,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const routes = [
     {
         'path': '/',
-        'element': <div>Inicio de tudo</div>,
+        'element':    <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>,
     }
 ]
 
