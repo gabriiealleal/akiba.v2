@@ -14,6 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 //Import the tailwind stylesheet
 import './tailwind.css';
 
+//Import the css personalization
+import './global.css';
+
 //Import the routes
 import Router from './router/Router';
 

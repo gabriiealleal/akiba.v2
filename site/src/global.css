@@ -1,0 +1,7 @@
+.private-sidebar li:hover a{
+    color: #0091FF;
+}
+
+.private-sidebar li:hover a img{
+    filter: invert(41%) sepia(91%) saturate(765%) hue-rotate(156deg) brightness(99%) contrast(101%);
+}
