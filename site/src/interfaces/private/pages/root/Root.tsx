@@ -17,6 +17,7 @@ import { HiMenu } from "react-icons/hi";
 
 const Root = () => {
 
+    //Função para mostrar e esconder o sidebar
     const toggle = () => {
         //Capturando o elemento sidebar da DOM
         const sidebar = document.querySelector('.sidebar');
@@ -36,6 +37,7 @@ const Root = () => {
         div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
         document.body.appendChild(div);
 
+        //Adicionando evento de click para fechar o sidebar
         div.addEventListener('click', () =>{
             sidebar.classList.remove('sidebar-visible');
             sidebar.classList.add('sidebar-hidden');
