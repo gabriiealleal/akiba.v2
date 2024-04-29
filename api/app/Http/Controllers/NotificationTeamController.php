@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tasks;
+use App\Models\NotificationTeam;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 /**
  * @OA\Tag(
- *      name="Tarefas",
- *      description="Esta seção oferece acesso a operações relacionadas as tarefas da equipe cadastradas no sistema da Rede Akiba."
+ *      name="Notificações da Equipe",
+ *      description="Esta seção oferece acesso a operações relacionadas as notificações da equipe cadastradas no sistema da Rede Akiba."
  * )
  */
-class TasksController extends Controller
+class NotificationTeamController extends Controller
 {
-    //--------------Retorna todas as tarefas cadastradas--------------
+    //--------------Retorna todas as notificações cadastradas--------------
     /**
      * @OA\Get(
-     *      path="/api/tarefas",
-     *      tags={"Tarefas"},
-     *      summary="Retorna todas as tarefas cadastrados",
-     *      description="Este endpoint retorna uma lista completa de todas as tarefas da equipe cadastradas no sistema da Rede Akiba.",
+     *      path="/api/notificacoes",
+     *      tags={"Notificações da Equipe"},
+     *      summary="Retorna todas as notificações cadastrados",
+     *      description="Este endpoint retorna uma lista completa de todas as notificações da equipe cadastradas no sistema da Rede Akiba.",
      *      @OA\Response(
      *          response=200,
-     *          description="Lista de tarefas cadastradas",
-     *          @OA\JsonContent(ref="#/components/schemas/TasksResponse"),
+     *          description="Lista de notificações cadastradas",
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamResponse"),
      *      ),
      *      @OA\Response(
      *          response=404,
-     *          description="Nenhuma tarefa cadastrada",
+     *          description="Nenhuma notificação cadastrada",
      *          @OA\JsonContent( 
-     *              @OA\Property(property="error", type="string", example="Nenhuma tarefa cadastrada")
+     *              @OA\Property(property="error", type="string", example="Nenhuma notificação cadastrada")
      *          ),
      *      ),
      *      @OA\Response(
@@ -46,33 +46,33 @@ class TasksController extends Controller
     public function index()
     {
         try{
-            $tasks = Tasks::with('addressee')->get();
+            $notification = NotificationTeam::with('addressee')->get();
 
-            if($tasks->isEmpty()){
-                return response()->json(['message' => 'Nenhuma tarefa cadastrada'], 404);
+            if($notification->isEmpty()){
+                return response()->json(['message' => 'Nenhuma notificação cadastrada'], 404);
             }
 
-            return response()->json(['message' => 'Lista de tarefas cadastradas', 'tarefas' => $tasks], 200);
+            return response()->json(['message' => 'Lista de notificações cadastradas', 'notificações' => $notification], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
 
-    //--------------Cadastra uma nova tarefa--------------
+    //--------------Cadastra uma nova notificação--------------
     /**
      * @OA\Post(
-     *      path="/api/tarefas",
-     *      tags={"Tarefas"},
-     *      summary="Cadastra uma nova tarefa",
-     *      description="Este endpoint realiza o cadastro de uma nova tarefa da equipe no sistema da Rede Akiba.",
+     *      path="/api/notificacoes",
+     *      tags={"Notificações da Equipe"},
+     *      summary="Cadastra uma nova notificação",
+     *      description="Este endpoint realiza o cadastro de uma nova notificação da equipe no sistema da Rede Akiba.",
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/TasksRequest"),
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamRequest"),
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Tarefa cadastrada com sucesso",
-     *          @OA\JsonContent(ref="#/components/schemas/TasksResponse"),
+     *          description="Notificação cadastrada com sucesso",
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamResponse"),
      *      ),
      *      @OA\Response(
      *          response=400,
@@ -121,21 +121,20 @@ class TasksController extends Controller
                 return response()->json(['message' => 'Usuário não encontrado'], 404);
             }
 
-            $tasks = new Tasks();
-            $tasks->creator = $request->creator;
-            $tasks->addressee = $request->addressee;
-            $tasks->content = $request->content;
-            $tasks->status = $request->status;
-            $tasks->save();
+            $notification = new NotificationTeam();
+            $notification->creator = $request->creator;
+            $notification->addressee = $request->addressee;
+            $notification->content = $request->content;
+            $notification->save();
 
             //Associa o programa ao usuário responsável
-            $addressee->tasks()->save($addressee);
+            $addressee->notification()->save($addressee);
 
             //Retorna a tarefa com os dados do usuário responsável
-            $tasks->load('creator');
-            $tasks->load('addressee');
+            $notification->load('creator');
+            $notification->load('addressee');
 
-            return response()->json(['message' => 'Tarefa cadastrada com sucesso', 'tarefa' => $tasks], 200);
+            return response()->json(['message' => 'Notificação cadastrada com sucesso', 'notificação' => $notification], 200);
         }catch(ValidationException $e){
             return response()->json(['message' => 'Ocorreu um erro de validação', 'error' => $e->errors()], 400);
         }catch(\Exception $e){
@@ -143,16 +142,16 @@ class TasksController extends Controller
         }
     }
 
-    //--------------Retorna uma tarefa específica--------------
+    //--------------Retorna uma notificação específica--------------
     /**
      * @OA\Get(
-     *      path="/api/tarefas/{id}",
-     *      tags={"Tarefas"},   
-     *      summary="Retorna uma tarefa específica",
-     *      description="Este endpoint retorna uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+     *      path="/api/notificacoes/{id}",
+     *      tags={"Notificações da Equipe"},
+     *      summary="Retorna uma notificação específica",
+     *      description="Este endpoint retorna uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Id da Tarefa: Retorna uma tarefa específica baseada no id fornecido.",
+     *          description="Id da Notificação: Retorna uma notificação específica baseada no id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -161,12 +160,12 @@ class TasksController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Tarefa encontrada",
-     *          @OA\JsonContent(ref="#/components/schemas/TasksResponse"),
+     *          description="Notificação encontrada",
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamResponse"),
      *      ),
      *      @OA\Response(
      *          response=404,
-     *          description="Tarefa não encontrada",
+     *          description="Notificação não encontrada",
      *          @OA\JsonContent(
      *              @OA\Property(property="error", type="string", example="Tarefa não encontrada"),
      *          ),
@@ -183,28 +182,28 @@ class TasksController extends Controller
     public function show($id)
     {
         try{
-            $tasks = Tasks::find($id);
+            $notification = NotificationTeam::find($id);
 
-            if(!$tasks){
-                return response()->json(['message' => 'Tarefa não encontrada'], 404);
+            if(!$notification){
+                return response()->json(['message' => 'Notificação não encontrada'], 404);
             }
 
-            return response()->json(['message' => 'Tarefa encontrada', 'tarefa' => $tasks], 200);
+            return response()->json(['message' => 'Notificação encontrada', 'Notificação' => $notification], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
 
-    //--------------Atualiza uma tarefa especifica------------
+    //--------------Atualiza uma notificação especifica------------
     /**
      * @OA\Patch(
-     *      path="/api/tarefas/{id}",
-     *      tags={"Tarefas"},
-     *      summary="Atualiza uma tarefa específica",
-     *      description="Este endpoint atualiza uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+     *      path="/api/notificacoes/{id}",
+     *      tags={"Notificações da Equipe"},
+     *      summary="Atualiza uma notificação específica",
+     *      description="Este endpoint atualiza uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
      *      @OA\Parameter(
      *          name="id",  
-     *          description="Id da Tarefa: Atualiza uma tarefa específica baseada no Id fornecido.",
+     *          description="Id da notificação: Atualiza uma notificação específica baseada no Id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -213,18 +212,18 @@ class TasksController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/TasksRequest"),
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamRequest"),
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Tarefa atualizada com sucesso",
-     *          @OA\JsonContent(ref="#/components/schemas/TasksResponse"),
+     *          description="Notificação atualizada com sucesso",
+     *          @OA\JsonContent(ref="#/components/schemas/NotificationTeamResponse"),
      *      ),
      *      @OA\Response(
      *          response=404,
-     *          description="Tarefa ou usuário não encontrado(a)",
+     *          description="Notificação ou usuário não encontrado(a)",
      *          @OA\JsonContent(
-     *              @OA\Property(property="error", type="string", example="Tarefa ou usuário não encontrado(a"),
+     *              @OA\Property(property="error", type="string", example="Notificação ou usuário não encontrado(a"),
      *          ),
      *      ),
      *      @OA\Response(       
@@ -240,16 +239,16 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $tasks = Tasks::find($id);
+            $notification = NotificationTeam::find($id);
 
-            if(!$tasks){
+            if(!$notification){
                 return response()->json(['message' => 'Tarefa não encontrada'], 404);
             }
 
             if($request->has('creator')){
                 $creator = Users::find($request->creator);
                 if($creator){
-                    $creator->tasks()->save($tasks);
+                    $creator->notification()->save($notification);
                 }else{
                     return response()->json(['message' => 'Usuário não encontrado'], 404);
                 }
@@ -258,42 +257,38 @@ class TasksController extends Controller
             if($request->has('addressee')){
                 $addressee = Users::find($request->addressee);
                 if($addressee){
-                    $addressee->tasks()->save($tasks);
+                    $addressee->notification()->save($notification);
                 }else{
                     return response()->json(['message' => 'Usuário não encontrado'], 404);
                 }
             }
 
             if($request->has('content')){
-                $tasks->content = $request->content;
+                $notification->content = $request->content;
             }
 
-            if($request->has('status')){
-                $tasks->status = $request->status;
-            }
+            $notification->save();
 
-            $tasks->save();
+            //Retorna a notificação com os dados do usuário responsável
+            $notification->load('creator');
+            $notification->load('addressee');
 
-            //Retorna a tarefa com os dados do usuário responsável
-            $tasks->load('creator');
-            $tasks->load('addressee');
-
-            return response()->json(['message' => 'Tarefa atualizada com sucesso', 'tarefa' => $tasks], 200);
+            return response()->json(['message' => 'Notificação atualizada com sucesso', 'notificação' => $notification], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
 
-    //--------------Remove uma tarefa------------
+    //--------------Remove uma notificação------------
     /**
      * @OA\Delete(
-     *      path="/api/tarefas/{id}",
-     *      tags={"Tarefas"},
-     *      summary="Remove uma tarefa específica",
-     *      description="Este endpoint remove uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
+     *      path="/api/notificacoes/{id}",
+     *      tags={"Notificações da Equipe"},
+     *      summary="Remove uma notificação específica",
+     *      description="Este endpoint remove uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Id da Tarefa: Remove uma tarefa específica baseada no Id fornecido.",
+     *          description="Id da Notificação: Remove uma notificação específica baseada no Id fornecido.",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -302,16 +297,16 @@ class TasksController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Tarefa removida com sucesso",
+     *          description="Notificação removida com sucesso",
      *          @OA\JsonContent(
-     *              @OA\Property(property="error", type="string", example="Tarefa removida com sucesso"),
+     *              @OA\Property(property="error", type="string", example="Notificação removida com sucesso"),
      *          ),
      *      ),
      *      @OA\Response(
      *          response=404,
-     *          description="Tarefa não encontrada",
+     *          description="Notificação não encontrada",
      *          @OA\JsonContent(
-     *              @OA\Property(property="error", type="string", example="Tarefa não encontrada"),
+     *              @OA\Property(property="error", type="string", example="Notificação não encontrada"),
      *          ),
      *      ),
      *      @OA\Response(
@@ -327,17 +322,18 @@ class TasksController extends Controller
     public function destroy($id)
     {
         try{
-            $tasks = Tasks::find($id);
+            $notification = NotificationTeam::find($id);
 
-            if(!$tasks){
-                return response()->json(['message' => 'Tarefa não encontrada'], 404);
+            if(!$notification){
+                return response()->json(['message' => 'Notificação não encontrada'], 404);
             }
 
-            $tasks->delete();
+            $notification->delete();
 
-            return response()->json(['message' => 'Tarefa removida com sucesso'], 200);
+            return response()->json(['message' => 'Notificação removida com sucesso'], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
     }
+
 }

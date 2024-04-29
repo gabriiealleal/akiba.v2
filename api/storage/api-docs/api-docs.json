@@ -2252,6 +2252,360 @@
                 ]
             }
         },
+        "/api/notificacoes": {
+            "get": {
+                "tags": [
+                    "Notificações da Equipe"
+                ],
+                "summary": "Retorna todas as notificações cadastrados",
+                "description": "Este endpoint retorna uma lista completa de todas as notificações da equipe cadastradas no sistema da Rede Akiba.",
+                "operationId": "78ea67242b34c5bcaa99c2b76b321c18",
+                "responses": {
+                    "200": {
+                        "description": "Lista de notificações cadastradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationTeamResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhuma notificação cadastrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Nenhuma notificação cadastrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notificações da Equipe"
+                ],
+                "summary": "Cadastra uma nova notificação",
+                "description": "Este endpoint realiza o cadastro de uma nova notificação da equipe no sistema da Rede Akiba.",
+                "operationId": "10a8805545aacce93c3c1394ade4ffb4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationTeamRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notificação cadastrada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationTeamResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de validação"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuário não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Usuário não encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/notificacoes/{id}": {
+            "get": {
+                "tags": [
+                    "Notificações da Equipe"
+                ],
+                "summary": "Retorna uma notificação específica",
+                "description": "Este endpoint retorna uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "c08672a978120cd84dd6a65c953d53ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Notificação: Retorna uma notificação específica baseada no id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notificação encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationTeamResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notificação não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Tarefa não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Notificações da Equipe"
+                ],
+                "summary": "Remove uma notificação específica",
+                "description": "Este endpoint remove uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "fb7a423e06a2602ce61930db24cc7a35",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da Notificação: Remove uma notificação específica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notificação removida com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Notificação removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notificação não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Notificação não encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Notificações da Equipe"
+                ],
+                "summary": "Atualiza uma notificação específica",
+                "description": "Este endpoint atualiza uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
+                "operationId": "a11038af4343d622fc56c09ab0dbdb0f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da notificação: Atualiza uma notificação específica baseada no Id fornecido.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationTeamRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notificação atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationTeamResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Notificação ou usuário não encontrado(a)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Notificação ou usuário não encontrado(a"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro de processamento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Ocorreu um erro de processamento"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/batalhas-de-playlist/{id}": {
             "get": {
                 "tags": [
@@ -4361,19 +4715,19 @@
                 ]
             }
         },
-        "/api/tarefas/{slug}": {
+        "/api/tarefas/{id}": {
             "get": {
                 "tags": [
                     "Tarefas"
                 ],
                 "summary": "Retorna uma tarefa específica",
                 "description": "Este endpoint retorna uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
-                "operationId": "7138bde2982f08da05fb406dc762df34",
+                "operationId": "8599a17e825b89fa4042b82fd1868643",
                 "parameters": [
                     {
-                        "name": "slug",
+                        "name": "id",
                         "in": "path",
-                        "description": "Slug da Tarefa: Retorna uma tarefa específica baseada no slug fornecido.",
+                        "description": "Id da Tarefa: Retorna uma tarefa específica baseada no id fornecido.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -4424,9 +4778,7 @@
                         }
                     }
                 }
-            }
-        },
-        "/api/tarefas/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Tarefas"
@@ -5959,6 +6311,37 @@
                 },
                 "type": "object"
             },
+            "NotificationTeamResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "creator": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "addressee": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "NotificationTeamRequest": {
+                "properties": {
+                    "creator": {
+                        "type": "integer"
+                    },
+                    "addressee": {
+                        "type": "integer"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "PlaylistBattleRequest": {
                 "properties": {
                     "image": {
@@ -6360,7 +6743,10 @@
                     "id": {
                         "type": "integer"
                     },
-                    "responsible": {
+                    "creator": {
+                        "$ref": "#/components/schemas/UserResponse"
+                    },
+                    "addressee": {
                         "$ref": "#/components/schemas/UserResponse"
                     },
                     "content": {
@@ -6374,7 +6760,10 @@
             },
             "TasksRequest": {
                 "properties": {
-                    "responsible": {
+                    "creator": {
+                        "type": "integer"
+                    },
+                    "addressee": {
                         "type": "integer"
                     },
                     "content": {
@@ -6687,6 +7076,10 @@
         {
             "name": "Músicas",
             "description": "Esta seção oferece acesso a operações relacionadas a musicas registradas no sistema da Rede Akiba."
+        },
+        {
+            "name": "Notificações da Equipe",
+            "description": "Esta seção oferece acesso a operações relacionadas as notificações da equipe cadastradas no sistema da Rede Akiba."
         },
         {
             "name": "Batalhas de Playlist",

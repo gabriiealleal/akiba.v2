@@ -5,11 +5,11 @@ interface Credentials {
     password: string;
 }
 
-export const auth = async (credentials: Credentials) => {
+export const Auth = async (credentials: Credentials) => {
     try {
         const response = await axios.post(`${import.meta.env.VITE_API_ADDRESS}/login`, credentials, {
             headers: {
-                Accept: 'application/json'
+                'Accept': 'application/json'
             }
         });
 
@@ -23,11 +23,11 @@ export const auth = async (credentials: Credentials) => {
     }
 }
 
-export const verifyAuth = async (token: string) => {
+export const verifyAuth = async () => {
     try{
         const response = await axios.get(`${import.meta.env.VITE_API_ADDRESS}/verificarlogin`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${localStorage.getItem('akb_token')}`,
                 Accept :'application/json', 
             }
         });

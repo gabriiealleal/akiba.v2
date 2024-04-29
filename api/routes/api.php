@@ -22,6 +22,7 @@ use App\Http\Controllers\ListenerOfTheMonthController;
 use App\Http\Controllers\PlaylistBattleController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\Top10MusicsController;
+use App\Http\Controllers\NotificationTeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +116,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::patch('/{id}', [TasksController::class, 'update']);
         Route::delete('/{id}', [TasksController::class, 'destroy']);
     });
+
+    //Notificações da equipe
+    Route::group(['prefix' => 'notificacoes'], function () {
+        Route::post('/', [NotificationTeamController::class, 'store']);
+        Route::patch('/{id}', [NotificationTeamController::class, 'update']);
+        Route::delete('/{id}', [NotificationTeamController::class, 'destroy']);
+    });    
 
     //Calendário da equipe
     Route::group(['prefix' => 'calendario-da-equipe'], function () {
@@ -233,6 +241,12 @@ Route::group(['prefix' => 'eventos'], function () {
 Route::group(['prefix' => 'tarefas'], function () {
     Route::get('/', [TasksController::class, 'index']);
     Route::get('/{slug}', [TasksController::class, 'show']);
+});
+
+//Notificações da equipe
+Route::group(['prefix' => 'notificacoes'], function () {
+    Route::get('/', [NotificationTeamController::class, 'index']);
+    Route::get('/{slug}', [NotificationTeamController::class, 'show']);
 });
 
 //Rotas para calendário da equipe

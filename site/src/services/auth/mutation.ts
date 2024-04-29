@@ -1,17 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 //Importando api
-import { auth } from './api.ts';
+import { Auth } from './api.ts';
 
 export const useAuth = () => {
-    const navigate = useNavigate();
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: auth,
+        mutationFn: Auth,
         onSuccess: (data) => {
-            navigate('/painel/dashboard');
+            window.location.href = '/painel/dashboard';
             localStorage.setItem('akb_token', data.access_token);
         },
         onMutate: () => {

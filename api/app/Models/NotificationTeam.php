@@ -2,21 +2,21 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tasks extends Model
+class NotificationTeam extends Model
 {
     use HasFactory;
 
-    protected $table = 'tasks';
+    use HasFactory;
+
+    protected $table = 'notification_team';
 
     protected $fillable = [
         'creator',
         'addressee',
         'content',
-        'status'
     ];
 
     public function addressee()
@@ -28,5 +28,4 @@ class Tasks extends Model
     {
         return $this->hasOne(Users::class, 'id', 'creator');
     }
-
 }

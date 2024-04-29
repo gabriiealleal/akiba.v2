@@ -49,10 +49,10 @@ const Root = () => {
     }
 
     return (
-        <div className="h-screen bg-azul-escuro">
+        <>
             <header>
                 <nav className="w-full h-14 lg:h-12 bg-aurora">
-                    <div className="flex px-4 pt-3 lg:pt-2 justify-between items-center">
+                    <div className="flex px-12 pt-3 lg:pt-2 justify-between items-center">
                         <img className="w-8" src={icone} alt="icone da logo" />
                         <button className="toggle outline-none text-xl text-azul-claro lg:hidden" aria-label="menu" onClick={()=>{toggle()}}><HiMenu /></button>
                     </div>
@@ -107,8 +107,16 @@ const Root = () => {
                     </div>
                 </nav>
             </header>
-            <Outlet />
-        </div>
+            
+            <main className="mt-10 px-12">
+                <Outlet />
+            </main>
+
+            <footer className="text-center text-aurora leading-6 mb-12 mt-12 px-4">
+                © 2016 - {new Date().getFullYear()} Rede Akiba | Versão Ahn Go-eun 1.0<br/>
+                Designer e planejamento e desenvolvimento <span className="text-laranja">Elyson Santos</span>, <span className="text-laranja">Antônio Medeiros</span> e <span className="text-laranja">João Gabriel</span>
+            </footer>
+            </>
     );
 }
 

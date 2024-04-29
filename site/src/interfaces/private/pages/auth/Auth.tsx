@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 //Importando assets
 import logomarca from '/images/logomarca.webp';
@@ -7,38 +7,38 @@ import logomarca from '/images/logomarca.webp';
 //Importando icones
 import { IoIosHelpCircleOutline } from "react-icons/io";
 
-//Importando hooks
+//Importando hooks personalizados
 import usePageName from "@/hooks/usePageName.tsx";
 
-//Importando serviços
-import { useAuth } from '@/interfaces/private/services/auth/mutation.ts';
-import { useVerifyAuth } from '@/interfaces/private/services/auth/queries';
+//Importando queries e mutations do react-query
+import { useAuth } from '@/services/auth/mutation.ts';
+import { useVerifyAuth } from '@/services/auth/queries';
 
 const Auth = () => {
+    //Definindo useForm
+    const { register, handleSubmit } = useForm();
+
     //Definindo o nome da página
     usePageName('Realize o Login');
 
-    //Definindo navigate
-    const navigate = useNavigate();
+    //Requisição de autenticação
+    const {mutate: Auth } = useAuth();
 
     // Verificação de autenticação
-    if(localStorage.getItem('akb_token')){
-        const verifyAuthQuery = useVerifyAuth(localStorage.getItem('akb_token') ?? '');
-        if(verifyAuthQuery.isError){
-            toast.error('Sessão expirada, realize o login novamente')
+    const token = localStorage.getItem('akb_token');
+    if (token) {
+        const { isSuccess, isError } = useVerifyAuth();
+        if (isError) {
+            toast.error('Sessão expirada, realize o login novamente');
         }
-        if(verifyAuthQuery.isSuccess){
-            navigate('/painel/dashboard');
+        if (isSuccess) {
+            window.location.href = '/painel/dashboard';
         }
     }
 
-    // Requisição de autenticação
-    const handleAuth = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const login = (event.currentTarget.elements.namedItem('login') as HTMLInputElement).value;
-        const password = (event.currentTarget.elements.namedItem('password') as HTMLInputElement).value;
-        const authMutation = useAuth();
-        authMutation.mutate({login: login, password: password});
+    //Função para submeter o formulário
+    const onSubmit = (data: any) => {
+        Auth(data);
     }
 
     return (
@@ -48,10 +48,10 @@ const Auth = () => {
                     <img className="w-32" src={logomarca} alt="Logomarca" />
                 </div>
                 <strong className='mt-3 block w-full text-center font-light text-aurora text-sm'>Realize o login para acessar</strong>
-                <form className="mt-2" onSubmit={handleAuth}>
-                    <input type="text" id="login" name="login" className="w-full h-14 p-2 border rounded-t-lg font-light text-sm outline-none" placeholder="Login" aria-label="login" />
-                    <input type="password" id="password" name="password" className="w-full h-14 p-2 border rounded-b-lg font-light text-sm outline-none" placeholder="Senha" aria-label="senha" />
-                    <button type="submit" className="w-full h-12 bg-azul-claro text-white font-light text-sm rounded-lg mt-2" aria-label="entrar">Entrar</button>
+                <form className="mt-2" onSubmit={handleSubmit(onSubmit)}>
+                    <input {...register('login', {required: true})} type="text" id="login" className="w-full h-14 p-2 border rounded-t-lg font-light text-sm outline-none" placeholder="Login" aria-label="login" />
+                    <input {...register('password', { required: true })} type="password" id="password" className="w-full h-14 p-2 border rounded-b-lg font-light text-sm outline-none" placeholder="Senha" aria-label="senha" />
+                    <button type="submit" className="w-full h-14 bg-azul-claro text-white font-light text-sm rounded-lg mt-2">Entrar</button>
                 </form>
                 <div className="flex justify-center mt-4">
                     <button className="flex items-center gap-1 text-aurora text-sm" aria-label="ajuda" onClick={()=>{toast.info('Procure a administração da Akiba')}}><IoIosHelpCircleOutline/>Ajuda</button>
