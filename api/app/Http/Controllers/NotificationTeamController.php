@@ -22,6 +22,15 @@ class NotificationTeamController extends Controller
      *      tags={"Notificações da Equipe"},
      *      summary="Retorna todas as notificações cadastrados",
      *      description="Este endpoint retorna uma lista completa de todas as notificações da equipe cadastradas no sistema da Rede Akiba.",
+     *      @OA\Parameter(
+     *          name="user",
+     *          description="Id do Usuário: Retorna todas as notificações cadastradas para um usuário especifico baseado no id fornecido.",
+     *          required=false,
+     *          in="query", 
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Lista de notificações cadastradas",
@@ -43,16 +52,28 @@ class NotificationTeamController extends Controller
      *      ),
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
-            $notification = NotificationTeam::with('addressee')->get();
+            if($request->has('user')){
+                $notification = NotificationTeam::with(['addressee', 'creator'])
+                    ->whereIn('addressee', [$request->user, null, 0]) 
+                    ->get();  
+                
+                if($notification->isEmpty()){
+                    return response()->json(['message' => 'Nenhuma notificação cadastrada'], 404);
+                }else{
+                    return response()->json(['message' => 'Lista de notificações cadastradas', 'notificações' => $notification], 200);
+                }
+            }else{
+                $notification = NotificationTeam::with(['addressee', 'creator'])->get();
 
-            if($notification->isEmpty()){
-                return response()->json(['message' => 'Nenhuma notificação cadastrada'], 404);
+                if($notification->isEmpty()){
+                    return response()->json(['message' => 'Nenhuma notificação cadastrada'], 404);
+                }else{
+                    return response()->json(['message' => 'Lista de notificações cadastradas', 'notificações' => $notification], 200);
+                }
             }
-
-            return response()->json(['message' => 'Lista de notificações cadastradas', 'notificações' => $notification], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }

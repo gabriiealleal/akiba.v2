@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,11 +22,11 @@ class NotificationTeam extends Model
 
     public function addressee()
     {
-        return $this->hasOne(Users::class, 'id', 'addressee');
+        return $this->belongsTo(Users::class, 'addressee', 'id');
     }
 
     public function creator()
     {
-        return $this->hasOne(Users::class, 'id', 'creator');
+        return $this->belongsTo(Users::class, 'creator', 'id');
     }
 }

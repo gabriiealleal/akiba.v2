@@ -18,9 +18,9 @@ class CreateNotificationTeamTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('creator');
             $table->foreign('creator')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('addressee');
+            $table->unsignedBigInteger('addressee')->nullable();
             $table->foreign('addressee')->references('id')->on('users')->onDelete('cascade');
-            $table->string('content');
+            $table->string('content')->nullable();
         });
     }
 

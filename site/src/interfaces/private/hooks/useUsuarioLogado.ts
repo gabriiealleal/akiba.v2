@@ -3,7 +3,8 @@ import { useVerifyAuth } from '@/services/auth/queries';
 
 // Definindo a interface para o usuário logado
 interface User {
-    access_level: string[];
+    id: any;
+    access_levels: Array<string>;
     age: string;
     biography: string;
     city: string;
@@ -27,8 +28,7 @@ const useUsuarioLogado = (): User | null => {
     const token = localStorage.getItem('akb_token');
 
     // Utilizando o hook personalizado para verificar dados
-    const verifyAuthQuery = useVerifyAuth(token ?? '');
-
+    const verifyAuthQuery = useVerifyAuth();
 
     useEffect(() => {
         // Verificando se o token não foi encontrado
@@ -45,7 +45,7 @@ const useUsuarioLogado = (): User | null => {
         if(verifyAuthQuery.isError) {
             console.log('Erro ao buscar usuário logado');
         }
-    }, [token]);
+    }, [token, verifyAuthQuery?.data?.user]);
 
     return user;
 };

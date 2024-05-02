@@ -2260,6 +2260,17 @@
                 "summary": "Retorna todas as notificações cadastrados",
                 "description": "Este endpoint retorna uma lista completa de todas as notificações da equipe cadastradas no sistema da Rede Akiba.",
                 "operationId": "78ea67242b34c5bcaa99c2b76b321c18",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "query",
+                        "description": "Id do Usuário: Retorna todas as notificações cadastradas para um usuário especifico baseado no id fornecido.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Lista de notificações cadastradas",

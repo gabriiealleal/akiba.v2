@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+//Import the React Query Devtools
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
 //Import the React Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -23,6 +26,7 @@ import Router from './router/Router';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored"/>    
       <Router />
     </QueryClientProvider>

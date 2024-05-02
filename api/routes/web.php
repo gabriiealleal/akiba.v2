@@ -244,7 +244,7 @@ Route::group(['prefix' => 'tarefas'], function () {
 
 //Notificações da equipe
 Route::group(['prefix' => 'notificacoes'], function () {
-    Route::get('/', [NotificationTeamController::class, 'index']);
+    Route::get('/{user?}', [NotificationTeamController::class, 'index']);
     Route::get('/{slug}', [NotificationTeamController::class, 'show']);
 });
 

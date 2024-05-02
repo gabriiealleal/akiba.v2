@@ -1,3 +1,19 @@
+/*FONTES*/
+@font-face {
+    font-family: 'Averta';
+    src: url('/fonts/AvertaDemoPE-ExtraboldItalic.otf');
+    font-weight: 800; /* Extrabold */
+    font-style: italic; /* Italic */
+}
+
+@font-face {
+    font-family: 'Averta';
+    src: url('/fonts/AvertaDemoPE-Regular.otf'); /* Adicione a extensão do arquivo aqui */
+    font-weight: 400; /* Regular */
+    font-style: normal; /* Normal */
+}
+
+
 /*NAVBAR DA INTERFACE PRIVADA*/
 .sidebar{
     z-index: 2;
@@ -50,6 +66,9 @@
     font-weight: 600;
     text-transform: uppercase;
     color: #FFA919;
+    font-family: 'Averta', sans-serif;
+    font-weight: 800;
+    font-style: italic;
 }
 
 .title-default h1::after{

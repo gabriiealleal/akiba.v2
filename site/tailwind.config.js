@@ -6,8 +6,15 @@ export default {
   ],
   theme: {
     extend: {
+      width: {
+        '80rem': '80rem',
+      },
       fontFamily: {
-        'noto-sans': ['Noto Sans', 'sans-serif'], // Adicione esta linha
+        'averta': ['Averta', 'sans-serif'],
+      },
+      fontWeight: {
+        'regular': 400,
+        'extrabold': 800,
       },
       backgroundImage: {
         'login': "url('https://i.imgur.com/iTUkmyD.gif')",
