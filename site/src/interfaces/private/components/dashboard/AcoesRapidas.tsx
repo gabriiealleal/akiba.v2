@@ -1,22 +1,15 @@
 import { Link } from "react-router-dom";
-
-// Importando ícones do react icons
 import { FaNewspaper, FaMicrophoneAlt } from "react-icons/fa";
 import { PiBellRingingFill } from "react-icons/pi";
 import { ImUpload } from "react-icons/im";
 import { BsFillCalendarDateFill, BsMusicNoteList } from "react-icons/bs";
-
-// Importando hooks personalizados
 import useUsuarioLogado from '@/interfaces/private/hooks/useUsuarioLogado';
 
 const AcoesRapidas = () => {
-    // Utilizando o hook useUsuarioLogado para obter o usuário logado
     const user = useUsuarioLogado();
 
-    // Verifica se o usuário tem determinado nível de acesso
     const hasAccess = (level: string) => user?.access_levels?.includes(level);
 
-    // Estrutura de dados para os links das ações rápidas
     const actions = [
         {
             condition: hasAccess('administrador') || hasAccess('redator'),
@@ -67,7 +60,7 @@ const AcoesRapidas = () => {
             <div className="title-default">
                 <h1>Ações rápidas</h1>
             </div>
-            <div className="mt-2 flex justify-center lg:justify-start gap-2 flex-wrap lg:flex-nowrap">
+            <div className="mt-2 flex justify-center lg:justify-start gap-2 flex-wrap xl:flex-nowrap">
                 {actions.map(action => (
                     action.condition && (
                         <Link key={action.title} to={action.to} title={action.title} className="flex items-center gap-1 bg-azul-claro p-1 rounded-md font-averta font-extrabold italic text-aurora uppercase">

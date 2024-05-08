@@ -1,6 +1,4 @@
 import axios from "axios";
-
-//Importando interfaces
 import { NotificationParams } from '@/services/notificationsTeam/interfaces.ts';
 
 export const getNotificationsTeam = async (queryParams: NotificationParams) => {

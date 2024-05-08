@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-interface Credentials {
-    login: string;
-    password: string;
-}
+import { Credentials } from '@/services/auth/interfaces.ts';
 
 export const Auth = async (credentials: Credentials) => {
     try {

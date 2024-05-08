@@ -18,10 +18,10 @@ class CreateTasksTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('creator');
             $table->foreign('creator')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('addressee');
-            $table->foreign('addressee')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('responsible');
+            $table->foreign('responsible')->references('id')->on('users')->onDelete('cascade');
             $table->string('content');
-            $table->boolean('status');
+            $table->boolean('finished');
         });
     }
 

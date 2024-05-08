@@ -239,7 +239,7 @@ Route::group(['prefix' => 'eventos'], function () {
 
 //Tarefas
 Route::group(['prefix' => 'tarefas'], function () {
-    Route::get('/', [TasksController::class, 'index']);
+    Route::get('/{user?}', [TasksController::class, 'index']);
     Route::get('/{slug}', [TasksController::class, 'show']);
 });
 

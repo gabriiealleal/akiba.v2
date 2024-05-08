@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-
-//Importando api
 import { Auth } from './api.ts';
 
 export const useAuth = () => {
@@ -17,6 +15,7 @@ export const useAuth = () => {
         },
         onError: (error: any) => {
             toast.error(error.response.data.message)
+            console.error(error)
         }
     });
 }

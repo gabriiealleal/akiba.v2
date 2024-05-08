@@ -14,14 +14,14 @@ class Tasks extends Model
 
     protected $fillable = [
         'creator',
-        'addressee',
+        'responsible',
         'content',
-        'status'
+        'finished'
     ];
 
-    public function addressee()
+    public function responsible()
     {
-        return $this->hasOne(Users::class, 'id', 'addressee');
+        return $this->hasOne(Users::class, 'id', 'responsible');
     }
 
     public function creator()

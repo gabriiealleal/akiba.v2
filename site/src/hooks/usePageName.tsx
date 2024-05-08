@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const usePageName = (pageName?: string) => {
-    const [pageTitle, setPageTitle] = useState<string>();
+    const [pageTitle, setPageTitle] = useState<string>('');
 
     const updatePageTitle = useCallback(() => {
         if (pageName !== undefined) {
@@ -15,7 +15,7 @@ const usePageName = (pageName?: string) => {
         updatePageTitle();
     }, [updatePageTitle]);
 
-    document.title = pageTitle;
+    document.title = pageTitle || ''; 
 };
 
 export default usePageName;

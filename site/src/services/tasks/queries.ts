@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-
-//Importando api
+import { getTasksTypes } from './interfaces.ts';
 import { getTasks } from './api.ts';
 
-export const useTasks = () => {
+
+export const useTasks = (queryParams: getTasksTypes) => {
     return useQuery({
         queryKey: ['tasks'],
-        queryFn: () => getTasks(),
+        queryFn: () => getTasks(queryParams),
+        enabled: !!queryParams.user,
+        retry: false,
     })
 }

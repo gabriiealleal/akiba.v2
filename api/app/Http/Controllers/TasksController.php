@@ -43,16 +43,28 @@ class TasksController extends Controller
      *      ),
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
-            $tasks = Tasks::with('addressee')->get();
+            if($request->has('user')){
+                $tasks = Tasks::with(['creator', 'responsible'])
+                ->where('responsible', $request->user)
+                ->where('finished', 0)
+                ->get();
+                if($tasks->isEmpty()){
+                    return response()->json(['message' => 'Nenhuma tarefa cadastrada'], 404);
+                }
 
-            if($tasks->isEmpty()){
-                return response()->json(['message' => 'Nenhuma tarefa cadastrada'], 404);
+                return response()->json(['message' => 'Lista de tarefas cadastradas', 'tarefas' => $tasks], 200);
+            }else{
+                $tasks = Tasks::with(['creator', 'responsible'])->get();
+
+                if($tasks->isEmpty()){
+                    return response()->json(['message' => 'Nenhuma tarefa cadastrada'], 404);
+                }
+
+                return response()->json(['message' => 'Lista de tarefas cadastradas', 'tarefas' => $tasks], 200);
             }
-
-            return response()->json(['message' => 'Lista de tarefas cadastradas', 'tarefas' => $tasks], 200);
         }catch(\Exception $e){
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'error' => $e->getMessage()], 500);
         }
@@ -103,12 +115,12 @@ class TasksController extends Controller
         try{
             $messages = [
                 'creator.required' => 'O campo criador é obrigatório',
-                'addressee.required' => 'O campo destinatário é obrigatório',
+                'responsible.required' => 'O campo destinatário é obrigatório',
             ];
 
             $request->validate([
                 'creator' => 'required',
-                'addressee' => 'required',
+                'responsible' => 'required',
             ], $messages);
 
             $creator = Users::find($request->creator);
@@ -116,24 +128,24 @@ class TasksController extends Controller
                 return response()->json(['message' => 'Usuário não encontrado'], 404);
             }
 
-            $addressee = Users::find($request->addressee);
-            if(!$addressee){
+            $responsible = Users::find($request->responsible);
+            if(!$responsible){
                 return response()->json(['message' => 'Usuário não encontrado'], 404);
             }
 
             $tasks = new Tasks();
             $tasks->creator = $request->creator;
-            $tasks->addressee = $request->addressee;
+            $tasks->responsible = $request->responsible;
             $tasks->content = $request->content;
-            $tasks->status = $request->status;
+            $tasks->finished = $request->finished;
             $tasks->save();
 
             //Associa o programa ao usuário responsável
-            $addressee->tasks()->save($addressee);
+            $responsible->tasks()->save($responsible);
 
             //Retorna a tarefa com os dados do usuário responsável
             $tasks->load('creator');
-            $tasks->load('addressee');
+            $tasks->load('responsible');
 
             return response()->json(['message' => 'Tarefa cadastrada com sucesso', 'tarefa' => $tasks], 200);
         }catch(ValidationException $e){
@@ -255,10 +267,10 @@ class TasksController extends Controller
                 }
             }
 
-            if($request->has('addressee')){
-                $addressee = Users::find($request->addressee);
-                if($addressee){
-                    $addressee->tasks()->save($tasks);
+            if($request->has('responsible')){
+                $responsible = Users::find($request->responsible);
+                if($responsible){
+                    $responsible->tasks()->save($tasks);
                 }else{
                     return response()->json(['message' => 'Usuário não encontrado'], 404);
                 }
@@ -268,15 +280,15 @@ class TasksController extends Controller
                 $tasks->content = $request->content;
             }
 
-            if($request->has('status')){
-                $tasks->status = $request->status;
+            if($request->has('finished')){
+                $tasks->finished = $request->finished;
             }
 
             $tasks->save();
 
             //Retorna a tarefa com os dados do usuário responsável
             $tasks->load('creator');
-            $tasks->load('addressee');
+            $tasks->load('responsible');
 
             return response()->json(['message' => 'Tarefa atualizada com sucesso', 'tarefa' => $tasks], 200);
         }catch(\Exception $e){

@@ -8,6 +8,8 @@ export default {
     extend: {
       width: {
         '80rem': '80rem',
+        '19.45%': '19.45%',
+        '49.6%': '49.6%',
       },
       fontFamily: {
         'averta': ['Averta', 'sans-serif'],

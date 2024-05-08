@@ -6757,14 +6757,14 @@
                     "creator": {
                         "$ref": "#/components/schemas/UserResponse"
                     },
-                    "addressee": {
+                    "responsible": {
                         "$ref": "#/components/schemas/UserResponse"
                     },
                     "content": {
                         "type": "string"
                     },
-                    "status": {
-                        "type": "string"
+                    "finished": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
@@ -6774,14 +6774,14 @@
                     "creator": {
                         "type": "integer"
                     },
-                    "addressee": {
+                    "responsible": {
                         "type": "integer"
                     },
                     "content": {
                         "type": "string"
                     },
-                    "status": {
-                        "type": "string"
+                    "finished": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
