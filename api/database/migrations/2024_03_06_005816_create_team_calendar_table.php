@@ -17,7 +17,7 @@ class CreateTeamCalendarTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('day');
-            $table->string('hour');
+            $table->time('hour');
             $table->string('category');
             $table->unsignedBigInteger('responsible');
             $table->foreign('responsible')->references('id')->on('users');

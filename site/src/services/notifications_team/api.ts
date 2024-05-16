@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NotificationParams } from '@/services/notificationsTeam/interfaces.ts';
+import { NotificationParams } from '@/services/notifications_team/interfaces';
 
 export const getNotificationsTeam = async (queryParams: NotificationParams) => {
     try{

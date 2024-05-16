@@ -8,7 +8,7 @@ const MinhasTarefas = () => {
     const [selectedTask, setSelectedTask] = useState<number>(0);
 
     const user = useUsuarioLogado();
-    const { data: getTasks, isError:tasksError } = useTasks({ user: user?.id });
+    const { data: getTasks, isError } = useTasks({ user: user?.id });
     const { mutate: updateTaks } = useUpdateTasks({id: selectedTask}, ()=>{
         toast.success('Tarefa concluída com sucesso!')
     });
@@ -18,8 +18,7 @@ const MinhasTarefas = () => {
         updateTaks({finished: 1});
     }
 
-
-    if(tasksError){
+    if(isError){
         return(
             <section className="mt-8">
                 <div className="title-default">
@@ -27,7 +26,7 @@ const MinhasTarefas = () => {
                 </div>
                 <div className="mt-2 flex justify-center lg:justify-start gap-2 flex-wrap">
                     <div className="w-full xl:w-49.6%  flex items-center justify-between px-4 py-2 bg-gray-700 rounded-md">
-                        <span className="text-aurora font-averta truncate w-11/12">Você não possui nenhuma tarefa, caso surja algo apareça aqui.</span>
+                        <span className="text-aurora font-averta truncate w-11/12">Você pode assistir seus animes em paz! Não há tarefas!</span>
                         <input type="checkbox" name="tarefa" id="tarefa" disabled/>
                     </div>
                 </div>

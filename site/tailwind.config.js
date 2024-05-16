@@ -11,6 +11,9 @@ export default {
         '19.45%': '19.45%',
         '49.6%': '49.6%',
       },
+      height: {
+        '71%': '71%',
+      },
       fontFamily: {
         'averta': ['Averta', 'sans-serif'],
       },
@@ -28,6 +31,9 @@ export default {
         'azul-escuro': '#00061A',
         'azul-medio': '#002080',
         'azul-claro': '#0091FF',
+        'roxo': '#b82bff',
+        'verde': '#00a859',
+        'vermelho': '#f43e37',
       }
     },
   },

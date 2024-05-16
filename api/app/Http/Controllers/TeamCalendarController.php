@@ -52,9 +52,9 @@ class TeamCalendarController extends Controller
                 return response()->json(['message' => 'Nenhum evento encontrado'], 404);
             }
 
-            return response()->json(['message' => 'Lista de todos os eventos do calendário', 'evento' => $teamCalendar], 200);
+            return response()->json(['message' => 'Lista de todos os eventos do calendário', 'eventos' => $teamCalendar], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Ocorreu um erro de processamento', 'evento' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Ocorreu um erro de processamento', 'data' => $e->getMessage()], 500);
         }
     }
 
@@ -129,9 +129,9 @@ class TeamCalendarController extends Controller
             //Retorna o evento com os dados do usuário responsável
             $teamCalendar->load('responsible');
 
-            return response()->json(['message' => 'evento cadastrado com sucesso', 'evento' => $teamCalendar], 200);
+            return response()->json(['message' => 'evento cadastrado com sucesso', 'eventos' => $teamCalendar], 200);
         } catch (ValidationException $e) {
-            return response()->json(['message' => 'Ocorreu um erro de validação', 'evento' => $e->errors()], 400);
+            return response()->json(['message' => 'Ocorreu um erro de validação', 'eventos' => $e->errors()], 400);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'data' => $e->getMessage()], 500);
         }
@@ -183,7 +183,7 @@ class TeamCalendarController extends Controller
                 return response()->json(['message' => 'evento não encontrado'], 404);
             }
 
-            return response()->json(['message' => 'evento encontrado', 'data' => $teamCalendar], 200);
+            return response()->json(['message' => 'evento encontrado', 'evento' => $teamCalendar], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Ocorreu um erro de processamento', 'data' => $e->getMessage()], 500);
         }
