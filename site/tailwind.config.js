@@ -28,10 +28,12 @@ export default {
         'aurora': '#FFF6E6',
         'creme': '#FFE8BF',
         'laranja': '#FFA919',
+        'laranja2': '#cc6633',
         'azul-escuro': '#00061A',
         'azul-medio': '#002080',
         'azul-claro': '#0091FF',
         'roxo': '#b82bff',
+        'roxo2': '#9765fd',
         'verde': '#00a859',
         'vermelho': '#f43e37',
       }

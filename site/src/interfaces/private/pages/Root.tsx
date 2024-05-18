@@ -128,7 +128,7 @@ const Root = () => {
             </main>
 
             <footer className="text-center text-aurora leading-6 mb-5 mt-12 px-4">
-                © 2016 - {new Date().getFullYear()} Rede Akiba | Versão: Volume 2<br />
+                © 2016 - {new Date().getFullYear()} | Rede Akiba - O Paraíso dos Otakus<br />
                 Designer e planejamento e desenvolvimento <span className="text-laranja">Elyson Santos</span>, <span className="text-laranja">Antônio Medeiros</span> e <span className="text-laranja">João Gabriel</span>
             </footer>
         </>
