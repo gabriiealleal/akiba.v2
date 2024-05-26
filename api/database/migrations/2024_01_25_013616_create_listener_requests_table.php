@@ -12,7 +12,7 @@ class CreateListenerRequestsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {    
         Schema::create('listener_requests', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -33,6 +33,13 @@ class CreateListenerRequestsTable extends Migration
      */
     public function down()
     {
+        // Desabilita restrições de chave estrangeira antes de excluir a tabela
+        Schema::disableForeignKeyConstraints();
+        
+        // Exclui a tabela 'listener_requests' se ela existir
         Schema::dropIfExists('listener_requests');
+        
+        // Habilita restrições de chave estrangeira após a exclusão da tabela
+        Schema::enableForeignKeyConstraints();
     }
 }

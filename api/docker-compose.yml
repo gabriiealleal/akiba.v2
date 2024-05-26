@@ -1,6 +1,6 @@
 # For more information: https://laravel.com/docs/sail
 services:
-    laravel:
+    laravel.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -43,6 +43,18 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${DB_PASSWORD}
+            PMA_ARBITRARY: 1
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge

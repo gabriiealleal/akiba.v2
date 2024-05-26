@@ -15,8 +15,14 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        // Desabilitar restrições de chave estrangeira
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        // Executar o SQL do arquivo
         $sql = File::get(database_path('seeders/sql/users.sql'));
-        DB::unprepared($sql);    
+        DB::unprepared($sql);
+
+        // Reabilitar restrições de chave estrangeira
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

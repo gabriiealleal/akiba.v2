@@ -6,7 +6,7 @@ export const useAuth = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: Auth,
-        onSuccess: (data) => {
+        onSuccess: (data:any) => {
             window.location.href = '/painel/dashboard';
             localStorage.setItem('akb_token', data.access_token);
         },
