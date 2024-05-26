@@ -22,7 +22,7 @@ class PostsController extends Controller
     //--------------Retorna todos as publicações------------
     /**
      * @OA\Get(
-     *      path="/api/postagens",
+     *      path="/postagens",
      *      tags={"Postagens"},
      *      summary="Lista todas as postagens cadastradas",
      *      description="Este endpoint retorna todas as postagens cadastradas no sistema da Rede Akiba.",
@@ -66,7 +66,7 @@ class PostsController extends Controller
     //--------------Cria uma nova publicação------------
     /**
      * @OA\Post(
-     *      path="/api/postagens",
+     *      path="/postagens",
      *      tags={"Postagens"},
      *      summary="Cria uma nova postagem",
      *      description="Este endpoint cria uma nova postagem no sistema da Rede Akiba.",
@@ -166,7 +166,7 @@ class PostsController extends Controller
     //--------------Retorna uma publicação específica------------
     /**
      * @OA\Get(
-     *      path="/api/postagens/{slug}",
+     *      path="/postagens/{slug}",
      *      tags={"Postagens"},
      *      summary="Retorna uma postagem específica",
      *      description="Este endpoint retorna uma postagem específica cadastrada no sistema da Rede Akiba.",
@@ -218,7 +218,7 @@ class PostsController extends Controller
     //--------------Atualiza uma publicação específica------------
     /**
      * @OA\Patch(
-     *      path="/api/postagens/{id}",
+     *      path="/postagens/{id}",
      *      tags={"Postagens"},
      *      summary="Atualiza uma postagem específica",
      *      description="Este endpoint atualiza uma postagem específica cadastrada no sistema da Rede Akiba.",
@@ -341,7 +341,7 @@ class PostsController extends Controller
     //--------------Deleta uma publicação específica------------
     /**
      * @OA\Delete(
-     *      path="/api/postagens/{id}",
+     *      path="/postagens/{id}",
      *      tags={"Postagens"},
      *      summary="Deleta uma postagem específica",
      *      description="Este endpoint deleta uma postagem específica cadastrada no sistema da Rede Akiba.",

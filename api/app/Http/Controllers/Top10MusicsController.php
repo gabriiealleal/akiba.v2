@@ -19,7 +19,7 @@ class Top10MusicsController extends Controller
     //--------------Atualiza uma posição no top 10 de músicas--------------
     /**
      * @OA\Patch(
-     *      path="/api/top-musicas/{id}",
+     *      path="/top-musicas/{id}",
      *      operationId="updateTop10Musics",
      *      tags={"Top 10 de Músicas"},
      *      summary="Atualiza uma posição no top 10 de músicas",

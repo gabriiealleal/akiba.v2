@@ -32,13 +32,8 @@ class CreateShowsTable extends Migration
      */
     public function down()
     {
-        // Desabilita temporariamente as restrições de chave estrangeira
         Schema::disableForeignKeyConstraints();
-
-        // Exclui a tabela 'shows' se ela existir
         Schema::dropIfExists('shows');
-
-        // Habilita novamente as restrições de chave estrangeira
         Schema::enableForeignKeyConstraints();
     }
 }

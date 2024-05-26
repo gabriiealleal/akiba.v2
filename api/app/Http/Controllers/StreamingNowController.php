@@ -21,7 +21,7 @@ class StreamingNowController extends Controller
     //--------------Lista todos os programas do histórico--------------
     /**
      * @OA\Get(
-     *      path="/api/historico-de-transmissao/{now}",
+     *      path="/historico-de-transmissao/{now}",
      *      tags={"Histórico de Transmissão"},
      *      summary="Retorna todos os programas do histórico de transmissão",
      *      description="Este endpoint retorna uma lista completa de todos os programas cadastrados no histórico de transmissão da programação no sistema da Rede Akiba.",
@@ -83,7 +83,7 @@ class StreamingNowController extends Controller
     //--------------Cadastra um programa novo no histórico--------------
     /**
      * @OA\Post(
-     *      path="/api/historico-de-transmissao",
+     *      path="/historico-de-transmissao",
      *      tags={"Histórico de Transmissão"},
      *      summary="Cadastra um programa no histórico de transmissão",
      *      description="Este endpoint cadastra um programa no histórico de transmissão da programação no sistema da Rede Akiba.",
@@ -163,7 +163,7 @@ class StreamingNowController extends Controller
     //--------------Recupera um programa especifico do histórico--------------
     /**
      * @OA\Get(
-     *      path="/api/historico-de-transmissao/{slug}",
+     *      path="/historico-de-transmissao/{slug}",
      *      tags={"Histórico de Transmissão"},
      *      summary="Retorna um programa especifico do histórico de transmissão",
      *      description="Este endpoint retorna um programa específico no histórico de transmissão da programação no sistema da Rede Akiba.",
@@ -215,7 +215,7 @@ class StreamingNowController extends Controller
     //--------------Atualiza um programa especifico do histórico--------------
     /**
      * @OA\Patch(
-     *      path="/api/historico-de-transmissao/{id}",
+     *      path="/historico-de-transmissao/{id}",
      *      tags={"Histórico de Transmissão"},
      *      description="Este endpoint realiza a atualização de um registro específico no histórico de transmissão cadastrado no sistema da Rede Akiba.",
      *      summary="Atualiza um registro especifico do histórico de transmissão",
@@ -304,7 +304,7 @@ class StreamingNowController extends Controller
     //--------------Remove um programa especifico do histórico--------------
     /**
      * @OA\Delete(
-     *      path="/api/historico-de-transmissao/{id}",
+     *      path="/historico-de-transmissao/{id}",
      *      tags={"Histórico de Transmissão"},
      *      description="Este endpoint remove um registro específico do histórico de transmissão no sistema da Rede Akiba.",
      *      summary="Remove um registro especifico do histórico de transmissão",

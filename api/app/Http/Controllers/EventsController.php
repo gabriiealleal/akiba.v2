@@ -22,7 +22,7 @@ class EventsController extends Controller
     //--------------Lista todos os eventos--------------
     /**
      * @OA\Get(
-     *      path="/api/eventos",
+     *      path="/eventos",
      *      tags={"Eventos"},
      *      summary="Lista todos os eventos cadastrados",
      *      description="Este endpoint retorna todas os cadastrados no sistema da Rede Akiba.",
@@ -65,7 +65,7 @@ class EventsController extends Controller
     //--------------Cadastra um novo evento--------------
     /**
      * @OA\Post(
-     *      path="/api/eventos",
+     *      path="/eventos",
      *      tags={"Eventos"},
      *      summary="Cadastra um novo evento",
      *      description="Este endpoint realiza o cadastro de um novo evento no sistema da Rede Akiba.",
@@ -157,7 +157,7 @@ class EventsController extends Controller
     //--------------Retorna uma evento específico------------
     /**
      * @OA\Get(
-     *      path="/api/eventos/{slug}",
+     *      path="/eventos/{slug}",
      *      tags={"Eventos"},
      *      summary="Retorna um evento específico",
      *      description="Este endpoint retorna um evento específico cadastrado no sistema da Rede Akiba.",
@@ -209,7 +209,7 @@ class EventsController extends Controller
     //--------------Atualiza um evento especifico------------
     /**
      * @OA\Patch(
-     *      path="/api/eventos/{id}",
+     *      path="/eventos/{id}",
      *      tags={"Eventos"},
      *      summary="Atualiza um evento específico",
      *      description="Este endpoint atualiza um evento específico cadastrado no sistema da Rede Akiba.",
@@ -309,7 +309,7 @@ class EventsController extends Controller
     //--------------Deleta uma evento especifico------------
     /**
      * @OA\Delete(
-     *      path="/api/eventos/{id}",
+     *      path="/eventos/{id}",
      *      tags={"Eventos"},
      *      summary="Remove um evento específico",
      *      description="Este endpoint remove um evento específico cadastrado no sistema da Rede Akiba.",

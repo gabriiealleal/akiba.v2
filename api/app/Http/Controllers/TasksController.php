@@ -18,7 +18,7 @@ class TasksController extends Controller
     //--------------Retorna todas as tarefas cadastradas--------------
     /**
      * @OA\Get(
-     *      path="/api/tarefas",
+     *      path="/tarefas",
      *      tags={"Tarefas"},
      *      summary="Retorna todas as tarefas cadastrados",
      *      description="Este endpoint retorna uma lista completa de todas as tarefas da equipe cadastradas no sistema da Rede Akiba.",
@@ -73,7 +73,7 @@ class TasksController extends Controller
     //--------------Cadastra uma nova tarefa--------------
     /**
      * @OA\Post(
-     *      path="/api/tarefas",
+     *      path="/tarefas",
      *      tags={"Tarefas"},
      *      summary="Cadastra uma nova tarefa",
      *      description="Este endpoint realiza o cadastro de uma nova tarefa da equipe no sistema da Rede Akiba.",
@@ -158,7 +158,7 @@ class TasksController extends Controller
     //--------------Retorna uma tarefa específica--------------
     /**
      * @OA\Get(
-     *      path="/api/tarefas/{id}",
+     *      path="/tarefas/{id}",
      *      tags={"Tarefas"},   
      *      summary="Retorna uma tarefa específica",
      *      description="Este endpoint retorna uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
@@ -210,7 +210,7 @@ class TasksController extends Controller
     //--------------Atualiza uma tarefa especifica------------
     /**
      * @OA\Patch(
-     *      path="/api/tarefas/{id}",
+     *      path="/tarefas/{id}",
      *      tags={"Tarefas"},
      *      summary="Atualiza uma tarefa específica",
      *      description="Este endpoint atualiza uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",
@@ -299,7 +299,7 @@ class TasksController extends Controller
     //--------------Remove uma tarefa------------
     /**
      * @OA\Delete(
-     *      path="/api/tarefas/{id}",
+     *      path="/tarefas/{id}",
      *      tags={"Tarefas"},
      *      summary="Remove uma tarefa específica",
      *      description="Este endpoint remove uma tarefa específica da equipe cadastrada no sistema da Rede Akiba.",

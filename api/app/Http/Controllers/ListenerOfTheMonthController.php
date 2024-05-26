@@ -19,7 +19,7 @@ class ListenerOfTheMonthController extends Controller
     //--------------Lista todos os ouvintes do mes--------------
     /**
      * @OA\Get(
-     *      path="/api/ouvinte-do-mes",
+     *      path="/ouvinte-do-mes",
      *      tags={"Ouvinte do Mês"},
      *      summary="Lista todos os ouvintes do mês",
      *      description="Este endpoint retorna uma lista completa de todos os ouvintes do mês cadastrados no sistema da Rede Akiba.",
@@ -60,7 +60,7 @@ class ListenerOfTheMonthController extends Controller
     //--------------Cadastra um novo ouvinte do mês--------------
     /**
      * @OA\Post(
-     *      path="/api/ouvinte-do-mes",
+     *      path="/ouvinte-do-mes",
      *      tags={"Ouvinte do Mês"},
      *      summary="Cadastra um novo ouvinte do mês",
      *      description="Este endpoint realiza o cadastro de um novo ouvinte do mês no sistema da Rede Akiba.",
@@ -135,7 +135,7 @@ class ListenerOfTheMonthController extends Controller
     //--------------Retorna um ouvinte do mês especifico--------------
     /**
      * @OA\Get(
-     *      path="/api/ouvinte-do-mes/{id}",
+     *      path="/ouvinte-do-mes/{id}",
      *      tags={"Ouvinte do Mês"},
      *      summary="Retorna um ouvinte do mês especifico",
      *      description="Este endpoint retorna um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
@@ -194,7 +194,7 @@ class ListenerOfTheMonthController extends Controller
     //--------------Atualiza um ouvinte do mês especifico--------------
     /**
      * @OA\Patch(
-     *      path="/api/ouvinte-do-mes/{id}",
+     *      path="/ouvinte-do-mes/{id}",
      *      tags={"Ouvinte do Mês"},
      *      summary="Atualiza um ouvinte do mês especifico",
      *      description="Este endpoint atualiza um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",
@@ -283,7 +283,7 @@ class ListenerOfTheMonthController extends Controller
     //--------------Remove um ouvinte do mês especifico--------------
     /**
      * @OA\Delete(
-     *      path="/api/ouvinte-do-mes/{id}",
+     *      path="/ouvinte-do-mes/{id}",
      *      tags={"Ouvinte do Mês"},
      *      summary="Remove um ouvinte do mês especifico",
      *      description="Este endpoint remove um ouvinte do mês especifico cadastrado no sistema da Rede Akiba.",

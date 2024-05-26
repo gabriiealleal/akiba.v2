@@ -21,7 +21,7 @@ class UsersController extends Controller
     //---------------Retorna todos os usuários--------------
     /**
      * @OA\Get(
-     *      path="/api/usuarios",
+     *      path="/usuarios",
      *      tags={"Usuários"},
      *      description="Este endpoint retorna uma lista completa de todos os usuários cadastrados no sistema da Rede Akiba.",
      *      summary="Retorna todos os usuários cadastrados",
@@ -62,7 +62,7 @@ class UsersController extends Controller
     //---------------Cria um novo usuário--------------
     /**
      * @OA\Post(
-     *      path="/api/usuarios",
+     *      path="/usuarios",
      *      tags={"Usuários"},
      *      description="Este endpoint cria um novo usuário no sistema da Rede Akiba.",
      *      summary="Cria um novo usuário",
@@ -151,7 +151,7 @@ class UsersController extends Controller
     //---------------Retorna um usuário especifico--------------
     /**
      * @OA\Get(
-     *      path="/api/usuarios/{slug}",
+     *      path="/usuarios/{slug}",
      *      tags={"Usuários"},
      *      description="Este endpoint retorna um usuário específico cadastrado no sistema da Rede Akiba.",
      *      summary="Retorna um usuário específico",
@@ -202,7 +202,7 @@ class UsersController extends Controller
     //---------------Atualiza um usuário especifico--------------
     /**
      * @OA\Patch(
-     *      path="/api/usuarios/{id}",
+     *      path="/usuarios/{id}",
      *      tags={"Usuários"},
      *      description="Este endpoint atualiza parcialmente um usuário específico cadastrado no sistema da Rede Akiba.",
      *      summary="Atualiza parcialmente um usuário específico",
@@ -323,7 +323,7 @@ class UsersController extends Controller
     //---------------Remove um usuário--------------
     /**
      * @OA\Delete(
-     *      path="/api/usuarios/{id}",
+     *      path="/usuarios/{id}",
      *      tags={"Usuários"},
      *      description="Este endpoint remove um usuário específico cadastrado no sistema da Rede Akiba.",
      *      summary="Remove um usuário específico",
