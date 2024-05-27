@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import icone from '/images/icone.webp';
 
 // Importando o serviço de verificação de autenticação
 import { useVerifyAuth } from '@/services/auth/queries';
@@ -8,31 +9,25 @@ interface PrivateRouterProps {
 }
 
 const PrivateRouter: React.FC<PrivateRouterProps> = ({ View }) => {
-    const token = localStorage.getItem('akb_token');
-
-    // Utilizando o hook personalizado para verificação de autenticação
     const verifyAuthQuery = useVerifyAuth();
 
-    // Efeito colateral para lidar com redirecionamento com base no status de autenticação
-    useEffect(() => {
-        if (!token) {
-            // Se nenhum token for encontrado, navegue para o painel de login
-            window.location.href = '/painel';
-        } else if (verifyAuthQuery.isError) {
+    useEffect(()=>{
+        if (verifyAuthQuery.isError) {
             // Se ocorrer um erro durante a verificação, limpe o armazenamento e redirecione
             localStorage.removeItem('akb_token');
-            localStorage.removeItem('akb_user');
             window.location.href = '/painel';
         }
-    }, [token, verifyAuthQuery.isError]);
+    }, [verifyAuthQuery.isError])
 
     // Renderiza o componente View apenas se a autenticação for bem-sucedida
     if (verifyAuthQuery.isSuccess) {
         return <View />;
     }
 
-    // Opcional: Renderiza null ou um spinner de carregamento enquanto verifica a autenticação
-    return null; // ou retorne <Spinner />; se você tiver um componente de carregamento
-};
+    return (
+        <div className="z-50 fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-azul-escuro">
+            <img src={icone} alt="logomarca" className="w-12 animate-pulse" />
+        </div>
+    );};
 
 export default PrivateRouter;
