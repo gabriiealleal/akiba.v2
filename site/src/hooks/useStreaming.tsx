@@ -23,7 +23,7 @@ interface StreamingData {
 
     const getStreamingData = useCallback(async () => {
         try {
-            const response = await axios.get<StreamingData>(import.meta.env.VITE_API_STREAMING, {
+            const response = await axios.get<StreamingData>("https://radiovox.conectastm.com/api-json/VkRGU1ZtVlZOVzVRVkRBOStS'", {
                 headers: {
                     'Content-Type': 'application/json',
                 }

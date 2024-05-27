@@ -19,10 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*
-|-------------------------------------------------------------------
-| Rotas com autenticação
-|-------------------------------------------------------------------
-| Essas rotas só podem ser acessadas por usuários com um token válido
-|
-*/
+

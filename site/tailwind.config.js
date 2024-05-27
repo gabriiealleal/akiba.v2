@@ -22,7 +22,8 @@ export default {
         'extrabold': 800,
       },
       backgroundImage: {
-        'login': "url('https://i.imgur.com/iTUkmyD.gif')",
+        'footer': "url('https://i.imgur.com/iTUkmyD.gif')",
+        'login': "url('https://images6.alphacoders.com/134/1347028.jpeg')",
       },
       colors:{
         'aurora': '#FFF6E6',

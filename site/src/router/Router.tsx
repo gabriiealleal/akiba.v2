@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRouter from "@/router/PrivateRouter.tsx";
 
 //Importando os componentes privados
-import Root from "@/interfaces/private/pages/Root";
+import PrivateRoot from "@/interfaces/private/pages/PrivateRoot";
 import Auth from "@/interfaces/private/pages/Auth";
 import Dashboard from "@/interfaces/private/pages/Dashboard";
 import Materias from "@/interfaces/private/pages/Materias";
@@ -14,7 +14,7 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/painel" element={<Auth />} />
-                <Route path="/painel/*" element={<Root/>}>
+                <Route path="/painel/*" element={<PrivateRoot/>}>
                     <Route path="dashboard" element={<PrivateRouter View={Dashboard} />} />
                     <Route path="materias" element={<PrivateRouter View={Materias} />} />
                 </Route>
