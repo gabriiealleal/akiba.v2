@@ -7,6 +7,7 @@ export const useNotificationsTeam = (queryParams: NotificationParams) => {
         queryKey: ['notificationsTeam'],
         queryFn: () => getNotificationsTeam(queryParams),
         enabled: !!queryParams,
+        refetchOnWindowFocus: false,
         retry: false,
     })
 }

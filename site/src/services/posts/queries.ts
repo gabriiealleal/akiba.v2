@@ -6,5 +6,6 @@ export const usePosts = () => {
         queryKey: ['posts'],
         queryFn: () => getPosts(),
         retry: false,
+        refetchOnWindowFocus: false,
     })
 }

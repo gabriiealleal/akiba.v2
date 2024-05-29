@@ -9,5 +9,6 @@ export const useTasks = (queryParams: getTasksTypes) => {
         queryFn: () => getTasks(queryParams),
         enabled: !!queryParams.user,
         retry: false,
+        refetchOnWindowFocus: false,
     })
 }

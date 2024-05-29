@@ -5,6 +5,5 @@ export const useVerifyAuth = () => {
     return useQuery({
         queryKey: ['verifyAuth'],
         queryFn: () => verifyAuth(),
-        retry: false
     })
 }
