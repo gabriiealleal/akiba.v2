@@ -5,7 +5,6 @@ import logomarca from '/images/logomarca.webp';
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import usePageName from "@/hooks/usePageName.tsx";
 import { useAuth } from '@/services/auth/mutation.ts';
-import { useVerifyAuth } from '@/services/auth/queries';
 
 const Auth = () => {
     const navigate = useNavigate();
@@ -13,19 +12,13 @@ const Auth = () => {
     const { register, handleSubmit } = useForm();
 
     const { mutate: Auth } = useAuth();
-    const { isSuccess, isError } = useVerifyAuth();
     const onSubmit = (data: any) => {
         Auth(data);
     }
 
     const token = localStorage.getItem('akb_token');
-    if (token) {
-        if (isSuccess) {
-            navigate('/painel/dashboard');
-        } else if (isError) {
-            toast.error('Sessão expirada, realize o login novamente');
-        }
-        return
+    if(token){
+        navigate('/painel/dashboard');
     }
     
     pageName('Realize o login');

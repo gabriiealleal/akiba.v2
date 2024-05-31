@@ -3,6 +3,7 @@ import DivisorDeTiposDeMaterias from '@/interfaces/private/components/materias/D
 import ImagemEmDestaqueDaMateria from '@/interfaces/private/components/materias/ImagemEmDestaqueDaMateria';
 import TituloDaMateria from '@/interfaces/private/components/materias/TituloDaMateria';
 import CapaDaMateria from '@/interfaces/private/components/materias/CapaDaMateria';
+import EscrevaSuaMateria from '@/interfaces/private/components/materias/EscrevaSuaMateria';
 
 const Materias = () => {
     usePageName('Matérias');
@@ -12,12 +13,13 @@ const Materias = () => {
             <DivisorDeTiposDeMaterias />
             <form>
                 <div className="flex gap-4 mt-5">
-                    <div className='w-72 p-0 m-0 flex-shrink-0'>
+                    <div className='w-64 p-0 m-0 flex-shrink-0'>
                         <ImagemEmDestaqueDaMateria />
                     </div>
                     <div className='flex-grow'>
                         <TituloDaMateria />
                         <CapaDaMateria />
+                        <EscrevaSuaMateria />
                     </div>
                 </div>
             </form>

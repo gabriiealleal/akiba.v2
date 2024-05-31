@@ -9,6 +9,7 @@ export const useAuth = () => {
     return useMutation({
         mutationFn: Auth,
         onSuccess: (data:any) => {
+            toast.dismiss()
             navigate('/painel/dashboard');
             localStorage.setItem('akb_token', data.access_token);
         },
@@ -17,6 +18,7 @@ export const useAuth = () => {
             queryClient.clear();
         },
         onError: (error: any) => {
+            toast.dismiss()
             toast.error(error.response.data.message)
             console.error(error)
         }
