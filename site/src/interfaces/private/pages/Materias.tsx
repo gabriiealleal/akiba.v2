@@ -6,6 +6,9 @@ import CapaDaMateria from '@/interfaces/private/components/materias/CapaDaMateri
 import EscrevaSuaMateria from '@/interfaces/private/components/materias/EscrevaSuaMateria';
 import PrimeiraTagDaMateria from '@/interfaces/private/components/materias/PrimeiraTagDaMateria';
 import SegundaTagDaMateria from '@/interfaces/private/components/materias/SegundaTagDaMateria';
+import PrimeiraFonteDePesquisaDaMateria from '@/interfaces/private/components/materias/PrimeiraFonteDePesquisaDaMateria';
+import SegundaFonteDePesquisaDaMateria from '@/interfaces/private/components/materias/SegundaFonteDePesquisaDaMateria';
+import ControlesDePublicacaoDaMateria from '@/interfaces/private/components/materias/ControlesDePublicacaoDaMateria';
 
 const Materias = () => {
     usePageName('Matérias');
@@ -14,8 +17,8 @@ const Materias = () => {
         <>
             <DivisorDeTiposDeMaterias />
             <form>
-                <div className="flex gap-4 mt-5">
-                    <div className='w-64 p-0 m-0 flex-shrink-0'>
+                <div className="flex gap-4 mt-5 flex-wrap sm:flex-nowrap">
+                    <div className='w-full sm:w-56 md:w-64 p-0 m-0 flex-shrink-0'>
                         <ImagemEmDestaqueDaMateria />
                     </div>
                     <div className='flex-grow'>
@@ -24,14 +27,23 @@ const Materias = () => {
                         <EscrevaSuaMateria />
                     </div>
                 </div>
-                <div className="flex justify-end gap-4 mt-5">
-                    <div className='w-32rem p-0 m-0 flex-shrink-0'>
+                <div className="flex justify-end flex-wrap sm:flex-nowrap gap-5 xl:gap-14 mt-5">
+                    <div className='w-full xl:w-32rem p-0 m-0 flex-shrink-1 xl:flex-shrink-0'>
                         <PrimeiraTagDaMateria />
                     </div>
-                    <div className='w-32rem p-0 m-0 flex-shrink-0'>
+                    <div className='w-full xl:w-32rem p-0 m-0 flex-shrink-1 xl:flex-shrink-0'>
                         <SegundaTagDaMateria />
                     </div>
                 </div>
+                <div className="flex justify-end flex-wrap sm:flex-nowrap gap-5 xl:gap-14 mt-5">
+                    <div className='w-full xl:w-32rem p-0 m-0 flex-shrink-1 xl:flex-shrink-0'>
+                        <PrimeiraFonteDePesquisaDaMateria />
+                    </div>
+                    <div className='w-full xl:w-32rem p-0 m-0 flex-shrink-1 xl:flex-shrink-0'>
+                        <SegundaFonteDePesquisaDaMateria/>
+                    </div>
+                </div>
+                <ControlesDePublicacaoDaMateria />
             </form>
         </>
     );
