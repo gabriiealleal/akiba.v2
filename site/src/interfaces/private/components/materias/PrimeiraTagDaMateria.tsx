@@ -1,16 +1,24 @@
+import { useParams } from 'react-router-dom';
+import { usePost } from '@/services/posts/queries';
+
 const PrimeiraTagDaMateria = () => {
+    const { slug } = useParams();
+    const { data: getPost } = usePost(slug ?? "");
+    const postagem = getPost?.publicação;
+    const categoriaDefault = postagem?.categories?.[0] || "#";
+
     return (
         <>
             <label htmlFor="primeira_tag" className="font-averta font-extrabold text-azul-claro text-lg uppercase text-center italic block">Primeira tag</label>
             <div className="relative">
-                <select id="primeira_tag" name="segunda_tag" className="w-full rounded-md p-2 font-averta appearance-none pr-8 outline-none">
-                    <option defaultValue="#"></option>
-                    <option defaultValue="animes">Animes</option>
-                    <option defaultValue="mangas">Mangás</option>
-                    <option defaultValue="tops">Top's</option>
-                    <option defaultValue="primeiras-impressoes">Primeiras impressões</option>
-                    <option defaultValue="listas">Listas</option>
-                    <option defaultValue="curiosidades">Curiosidades</option>
+                <select id="primeira_tag" name="segunda_tag" className="w-full rounded-md p-2 font-averta appearance-none pr-8 outline-none" defaultValue={categoriaDefault}>
+                    <option value="#">Escolha uma tag</option>
+                    <option value="animes">Animes</option>
+                    <option value="mangas">Mangás</option>
+                    <option value="tops">Top's</option>
+                    <option value="primeiras-impressoes">Primeiras impressões</option>
+                    <option value="listas">Listas</option>
+                    <option value="curiosidades">Curiosidades</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg className="fill-current h-4 w-4 text-azul-claro" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

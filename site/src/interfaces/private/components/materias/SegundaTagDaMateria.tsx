@@ -1,10 +1,18 @@
+import { useParams } from 'react-router-dom';
+import { usePost } from '@/services/posts/queries';
+
 const PrimeiraTagDaMateria = () => {
+    const { slug } = useParams();
+    const { data: getPost } = usePost(slug ?? "");
+    const postagem = getPost?.publicação;
+    const categoriaDefault = postagem?.categories?.[1] || "#";
+
     return (
         <>
             <label htmlFor="segunda_tag" className="font-averta font-extrabold text-azul-claro text-lg uppercase text-center italic block">Segunda tag</label>
             <div className="relative">
-                <select id="segunda_tag" name="segunda_tag" className="w-full rounded-md p-2 font-averta appearance-none pr-8 outline-none">
-                    <option defaultValue="#"></option>
+                <select id="segunda_tag" name="segunda_tag" className="w-full rounded-md p-2 font-averta appearance-none pr-8 outline-none" defaultValue={categoriaDefault}>
+                    <option defaultValue="#">Escolha uma tag</option>
                     <option defaultValue="animes">Animes</option>
                     <option defaultValue="mangas">Mangás</option>
                     <option defaultValue="tops">Top's</option>

@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import usePageName from '@/hooks/usePageName';
 import DivisorDeTiposDeMaterias from '@/interfaces/private/components/materias/DivisorDeTiposDeMaterias';
 import ImagemEmDestaqueDaMateria from '@/interfaces/private/components/materias/ImagemEmDestaqueDaMateria';
@@ -10,16 +9,9 @@ import SegundaTagDaMateria from '@/interfaces/private/components/materias/Segund
 import PrimeiraFonteDePesquisaDaMateria from '@/interfaces/private/components/materias/PrimeiraFonteDePesquisaDaMateria';
 import SegundaFonteDePesquisaDaMateria from '@/interfaces/private/components/materias/SegundaFonteDePesquisaDaMateria';
 import ControlesDePublicacaoDaMateria from '@/interfaces/private/components/materias/ControlesDePublicacaoDaMateria';
-import { usePost } from '@/services/posts/queries';
 
 const Materias = () => {
     usePageName('Matérias');
-
-    const { slug } = useParams();
-
-    const { data: getPost } = usePost(slug ?? "" );
-
-    console.log(getPost)
 
     return (
         <>

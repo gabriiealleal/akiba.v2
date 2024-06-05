@@ -14,6 +14,6 @@ export const getNotificationsTeam = async (queryParams: NotificationParams) => {
         });
         return response.data;
     }catch(error: any){
-        throw error;
+        throw error.response;
     }
 }

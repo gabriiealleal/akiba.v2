@@ -10,6 +10,6 @@ export const getCalendar = async () => {
         });
         return response.data;
     }catch(error: any){
-        throw error;
+        throw error.response;
     }
 }
