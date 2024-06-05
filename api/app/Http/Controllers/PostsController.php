@@ -203,8 +203,8 @@ class PostsController extends Controller
     public function show($slug)
     {
         try {
-            $posts = Posts::with('slug')->where('slug', $slug)->first();
-
+            $posts = Posts::where('slug', $slug)->first();
+            
             if (!$posts) {
                 return response()->json(['message' => 'Publicação não encontrada'], 404);
             }

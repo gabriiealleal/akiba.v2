@@ -16,7 +16,7 @@ const Router = () => {
                 <Route path="/painel" element={<Auth />} />
                 <Route path="/painel/*" element={<PrivateRoot/>}>
                     <Route path="dashboard" element={<PrivateRouter View={Dashboard} />} />
-                    <Route path="materias" element={<PrivateRouter View={Materias} />} />
+                    <Route path="materias/:slug" element={<PrivateRouter View={Materias} />} />
                 </Route>
             </Routes>
         </BrowserRouter>

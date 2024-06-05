@@ -33,7 +33,7 @@ const UltimasMaterias = () => {
                                     <FaEye className="text-aurora text-xl" />
                                 </Link>
                                 {user?.id === post.author.id && (
-                                    <Link to={`materias/${post.slug}`} title="editar a postagem" className="text-aurora font-averta font-extrabold italic uppercase flex items-center gap-1">
+                                    <Link to={`/painel/materias/${post.slug}`} title="editar a postagem" className="text-aurora font-averta font-extrabold italic uppercase flex items-center gap-1">
                                         <FaPenNib className="text-aurora" />
                                     </Link>
                                 )}
