@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
+import ImagemEmDestaqueDaMateriaLoading from "@/interfaces/private/placeholders/materias/ImagemEmDestaqueDaMateriaLoading";
 
 const ImagemEmDestaqueDaMateria = () => {
     const [preview, setPreview] = useState<string | undefined>(undefined);
 
     const { slug } = useParams();
-    const { data: getPost } = usePost(slug ?? "");
+    const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
+
+    if(slug){
+        if(isLoading){
+            return <ImagemEmDestaqueDaMateriaLoading />
+        }
+    }
 
     const previewDaImagem = (event: React.ChangeEvent<HTMLInputElement>) => {
         const imagem = event.target.files?.[0];

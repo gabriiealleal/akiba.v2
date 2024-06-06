@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import usePageName from '@/hooks/usePageName';
 import DivisorDeTiposDeMaterias from '@/interfaces/private/components/materias/DivisorDeTiposDeMaterias';
 import ImagemEmDestaqueDaMateria from '@/interfaces/private/components/materias/ImagemEmDestaqueDaMateria';
@@ -12,6 +13,10 @@ import ControlesDePublicacaoDaMateria from '@/interfaces/private/components/mate
 
 const Materias = () => {
     usePageName('Matérias');
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
     return (
         <>

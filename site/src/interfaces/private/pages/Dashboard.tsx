@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import usePageName from '@/hooks/usePageName';
 import BoasVindas from '@/interfaces/private/components/dashboard/BoasVindas';
 import AvisosParaEquipe from '@/interfaces/private/components/dashboard/AvisosParaEquipe';
@@ -9,6 +10,10 @@ import Calendario from '@/interfaces/private/components/dashboard/Calendario';
 
 const Dashboard = () => {
     usePageName('Dashboard');
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
     
     return (
         <>

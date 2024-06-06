@@ -1,10 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
+import TituloDaMateriaLoading from "@/interfaces/private/placeholders/materias/TituloDaMateriaLoading"
 
 const TituloDaMeteria = () => {
     const { slug } = useParams();
-    const { data: getPost } = usePost(slug ?? "");
+    const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
+
+    if(slug){
+        if(isLoading){
+            return <TituloDaMateriaLoading />
+        }
+    }
 
     return (
         <div className="mb-6">

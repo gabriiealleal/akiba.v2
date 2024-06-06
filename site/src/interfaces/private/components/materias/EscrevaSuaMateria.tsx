@@ -2,12 +2,18 @@ import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import EscrevaSuaMateriaLoading from '@/interfaces/private/placeholders/materias/EscrevaSuaMateriaLoading';
 
 const EscrevaSuaMateria = () => {
     const { slug } = useParams();
-    const { data: getPost } = usePost(slug ?? "");
+    const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
-    console.log(postagem)
+
+    if(slug){
+        if(isLoading){
+            return <EscrevaSuaMateriaLoading />
+        }
+    }
 
     const modules = {
         toolbar: [

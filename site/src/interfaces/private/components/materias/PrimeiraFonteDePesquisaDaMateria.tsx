@@ -1,10 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
+import PrimeiraFonteDePesquisaDaMateriaLoading from "@/interfaces/private/placeholders/materias/PrimeiraFonteDePesquisaDaMateriaLoading"
 
 const PrimeiraFonteDePesquisaDaMateria = () => {
     const { slug } = useParams();
-    const { data: getPost } = usePost(slug ?? "");
+    const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
+
+    if(slug){
+        if(isLoading){
+            return <PrimeiraFonteDePesquisaDaMateriaLoading />
+        }
+    }
 
     return (
         <div className='flex flex-col gap-2'>

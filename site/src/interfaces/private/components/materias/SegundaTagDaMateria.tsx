@@ -1,11 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
+import SegundaTagDaMateriaLoading from '@/interfaces/private/placeholders/materias/SegundaTagDaMateriaLoading';
 
 const PrimeiraTagDaMateria = () => {
     const { slug } = useParams();
-    const { data: getPost } = usePost(slug ?? "");
+    const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
     const categoriaDefault = postagem?.categories?.[1] || "#";
+
+    if(slug){
+        if(isLoading){
+            return <SegundaTagDaMateriaLoading />
+        }
+    }
 
     return (
         <>
