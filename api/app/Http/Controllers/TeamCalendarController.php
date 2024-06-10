@@ -18,7 +18,7 @@ class TeamCalendarController extends Controller
     //--------------Retorna todos os eventos do calendario--------------
     /**
      * @OA\Get(
-     *      path="/calendario-da-equipe",
+     *      path="/api/calendario-da-equipe",
      *      tags={"Calendário da Equipe"},
      *      summary="Lista de todos os eventos do calendário da equipe",
      *      description="Este endpoint retorna uma lista completa de todos os eventos no calendário da equipe cadastradas no sistema da Rede Akiba.",
@@ -62,7 +62,7 @@ class TeamCalendarController extends Controller
     //--------------Cadastra um novo evento no calendário--------------
     /**
      * @OA\Post(
-     *      path="/calendario-da-equipe",
+     *      path="/api/calendario-da-equipe",
      *      tags={"Calendário da Equipe"},
      *      summary="Cadastra um novo evento no calendário da equipe",
      *      description="Este endpoint realiza o cadastro de um novo evento no calendário da equipe no sistema da Rede Akiba.",
@@ -140,7 +140,7 @@ class TeamCalendarController extends Controller
     //--------------Retorna um evento especifico no calendário--------------
     /**
      * @OA\Get(
-     *      path="/calendario-da-equipe/{slug}",
+     *      path="/api/calendario-da-equipe/{slug}",
      *      tags={"Calendário da Equipe"},
      *      summary="Detalhes de um evento específico do calendário da equipe",
      *      description="Este endpoint retorna os detalhes de um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",
@@ -192,7 +192,7 @@ class TeamCalendarController extends Controller
     //--------------Atualiza uma tarefa especifica------------
     /**
      * @OA\Patch(
-     *      path="/calendario-da-equipe/{id}",
+     *      path="/api/calendario-da-equipe/{id}",
      *      tags={"Calendário da Equipe"},
      *      summary="Atualiza um evento específico do calendário da equipe",
      *      description="Este endpoint atualiza um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",
@@ -279,7 +279,7 @@ class TeamCalendarController extends Controller
     //--------------Remove uma tarefa------------
     /**
      * @OA\Delete(
-     *      path="/calendario-da-equipe/{id}",
+     *      path="/api/calendario-da-equipe/{id}",
      *      tags={"Calendário da Equipe"},
      *      summary="Remove um evento específico do calendário da equipe",
      *      description="Este endpoint remove um evento específico do calendário da equipe cadastrado no sistema da Rede Akiba.",

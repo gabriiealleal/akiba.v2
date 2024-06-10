@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Credentials } from '@/services/auth/interfaces.ts';
+import { CredentialsTypes } from '@/services/auth/types.ts';
 
-export const Auth = async (credentials: Credentials) => {
+export const Auth = async (credentials: CredentialsTypes) => {
     try {
         const response = await axios.post(`${import.meta.env.VITE_API_ADDRESS}/login`, credentials, {
             headers: {

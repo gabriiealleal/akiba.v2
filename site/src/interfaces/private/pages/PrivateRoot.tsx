@@ -79,7 +79,7 @@ const PrivateRoot = () => {
                             ) : null}
                             {user?.access_levels.includes('administrador') || user?.access_levels.includes('locutor') ? (
                                 <li className="pb-2.5 font-averta font-extrabold italic uppercase">
-                                    <Link onClick={()=>{closeSidebar()}} className="link flex gap-1" to="/painel/locucao" title="Locução" aria-label="Locução">
+                                    <Link onClick={()=>{closeSidebar(); }} className="link flex gap-1" to="/painel/locucao" title="Locução" aria-label="Locução">
                                         <img src={locucao} alt="locução icone" />Locução
                                     </Link>
                                 </li>

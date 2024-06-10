@@ -42,5 +42,9 @@ class Users extends Model
         'login',
         'password'
     ];
-    
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class, 'author');
+    }
 }

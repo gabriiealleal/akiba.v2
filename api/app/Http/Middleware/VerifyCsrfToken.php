@@ -12,7 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
+        'api/*', // substitua 'api/*' pela URI da sua rota de geração de token
         'api/login', // substitua 'api/login' pela URI da sua rota de geração de token
-        '/login', // substitua '/login' pela URI da sua rota de geração de token
     ];
 }

@@ -19,7 +19,7 @@ class FilesRepositoryController extends Controller
     //--------------Retorna todos os arquivos cadastrados------------
     /**
      * @OA\Get(
-     *      path="/repositorio-de-arquivos",
+     *      path="/api/repositorio-de-arquivos",
      *      tags={"Repositório de Arquivos"},
      *      summary="Lista todos os arquivos cadastrados",
      *      description="Este endpoint retorna todos os arquivos cadastrados no sistema",
@@ -64,7 +64,7 @@ class FilesRepositoryController extends Controller
     //--------------Cadastra um novo arquivo--------------
     /**
      * @OA\Post(    
-     *      path="/repositorio-de-arquivos",
+     *      path="/api/repositorio-de-arquivos",
      *      tags={"Repositório de Arquivos"},
      *      summary="Cadastra um novo arquivo",
      *      description="Este endpoint realiza o cadastro de um novo arquivo no sistema",
@@ -133,7 +133,7 @@ class FilesRepositoryController extends Controller
     //--------------Retorna um arquivo especifico--------------
     /**
      * @OA\Get(
-     *      path="/repositorio-de-arquivos/{id}",
+     *      path="/api/repositorio-de-arquivos/{id}",
      *      tags={"Repositório de Arquivos"},   
      *      summary="Retorna um arquivo específico",
      *      description="Este endpoint retorna um arquivo específico cadastrado no sistema",
@@ -185,7 +185,7 @@ class FilesRepositoryController extends Controller
     //--------------Atualiza um arquivo específico------------
     /**
      * @OA\Patch(
-     *      path="/repositorio-de-arquivos/{id}",
+     *      path="/api/repositorio-de-arquivos/{id}",
      *      tags={"Repositório de Arquivos"},       
      *      summary="Atualiza um arquivo específico",
      *      description="Este endpoint atualiza um arquivo específico cadastrado no sistema",
@@ -261,7 +261,7 @@ class FilesRepositoryController extends Controller
     //--------------Remove um arquivo especifico------------
     /**
      * @OA\Delete(
-     *      path="/repositorio-de-arquivos/{id}",
+     *      path="/api/repositorio-de-arquivos/{id}",
      *      tags={"Repositório de Arquivos"},
      *      summary="Remove um arquivo específico",
      *      description="Este endpoint remove um arquivo específico cadastrado no sistema",

@@ -23,7 +23,7 @@ const Auth = () => {
     
     pageName('Realize o login');
     return (
-        <section className="bg-login bg-cover bg-position-center h-screen flex flex-wrap justify-center items-center">
+        <section className="bg-login bg-cover bg-center h-screen flex flex-wrap justify-center items-center">
             <div className="w-52 ">
                 <div className="w-full flex justify-center">
                     <img className="w-32" src={logomarca} alt="Logomarca" />

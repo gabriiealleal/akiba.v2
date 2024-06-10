@@ -22,7 +22,7 @@ class ReviewsController extends Controller
     //--------------Lista todos os reviews--------------
     /**
      * @OA\Get(
-     *      path="/reviews",
+     *      path="/api/reviews",
      *      tags={"Reviews"},
      *      summary="Lista todos os reviews cadastrados",
      *      description="Este endpoint retorna uma lista completa de todos os reviews cadastrados no sistema da Rede Akiba.",
@@ -66,7 +66,7 @@ class ReviewsController extends Controller
     //--------------Cria uma novo review------------
     /**
      * @OA\Post(
-     *      path="/reviews",
+     *      path="/api/reviews",
      *      tags={"Reviews"},
      *      summary="Cria um novo review",
      *      description="Este endpoint realiza a criação de um novo review no sistema da Rede Akiba.",
@@ -154,7 +154,7 @@ class ReviewsController extends Controller
     //--------------Retorna um review especifico------------
     /**
      * @OA\Get(
-     *      path="/reviews/{slug}",
+     *      path="/api/reviews/{slug}",
      *      tags={"Reviews"},
      *      summary="Retorna um review especifico",
      *      description="Este endpoint retorna um review especifico cadastrado no sistema da Rede Akiba.",
@@ -206,7 +206,7 @@ class ReviewsController extends Controller
     //--------------Atualiza um review especifico------------
     /**
      * @OA\Patch(
-     *      path="/reviews/{id}",
+     *      path="/api/reviews/{id}",
      *      tags={"Reviews"},
      *      summary="Atualiza um review especifico",
      *      description="Este endpoint realiza a atualização de um review especifico cadastrado no sistema da Rede Akiba.",
@@ -300,7 +300,7 @@ class ReviewsController extends Controller
     //--------------Remove um review------------
     /**
      * @OA\Delete(
-     *      path="/reviews/{id}",
+     *      path="/api/reviews/{id}",
      *      tags={"Reviews"},
      *      summary="Remove um review",
      *      description="Este endpoint realiza a remoção de um review especifico cadastrado no sistema da Rede Akiba.",

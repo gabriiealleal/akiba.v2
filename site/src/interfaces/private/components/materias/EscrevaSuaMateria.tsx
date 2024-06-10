@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import EscrevaSuaMateriaLoading from '@/interfaces/private/placeholders/materias/EscrevaSuaMateriaLoading';
 
-const EscrevaSuaMateria = () => {
+const EscrevaSuaMateria = ({setMateria}: any) => {
     const { slug } = useParams();
     const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
@@ -34,10 +34,14 @@ const EscrevaSuaMateria = () => {
         ]
     };
 
+    const handleChange = (content: any) => {
+        setMateria(content);
+    }
+
     return (
         <div className="mb-6">
             <label htmlFor="materia" className="font-averta font-extrabold text-laranja text-lg uppercase italic block">Escreva sua matéria</label>
-            <ReactQuill modules={modules} className='h-96 bg-aurora overflow-hidden rounded-md font-averta mb-6' value={postagem?.content} />
+            <ReactQuill modules={modules} className='h-96 bg-aurora overflow-hidden rounded-md font-averta mb-6' onChange={handleChange} defaultValue={postagem?.content} />
         </div>
     );
 }

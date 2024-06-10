@@ -17,7 +17,7 @@ class FormsController extends Controller
     //--------------Retorna todos os formulários cadastrados------------
     /**
      * @OA\Get(
-     *      path="/formularios",
+     *      path="/api/formularios",
      *      tags={"Formulários"},
      *      summary="Retorna uma lista de todos os formulários cadastrados",
      *      description="Este endpoint retorna uma lista completa de todos os formulários cadastrados no sistema da Rede Akiba.",
@@ -60,7 +60,7 @@ class FormsController extends Controller
     //--------------Cadastra um novo formulário------------
     /**
      * @OA\Post(
-     *      path="/formularios",
+     *      path="/api/formularios",
      *      tags={"Formulários"},
      *      summary="Cadastra um novo formulário",
      *      description="Este endpoint cadastra um novo formulário no sistema da Rede Akiba.",
@@ -100,7 +100,7 @@ class FormsController extends Controller
     //--------------Retorna um formulário especifico------------
     /**
      * @OA\Get(
-     *      path="/formularios/{id}",
+     *      path="/api/formularios/{id}",
      *      tags={"Formulários"},
      *      summary="Retorna um formulário específico",
      *      description="Este endpoint retorna um formulário especifico cadastrado sistema da Rede Akiba.",
@@ -152,7 +152,7 @@ class FormsController extends Controller
     //--------------Atualiza um formulário especifico------------
     /**
      * @OA\Patch(
-     *      path="/formularios/{id}",
+     *      path="/api/formularios/{id}",
      *      tags={"Formulários"},
      *      summary="Atualiza um formulário específico",
      *      description="Este endpoint atualiza um formulário específico cadastrado no sistema da Rede Akiba.",
@@ -219,7 +219,7 @@ class FormsController extends Controller
     //--------------Deleta um formulário especifico------------
     /**
      * @OA\Delete(
-     *      path="/formularios/{id}",
+     *      path="/api/formularios/{id}",
      *      tags={"Formulários"},
      *      summary="Deleta um formulário específico",
      *      description="Este endpoint deleta um formulário específico cadastrado no sistema da Rede Akiba.",

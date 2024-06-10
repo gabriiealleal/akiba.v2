@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { usePost } from '@/services/posts/queries';
 import CapaDaMateriaLoading from "@/interfaces/private/placeholders/materias/CapaDaMateriaLoading";
@@ -9,6 +9,10 @@ const CapaDaMateria = () => {
     const { slug } = useParams();
     const { data: getPost, isLoading } = usePost(slug ?? "");
     const postagem = getPost?.publicação;
+
+    useEffect(() => {
+        setPreview(undefined);
+    }, [slug]);
 
     if(slug){
         if(isLoading){

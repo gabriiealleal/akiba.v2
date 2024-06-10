@@ -20,7 +20,7 @@ class PlaylistBattleController extends Controller
     //--------------Retorna uma batalha de playlist especifica------------
     /**
      * @OA\Get(
-     *      path="/batalhas-de-playlist/{id}",
+     *      path="/api/batalhas-de-playlist/{id}",
      *      tags={"Batalhas de Playlist"},
      *      summary="Retorna um banner da batalha de playlist especifica",
      *      description="Endpoint para retornar um banner da batalha de playlist especifica baseado no id fornecido.",
@@ -72,7 +72,7 @@ class PlaylistBattleController extends Controller
     //--------------Atualiza uma batalha de playlist------------
     /**
      * @OA\Patch(
-     *      path="/batalhas-de-playlist/{id}",
+     *      path="/api/batalhas-de-playlist/{id}",
      *      tags={"Batalhas de Playlist"},
      *      summary="Atualiza um banner de batalha de playlist",
      *      description="Endpoint para atualizar um banner da batalha de playlist no sistema da Rede Akiba.",

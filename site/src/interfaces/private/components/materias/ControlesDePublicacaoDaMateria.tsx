@@ -7,7 +7,7 @@ const ControlesDePublicacaoDaMateria = () => {
             <button className="border-4 border-laranja pr-4 pl-4 pb-1 pt-1 rounded-xl font-averta font-extrabold italic text-xl text-laranja uppercase">
                 Mandar para revisão
             </button>
-            <button className="border-4 border-azul-claro pr-4 pl-4 pb-1 pt-1 rounded-xl font-averta font-extrabold italic text-xl text-azul-claro uppercase">
+            <button type="submit" className="border-4 border-azul-claro pr-4 pl-4 pb-1 pt-1 rounded-xl font-averta font-extrabold italic text-xl text-azul-claro uppercase">
                 Publicar
             </button>
         </div>

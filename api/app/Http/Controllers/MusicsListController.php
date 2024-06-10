@@ -18,7 +18,7 @@ class MusicsListController extends Controller
     //---------Lista todos as músicas------------
     /**
      * @OA\Get(
-     *      path="/musicas",
+     *      path="/api/musicas",
      *      tags={"Músicas"},
      *      summary="Lista todas as músicas",      
      *      description="Este endpoint retorna todas as músicas registradas no sistema da Rede Akiba.",
@@ -68,7 +68,7 @@ class MusicsListController extends Controller
     //---------Cadastra uma nova música------------
     /**
      * @OA\Post(
-     *      path="/musicas",
+     *      path="/api/musicas",
      *      tags={"Músicas"},
      *      summary="Cadastra uma nova música",
      *      description="Este endpoint cadastra uma nova música no sistema da Rede Akiba.",
@@ -110,7 +110,7 @@ class MusicsListController extends Controller
     //---------Retorna uma música especifica------------
     /**
      * @OA\Get(
-     *      path="/musicas/{slug}",
+     *      path="/api/musicas/{slug}",
      *      tags={"Músicas"},
      *      summary="Retorna uma música especifica",
      *      description="Este endpoint retorna uma música especifica registrada no sistema da Rede Akiba.",
@@ -162,7 +162,7 @@ class MusicsListController extends Controller
     //---------Atualiza uma música especifica------------
     /**
      * @OA\Patch(
-     *      path="/musicas/{id}",
+     *      path="/api/musicas/{id}",
      *      tags={"Músicas"},
      *      summary="Atualiza uma música especifica",
      *      description="Este endpoint atualiza uma música especifica registrada no sistema da Rede Akiba.",
@@ -236,7 +236,7 @@ class MusicsListController extends Controller
     //---------Remove uma música especifica------------
     /**
      * @OA\Delete(
-     *      path="/musicas/{id}",
+     *      path="/api/musicas/{id}",
      *      tags={"Músicas"},
      *      summary="Remove uma música especifica",
      *      description="Este endpoint remove uma música especifica registrada no sistema da Rede Akiba.",

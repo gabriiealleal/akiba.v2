@@ -18,7 +18,7 @@ class NotificationTeamController extends Controller
     //--------------Retorna todas as notificações cadastradas--------------
     /**
      * @OA\Get(
-     *      path="/notificacoes",
+     *      path="/api/notificacoes",
      *      tags={"Notificações da Equipe"},
      *      summary="Retorna todas as notificações cadastrados",
      *      description="Este endpoint retorna uma lista completa de todas as notificações da equipe cadastradas no sistema da Rede Akiba.",
@@ -82,7 +82,7 @@ class NotificationTeamController extends Controller
     //--------------Cadastra uma nova notificação--------------
     /**
      * @OA\Post(
-     *      path="/notificacoes",
+     *      path="/api/notificacoes",
      *      tags={"Notificações da Equipe"},
      *      summary="Cadastra uma nova notificação",
      *      description="Este endpoint realiza o cadastro de uma nova notificação da equipe no sistema da Rede Akiba.",
@@ -166,7 +166,7 @@ class NotificationTeamController extends Controller
     //--------------Retorna uma notificação específica--------------
     /**
      * @OA\Get(
-     *      path="/notificacoes/{id}",
+     *      path="/api/notificacoes/{id}",
      *      tags={"Notificações da Equipe"},
      *      summary="Retorna uma notificação específica",
      *      description="Este endpoint retorna uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
@@ -218,7 +218,7 @@ class NotificationTeamController extends Controller
     //--------------Atualiza uma notificação especifica------------
     /**
      * @OA\Patch(
-     *      path="/notificacoes/{id}",
+     *      path="/api/notificacoes/{id}",
      *      tags={"Notificações da Equipe"},
      *      summary="Atualiza uma notificação específica",
      *      description="Este endpoint atualiza uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",
@@ -303,7 +303,7 @@ class NotificationTeamController extends Controller
     //--------------Remove uma notificação------------
     /**
      * @OA\Delete(
-     *      path="/notificacoes/{id}",
+     *      path="/api/notificacoes/{id}",
      *      tags={"Notificações da Equipe"},
      *      summary="Remove uma notificação específica",
      *      description="Este endpoint remove uma notificação específica da equipe cadastrada no sistema da Rede Akiba.",

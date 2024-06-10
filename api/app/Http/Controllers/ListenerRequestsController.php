@@ -20,7 +20,7 @@ class ListenerRequestsController extends Controller
     //--------------Lista todos os pedidos musicais--------------
     /**
      * @OA\Get(
-     *      path="/pedidos-musicais/{streaming_now}",
+     *      path="/api/pedidos-musicais/{streaming_now}",
      *      tags={"Pedidos musicais"},
      *      summary="Lista todos os pedidos musicais",
      *      description="Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
@@ -79,7 +79,7 @@ class ListenerRequestsController extends Controller
     //--------------Cadastra um novo pedido musical--------------
     /**
      * @OA\Post(
-     *      path="/pedidos-musicais",
+     *      path="/api/pedidos-musicais",
      *      tags={"Pedidos musicais"},
      *      summary="Cadastra um novo pedido musical",
      *      description="Este endpoint realiza o cadastro de um novo pedido musical no sistema da Rede Akiba.",
@@ -168,7 +168,7 @@ class ListenerRequestsController extends Controller
     //--------------Retorna um pedido musical especifico--------------
     /**
      * @OA\Get(
-     *      path="/pedidos-musicais/{id}",
+     *      path="/api/pedidos-musicais/{id}",
      *      tags={"Pedidos musicais"},
      *      summary="Retorna um pedido musical especifico",
      *      description="Este endpoint retorna um pedido musical especifico do sistema da Rede Akiba.",
@@ -216,7 +216,7 @@ class ListenerRequestsController extends Controller
     //--------------Atualiza um pedido musical especifico--------------
     /**
      * @OA\Patch(
-     *      path="/pedidos-musicais/{id}",
+     *      path="/api/pedidos-musicais/{id}",
      *      tags={"Pedidos musicais"},
      *      summary="Atualiza um pedido musical especifico",
      *      description="Este endpoint realiza a atualização de um pedido musical especifico no sistema da Rede Akiba.",
@@ -305,7 +305,7 @@ class ListenerRequestsController extends Controller
     //--------------Remove um pedido musical especifico--------------
     /**
      * @OA\Delete(
-     *      path="/pedidos-musicais/{id}",
+     *      path="/api/pedidos-musicais/{id}",
      *      tags={"Pedidos musicais"},
      *      summary="Remove um pedido musical especifico",
      *      description="Este endpoint realiza a remoção de um pedido musical especifico no sistema da Rede Akiba.",

@@ -24,7 +24,7 @@ export default {
       },
       backgroundImage: {
         'footer': "url('https://i.imgur.com/iTUkmyD.gif')",
-        'login': "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b6843562-1654-4d17-94f0-674eb6e68d27/dc5c7gt-85951a90-8530-43ab-9105-f3dca13ade19.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I2ODQzNTYyLTE2NTQtNGQxNy05NGYwLTY3NGViNmU2OGQyN1wvZGM1YzdndC04NTk1MWE5MC04NTMwLTQzYWItOTEwNS1mM2RjYTEzYWRlMTkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.kGYGg9qyG_dkKUNDXwPzYUly44HKJo3kFNZZZ-ju7_Q')",
+        'login': "url('https://i.imgur.com/dqslygE.jpeg')",
       },
       colors:{
         'aurora': '#FFF6E6',

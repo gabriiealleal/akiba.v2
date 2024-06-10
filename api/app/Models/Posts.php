@@ -29,8 +29,6 @@ class Posts extends Model
 
     public function author()
     {
-        return $this->hasOne(Users::class, 'id', 'author');
+        return $this->belongsTo(Users::class, 'author', 'id');
     }
-
-
 }

@@ -22,7 +22,7 @@ class ShowsController extends Controller
     //--------------Retorna todos os programas------------
     /**
      * @OA\Get(
-     *      path="/programas",
+     *      path="/api/programas",
      *      tags={"Programas"},
      *      description="Este endpoint retorna uma lista completa de todos os programas cadastrados no sistema da Rede Akiba.",
      *      summary="Retorna todos os programas cadastrados",
@@ -64,7 +64,7 @@ class ShowsController extends Controller
     //--------------Cadastra um programa------------
     /**
      * @OA\Post(
-     *      path="/programas",
+     *      path="/api/programas",
      *      tags={"Programas"},
      *      description="Este endpoint realiza o cadastro de um novo programa no sistema da Rede Akiba.",
      *      summary="Cadastra um novo programa",
@@ -159,7 +159,7 @@ class ShowsController extends Controller
     //--------------Retorna um programa específico------------
     /**
      * @OA\Get(
-     *      path="/programas/{slug}",
+     *      path="/api/programas/{slug}",
      *      tags={"Programas"},
      *      description="Este endpoint retorna um programa específico cadastrado no sistema da Rede Akiba.",
      *      summary="Retorna um programa específico",
@@ -213,7 +213,7 @@ class ShowsController extends Controller
     //--------------Atualiza um programa especifico------------
     /**
      * @OA\Patch(
-     *      path="/programas/{id}",
+     *      path="/api/programas/{id}",
      *      tags={"Programas"},
      *      description="Este endpoint realiza a atualização de um programa específico cadastrado no sistema da Rede Akiba.",
      *      summary="Atualiza um programa específico",
@@ -303,7 +303,7 @@ class ShowsController extends Controller
     //--------------Remove um programa------------
     /**
      * @OA\Delete(
-     *      path="/programas/{id}",
+     *      path="/api/programas/{id}",
      *      tags={"Programas"},
      *      description="Este endpoint remove um programa específico cadastrado no sistema da Rede Akiba.",
      *      summary="Remove um programa específico",

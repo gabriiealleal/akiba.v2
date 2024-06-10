@@ -20,7 +20,7 @@ class AuthController extends Controller
 {
     /**
      * @OA\Post(
-     *     path="/login",
+     *     path="/api/login",
      *     summary="Autentica o usuário",
      *     description="Esse endpoint autentica o usuário na Rede Akiba e retorna um token de acesso.",
      *     tags={"Autenticação"},
@@ -110,7 +110,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/verificarlogin",
+     *     path="/api/verificarlogin",
      *     summary="Verifica o login",
      *     description="Esse endpoint verifica se o usuário está autenticado para acessar as aplicações da Rede Akiba.",
      *     tags={"Autenticação"},
@@ -141,7 +141,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/deslogar",
+     *     path="/api/deslogar",
      *     summary="Desloga o usuário",
      *     description="Este endpoint desloga o usuário de todas as aplicações da Rede Akiba.",
      *     tags={"Autenticação"},

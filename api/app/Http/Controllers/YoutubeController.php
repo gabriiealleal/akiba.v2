@@ -18,7 +18,7 @@ class YoutubeController extends Controller
     //--------------Retorna todos os vídeos do Youtube Cadastrados--------------
     /**
      * @OA\Get(
-     *      path="/youtube",
+     *      path="/api/youtube",
      *      tags={"Vídeos do Youtube"},
      *      summary="Retorna uma lista de vídeos do Youtube",
      *      description="Retorna todos os vídeos do Youtube cadastrados no banco de dados.",
@@ -63,7 +63,7 @@ class YoutubeController extends Controller
     //--------------Cadastra um novo vídeos do Youtube--------------
     /**
      * @OA\Post(
-     *      path="/youtube",
+     *      path="/api/youtube",
      *      tags={"Vídeos do Youtube"},
      *      summary="Cadastra um novo vídeo do Youtube",
      *      description="Cadastra um novo vídeo do Youtube.",
@@ -121,7 +121,7 @@ class YoutubeController extends Controller
     //--------------Retorna um novo vídeos do Youtube específico--------------
     /**
      * @OA\Get(
-     *      path="/youtube/{slug}",
+     *      path="/api/youtube/{slug}",
      *      tags={"Vídeos do Youtube"},
      *      summary="Retorna um vídeo do Youtube específico",
      *      description="Retorna um vídeo do Youtube específico de acordo com o slug informado.",
@@ -174,7 +174,7 @@ class YoutubeController extends Controller
     //--------------Atualiza um vídeo do Youtube específico------------
     /**
      * @OA\Patch(
-     *      path="/youtube/{id}",
+     *      path="/api/youtube/{id}",
      *      tags={"Vídeos do Youtube"},
      *      summary="Atualiza um vídeo do Youtube específico",
      *      description="Atualiza um vídeo do Youtube específico de acordo com o id informado.",
@@ -248,7 +248,7 @@ class YoutubeController extends Controller
     //--------------Remove um vídeo do Youtube específico------------
     /**
      * @OA\Delete(
-     *      path="/youtube/{id}",
+     *      path="/api/youtube/{id}",
      *      tags={"Vídeos do Youtube"},
      *      summary="Remove um vídeo do Youtube específico",
      *      description="Remove um vídeo do Youtube específico de acordo com o id informado.",

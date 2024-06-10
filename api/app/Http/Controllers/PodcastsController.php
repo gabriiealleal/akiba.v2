@@ -21,7 +21,7 @@ class PodcastsController extends Controller
     //--------------Retorna todos os podcasts--------------
     /**
      * @OA\Get(
-     *      path="/podcasts",
+     *      path="/api/podcasts",
      *      tags={"Podcasts"},
      *      summary="Retorna uma lista de todos os podcasts cadastrados",
      *      description="Retorna uma lista de todos os podcasts cadastrados no sistema da Rede Akiba.",
@@ -64,7 +64,7 @@ class PodcastsController extends Controller
     //--------------Cadastra um novo podcast--------------
     /**
      * @OA\Post(
-     *      path="/podcasts",
+     *      path="/api/podcasts",
      *      tags={"Podcasts"},
      *      description="Cadastra um novo podcast no sistema da Rede Akiba",
      *      summary="Cadastra um novo podcast",
@@ -155,7 +155,7 @@ class PodcastsController extends Controller
     //--------------Retorna um podcast especifico--------------
     /**
      * @OA\Get(
-     *      path="/podcasts/{slug}",
+     *      path="/api/podcasts/{slug}",
      *      tags={"Podcasts"},
      *      summary="Retorna um podcast específico",
      *      description="Retorna um podcast específico cadastrado no sistema da Rede Akiba.",
@@ -207,7 +207,7 @@ class PodcastsController extends Controller
     //--------------Atualiza um podcast especifico--------------
     /**
      * @OA\Patch(
-     *      path="/podcasts/{id}",
+     *      path="/api/podcasts/{id}",
      *      tags={"Podcasts"},
      *      summary="Atualiza um podcast específico",
      *      description="Atualiza um podcast específico cadastrado no sistema da Rede Akiba.",
@@ -320,7 +320,7 @@ class PodcastsController extends Controller
     //--------------Remove um podcast especifico--------------
     /**
      * @OA\Delete(
-     *      path="/podcasts/{id}",
+     *      path="/api/podcasts/{id}",
      *      tags={"Podcasts"},
      *      summary="Remove um podcast específico",
      *      description="Remove um podcast específico cadastrado no sistema da Rede Akiba.",

@@ -9,11 +9,8 @@ import UltimasMaterias from '@/interfaces/private/components/dashboard/UltimasMa
 import Calendario from '@/interfaces/private/components/dashboard/Calendario';
 
 const Dashboard = () => {
-    usePageName('Dashboard');
-
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+    const pageName = usePageName;
+    pageName('Dashboard');
     
     return (
         <>
